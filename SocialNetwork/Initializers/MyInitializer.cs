@@ -10,7 +10,7 @@ using SocialNetwork.Enums;
 
 namespace SocialNetwork.Initializers
 {
-    public class MyInitializer : DropCreateDatabaseIfModelChanges<EntityFrameworkDbContext>
+    public class MyInitializer : CreateDatabaseIfNotExists<EntityFrameworkDbContext>
     {
         protected override void Seed(EntityFrameworkDbContext context)
         {
