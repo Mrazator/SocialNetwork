@@ -11,6 +11,7 @@ using SocialNetwork.Entities;
 using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.Friendships;
 using SocialNetworkBL.Services.Messages;
+using Friendship = SocialNetwork.Entities.Friendship;
 
 namespace SocialNetworkBL.Facades
 {

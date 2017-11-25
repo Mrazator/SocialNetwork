@@ -9,7 +9,7 @@ namespace SocialNetwork.Entities
         public int Id { get; set; }
 
         [NotMapped]
-        public string TableName { get; } = nameof(DbContext.GroupUsers);
+        public string TableName { get; } = nameof(EntityFrameworkDbContext.GroupUsers);
 
         public bool IsAdmin { get; set; } = false;
 

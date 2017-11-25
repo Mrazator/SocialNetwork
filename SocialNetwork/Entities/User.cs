@@ -16,7 +16,7 @@ namespace SocialNetwork.Entities
         public int Id { get; set; }
 
         [NotMapped]
-        public string TableName { get; } = nameof(DbContext.Users);
+        public string TableName { get; } = nameof(EntityFrameworkDbContext.Users);
 
         [Required, MaxLength(50)]
         public string NickName { get; set; }

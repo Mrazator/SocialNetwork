@@ -12,7 +12,7 @@ namespace SocialNetwork
 
         private static void TextMethod()
         {
-            using (var db = new DbContext())
+            using (var db = new EntityFrameworkDbContext())
             {
                 var user = db.Users.First(name => name.NickName == "Marcello");
 

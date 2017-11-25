@@ -10,6 +10,7 @@ using Infrastructure.UnitOfWork;
 using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.Posts;
 using SocialNetworkBL.DataTransferObjects.Filters;
+using Post = SocialNetwork.Entities.Post;
 
 namespace SocialNetworkBL.Facades
 {

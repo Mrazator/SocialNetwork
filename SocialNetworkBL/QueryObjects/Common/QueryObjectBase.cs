@@ -12,6 +12,7 @@ using SocialNetwork.Entities;
 namespace SocialNetworkBL.QueryObjects.Common
 {
     public abstract class QueryObjectBase<TDto, TEntity, TFilter, TQuery>
+        : IQueryObjectBase
         where TFilter : FilterDtoBase
         where TQuery : IQuery<TEntity>
         where TEntity : class, IEntity, new()

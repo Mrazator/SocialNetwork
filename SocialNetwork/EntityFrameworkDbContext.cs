@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity.SqlServer;
+using SocialNetwork.Config;
 using SocialNetwork.Entities;
 using SocialNetwork.Initializers;
 
 namespace SocialNetwork
 {
-    public class DbContext : System.Data.Entity.DbContext
+    public class EntityFrameworkDbContext : DbContext
     {
-        public DbContext() : base("PV226-SocialNetwork")
+        public EntityFrameworkDbContext() : base(EntityFrameworkInstaller.ConnectionString)
         {
             Database.SetInitializer(new MyInitializer());
+            var instance = SqlProviderServices.Instance;
         }
 
         public DbSet<Comment> Comments { get; set; }

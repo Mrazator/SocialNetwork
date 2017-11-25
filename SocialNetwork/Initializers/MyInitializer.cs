@@ -10,11 +10,10 @@ using SocialNetwork.Enums;
 
 namespace SocialNetwork.Initializers
 {
-    public class MyInitializer : DropCreateDatabaseAlways<DbContext>
+    public class MyInitializer : DropCreateDatabaseIfModelChanges<EntityFrameworkDbContext>
     {
-        protected override void Seed(DbContext context)
+        protected override void Seed(EntityFrameworkDbContext context)
         {
-
             var user1 = new User()
             {
                 NickName = "Marcello",

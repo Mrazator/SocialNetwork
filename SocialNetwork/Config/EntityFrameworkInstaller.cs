@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,11 +17,14 @@ namespace SocialNetwork.Config
 {
     public class EntityFrameworkInstaller : IWindsorInstaller
     {
+        internal const string ConnectionString = "Data source=(localdb)\\mssqllocaldb;Database=PV226_SocialNetwork;Trusted_Connection=True;MultipleActiveResultSets=true";
+
+
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
                 Component.For<Func<DbContext>>()
-                    .Instance(() => new DbContext())
+                    .Instance(() => new EntityFrameworkDbContext())
                     .LifestyleTransient(),
 
                 Component.For<IUnitOfWorkProvider>()

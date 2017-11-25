@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Infrastructure.UnitOfWork;
 using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.Comments;
+using Comment = SocialNetwork.Entities.Comment;
 
 namespace SocialNetworkBL.Facades
 {

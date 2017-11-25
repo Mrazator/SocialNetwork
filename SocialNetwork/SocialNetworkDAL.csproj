@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{24F55BEF-33ED-4EFC-838B-666B21B0F53B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SocialNetwork</RootNamespace>
     <AssemblyName>SocialNetwork</AssemblyName>
@@ -70,8 +70,7 @@
     <Compile Include="Enums\Visibility.cs" />
     <Compile Include="Initializers\MyInitializer.cs" />
     <Compile Include="Interfaces\IPostable.cs" />
-    <Compile Include="DbContext.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="EntityFrameworkDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

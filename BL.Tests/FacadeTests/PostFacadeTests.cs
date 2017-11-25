@@ -49,11 +49,11 @@ namespace BL.Tests.FacadeTests
             var mockManager = new FacadeMockManager();
             var uowMock = FacadeMockManager.ConfigureUowMock();
             var mapper = FacadeMockManager.ConfigureRealMapper();
-            var repositoryMock = mockManager.ConfigureRepositoryMock<Post>();
+            var repositoryMock = mockManager.ConfigureRepositoryMock<SocialNetwork.Entities.Post>();
             //Druhy zpusob porovnani, vice genericky nez v User testech ale mene presny
-            var queryMock = mockManager.ConfigureQueryObjectMock<PostDto, Post, PostFilterDto>(expectedQueryResult);
+            var queryMock = mockManager.ConfigureQueryObjectMock<PostDto, SocialNetwork.Entities.Post, PostFilterDto>(expectedQueryResult);
             var postService = new PostService(mapper, repositoryMock.Object, queryMock.Object);
-            var crudService = new CrudQueryServiceBase<Post, PostDto, PostFilterDto>(mapper, repositoryMock.Object, queryMock.Object);
+            var crudService = new CrudQueryServiceBase<SocialNetwork.Entities.Post, PostDto, PostFilterDto>(mapper, repositoryMock.Object, queryMock.Object);
             var postFacade = new PostFacade(uowMock.Object, crudService, postService);
             return postFacade;
         }

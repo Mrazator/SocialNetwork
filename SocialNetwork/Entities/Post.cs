@@ -15,7 +15,7 @@ namespace SocialNetwork.Entities
         public int Id { get; set; }
 
         [NotMapped]
-        public string TableName { get; } = nameof(DbContext.Posts);
+        public string TableName { get; } = nameof(EntityFrameworkDbContext.Posts);
 
         [Required]
         public DateTime PostedAt { get; set; }

@@ -14,7 +14,7 @@ namespace SocialNetwork.Entities
     public int Id { get; set; }
 
     [NotMapped]
-    public string TableName { get; } = nameof(DbContext.Messages);
+    public string TableName { get; } = nameof(EntityFrameworkDbContext.Messages);
 
     [Required]
     public DateTime SentAt { get; set; }

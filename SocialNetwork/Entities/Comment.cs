@@ -11,7 +11,7 @@ namespace SocialNetwork.Entities
         public int Id { get; set; }
 
         [NotMapped]
-        public string TableName { get; } = nameof(DbContext.Comments);
+        public string TableName { get; } = nameof(EntityFrameworkDbContext.Comments);
 
         [Required]
         public DateTime PostedAt { get; set; }

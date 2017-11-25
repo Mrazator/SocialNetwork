@@ -14,7 +14,7 @@ namespace SocialNetwork.Entities
         public int Id { get; set; }
 
         [NotMapped]
-        public string TableName { get; } = nameof(DbContext.Friendships);
+        public string TableName { get; } = nameof(EntityFrameworkDbContext.Friendships);
 
         [Required]
         public DateTime FriendshipStart { get; set; }

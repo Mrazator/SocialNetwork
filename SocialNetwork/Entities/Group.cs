@@ -14,7 +14,7 @@ namespace SocialNetwork.Entities
         public int Id { get; set; }
 
         [NotMapped]
-        public string TableName { get; } = nameof(DbContext.Groups);
+        public string TableName { get; } = nameof(EntityFrameworkDbContext.Groups);
 
         [Required, MaxLength(30)]
         public string Name { get; set; }

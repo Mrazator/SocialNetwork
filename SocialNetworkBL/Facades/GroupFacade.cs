@@ -10,6 +10,7 @@ using Infrastructure.UnitOfWork;
 using SocialNetworkBL.Services.Common;
 using SocialNetwork.Entities;
 using SocialNetworkBL.Services.Groups;
+using Group = SocialNetwork.Entities.Group;
 
 namespace SocialNetworkBL.Facades
 {

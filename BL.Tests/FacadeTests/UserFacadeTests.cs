@@ -52,7 +52,7 @@ namespace BL.Tests.FacadeTests
                 }))
                 .ReturnsAsync(expectedQueryResult);
             var userService = new UserService(null, null, queryMock.Object);
-            var crudService = new CrudQueryServiceBase<User, UserDto, UserFilterDto>(null, null, queryMock.Object);
+            var crudService = new CrudQueryServiceBase<SocialNetwork.Entities.User, UserDto, UserFilterDto>(null, null, queryMock.Object);
             var userFacade = new UserFacade(uowMock.Object, crudService, userService);
             //Pokud zde totiz zmenim Misko na napr "zlyMisko" tak uz to neprochazi -> U PostFacadeTestu vsak prochazi -> vice komentaru tam
             var actualUsers = await userFacade.GetUsersContainingSubNameAsync("Misko");
@@ -85,9 +85,9 @@ namespace BL.Tests.FacadeTests
             var expectedQueryResult = new QueryResultDto<UserDto, UserFilterDto> { Items = expectedUsers };
             var mockManager = new FacadeMockManager();
             var uowMock = FacadeMockManager.ConfigureUowMock();
-            var queryMock = mockManager.ConfigureQueryObjectMock<UserDto, User, UserFilterDto>(expectedQueryResult);
+            var queryMock = mockManager.ConfigureQueryObjectMock<UserDto, SocialNetwork.Entities.User, UserFilterDto>(expectedQueryResult);
             var userService = new UserService(null, null, queryMock.Object);
-            var crudService = new CrudQueryServiceBase<User, UserDto, UserFilterDto>(null, null, queryMock.Object);
+            var crudService = new CrudQueryServiceBase<SocialNetwork.Entities.User, UserDto, UserFilterDto>(null, null, queryMock.Object);
             var userFacade = new UserFacade(uowMock.Object, crudService, userService);
 
             var actualUsers = await userFacade.GetAllItemsAsync();

@@ -12,6 +12,7 @@ using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Services.Common;
 using SocialNetwork.Entities;
 using SocialNetworkBL.Services.Friendships;
+using User = SocialNetwork.Entities.User;
 
 namespace SocialNetworkBL.Facades
 {

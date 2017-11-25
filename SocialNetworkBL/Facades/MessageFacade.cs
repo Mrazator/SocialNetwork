@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Infrastructure.UnitOfWork;
 using SocialNetworkBL.Services.Common;
+using Message = SocialNetwork.Entities.Message;
 
 namespace SocialNetworkBL.Facades
 {
