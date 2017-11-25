@@ -7,8 +7,8 @@
     <ProjectGuid>{91A79525-8CBA-416A-B7C2-0A9453A3B465}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EntityFramework</RootNamespace>
-    <AssemblyName>EntityFramework</AssemblyName>
+    <RootNamespace>EntityFrameworkINFR</RootNamespace>
+    <AssemblyName>EntityFrameworkINFR</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
