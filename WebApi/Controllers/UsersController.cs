@@ -38,11 +38,11 @@ namespace WebApi.Controllers
 
             return userDtos;
         }
-
+        
         public async Task<IEnumerable<UserDto>> GetAll()
         {
             var users = await UserFacade.GetAllItemsAsync();
-            return users?.Items;
+            return users.Items;
         }
 
         // GET: api/Users/2
@@ -75,7 +75,7 @@ namespace WebApi.Controllers
         }
 
         // PUT: api/Users/5
-        public async Task<string> Put(int id,  UserDto entity)
+        public async Task<string> Put(int id, UserDto entity)
         {
             if (!ModelState.IsValid)
             {
