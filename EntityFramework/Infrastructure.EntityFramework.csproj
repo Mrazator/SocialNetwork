@@ -47,8 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Query.cs" />
-    <Compile Include="Repository.cs" />
+    <Compile Include="EntityFrameworkQuery.cs" />
+    <Compile Include="EntityFrameworkRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimplePredicateExtension.cs" />
     <Compile Include="UnitOfWork\EntityFrameworkUnitOfWork.cs" />
@@ -58,10 +58,6 @@
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{b066ded6-b7e7-4a9b-a415-6babc0952677}</Project>
       <Name>Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SocialNetwork\SocialNetworkDAL.csproj">
-      <Project>{24f55bef-33ed-4efc-838b-666b21b0f53b}</Project>
-      <Name>SocialNetworkDAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using Infrastructure.UnitOfWork;
 
-namespace EntityFramework.UnitOfWork
+namespace EntityFrameworkINFR.UnitOfWork
 {
     public class EntityFrameworkUnitOfWork : UnitOfWorkBase
     {

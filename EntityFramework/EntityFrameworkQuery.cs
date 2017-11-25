@@ -5,14 +5,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
-using EntityFramework.UnitOfWork;
+using EntityFrameworkINFR.UnitOfWork;
 using Infrastructure;
 using Infrastructure.Query;
 using Infrastructure.Query.Predicates;
 using Infrastructure.Query.Predicates.Operators;
 using Infrastructure.UnitOfWork;
 
-namespace EntityFramework
+namespace EntityFrameworkINFR
 {
     public class EntityFrameworkQuery<TEntity> : QueryBase<TEntity> where TEntity : class, IEntity, new()
     {

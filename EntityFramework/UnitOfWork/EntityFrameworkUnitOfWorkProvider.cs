@@ -1,8 +1,8 @@
 ﻿using System;
-using Infrastructure.UnitOfWork;
 using System.Data.Entity;
+using Infrastructure.UnitOfWork;
 
-namespace EntityFramework.UnitOfWork
+namespace EntityFrameworkINFR.UnitOfWork
 {
     public class EntityFrameworkUnitOfWorkProvider : UnitOfWorkProviderBase
     {

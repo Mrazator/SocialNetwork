@@ -86,6 +86,10 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EntityFramework\Infrastructure.EntityFramework.csproj">
+      <Project>{91a79525-8cba-416a-b7c2-0a9453a3b465}</Project>
+      <Name>Infrastructure.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{b066ded6-b7e7-4a9b-a415-6babc0952677}</Project>
       <Name>Infrastructure</Name>

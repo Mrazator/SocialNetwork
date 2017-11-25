@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using Infrastructure.Query.Predicates;
 using Infrastructure.Query.Predicates.Operators;
 
-namespace EntityFramework
+namespace EntityFrameworkINFR
 {
     public static class SimplePredicateExtension
     {

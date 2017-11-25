@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using EntityFramework.UnitOfWork;
+using EntityFrameworkINFR.UnitOfWork;
 using Infrastructure;
 using Infrastructure.UnitOfWork;
 
-namespace EntityFramework
+namespace EntityFrameworkINFR
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity, new()
+    public class EntityFrameworkRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity, new()
     {
         private readonly IUnitOfWorkProvider provider;
 
@@ -20,7 +16,7 @@ namespace EntityFramework
         /// </summary>
         protected DbContext Context => ((EntityFrameworkUnitOfWork)provider.GetUnitOfWorkInstance()).Context;
 
-        public Repository(IUnitOfWorkProvider provider)
+        public EntityFrameworkRepository(IUnitOfWorkProvider provider)
         {
             this.provider = provider;
         }
