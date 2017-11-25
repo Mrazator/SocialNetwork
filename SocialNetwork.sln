@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetworkDAL", "SocialNetwork\SocialNetworkDAL.csproj", "{24F55BEF-33ED-4EFC-838B-666B21B0F53B}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{909C545B-575B-455E-B94D-A3D2F9A99B00}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Tests", "BL.Tests\BL.Tests.csproj", "{7CD15685-0C0D-4B06-8527-CCA49A3A4F44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,18 @@ Global
 		{7CD15685-0C0D-4B06-8527-CCA49A3A4F44}.Release|x64.Build.0 = Release|x64
 		{7CD15685-0C0D-4B06-8527-CCA49A3A4F44}.Release|x86.ActiveCfg = Release|x86
 		{7CD15685-0C0D-4B06-8527-CCA49A3A4F44}.Release|x86.Build.0 = Release|x86
+		{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}.Debug|x64.Build.0 = Debug|Any CPU
+		{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}.Debug|x86.Build.0 = Debug|Any CPU
+		{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}.Release|x64.ActiveCfg = Release|Any CPU
+		{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}.Release|x64.Build.0 = Release|Any CPU
+		{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}.Release|x86.ActiveCfg = Release|Any CPU
+		{F239FE5C-CB54-448E-9B35-DBC5C5A57D9F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
