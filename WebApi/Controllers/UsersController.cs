@@ -14,7 +14,7 @@ namespace WebApi.Controllers
     {
         public UserFacade UserFacade { get; set; }
 
-        // GET: api/Users/Get?subname=Marcel
+        // GET: api/Users/GetBySubname?subname=Marcel
         [Route("api/Users/GetBySubname")]
         public async Task<IEnumerable<UserDto>> GetBySubname(string subname)
         {
@@ -39,25 +39,56 @@ namespace WebApi.Controllers
             return userDtos;
         }
 
-        // GET: api/Users/5
-        public string Get(int id)
+        // GET: api/Users/2
+        public async Task<UserDto> Get(int id)
         {
-            return "value";
+            var user = await UserFacade.GetAsync(id);
+
+            if (user == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return user;
         }
 
         // POST: api/Users
-        public void Post([FromBody] string value)
+        public async Task<string> Post([FromBody] UserDto entity)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+            var userId = await UserFacade.CreateAsync(entity);
+
+            if (userId.Equals(0))
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            return $"Created user with id: {userId}";
         }
 
         // PUT: api/Users/5
-        public void Put(int id, [FromBody] string value)
+        public async Task<string> Put(int id, [FromBody] UserDto entity)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            await UserFacade.UpdateAsync(entity);
+            return $"Updated user with id: {id}";
         }
 
         // DELETE: api/Users/5
-        public void Delete(int id)
+        public async Task<string> Delete(int id)
         {
+            var success = await UserFacade.DeleteAsync(id);
+            if (!success)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return $"Deleted user with id: {id}";
         }
     }
 }

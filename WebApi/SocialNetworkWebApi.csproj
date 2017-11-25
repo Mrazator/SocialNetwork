@@ -119,6 +119,10 @@
       <Project>{504af2d8-ec1d-4507-8586-8e41b91bfdf0}</Project>
       <Name>SocialNetworkBL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SocialNetwork\SocialNetworkDAL.csproj">
+      <Project>{24F55BEF-33ED-4EFC-838B-666B21B0F53B}</Project>
+      <Name>SocialNetworkDAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
