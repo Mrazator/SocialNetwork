@@ -19,7 +19,6 @@ namespace SocialNetworkPL.Controllers
         public const int PageSize = 10;
         private const string FilterSessionKey = "userFilter";
 
-
         public UserFacade UserFacade { get; set; }
         public UserDetailFacade UserDetailFacade { get; set; }
 
