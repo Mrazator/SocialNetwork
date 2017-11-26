@@ -18,7 +18,7 @@ namespace SocialNetworkBL.Facades
     {
         private readonly IGroupUserService _groupUserService;
 
-        protected GroupUserFacade(
+        public GroupUserFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<GroupUser, GroupUserDto, GroupUserFilterDto> service,
             IGroupUserService groupUserService

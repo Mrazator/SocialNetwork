@@ -18,7 +18,7 @@ namespace SocialNetworkBL.Facades
     {
         private readonly IMessageService _messageService;
 
-        protected MessageFacade(
+        public MessageFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<Message, MessageDto, MessageFilterDto> service,
             IMessageService messageService) 

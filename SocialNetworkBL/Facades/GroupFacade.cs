@@ -18,7 +18,7 @@ namespace SocialNetworkBL.Facades
     {
         private readonly IGroupService _groupService;
 
-        protected GroupFacade(
+        public GroupFacade(
             IUnitOfWorkProvider unitOfWorkProvider, 
             CrudQueryServiceBase<Group, GroupDto, GroupFilterDto> service,
             IGroupService groupService

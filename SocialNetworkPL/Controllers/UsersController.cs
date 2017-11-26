@@ -20,7 +20,6 @@ namespace SocialNetworkPL.Controllers
         private const string FilterSessionKey = "userFilter";
 
         public UserFacade UserFacade { get; set; }
-        public UserDetailFacade UserDetailFacade { get; set; }
         public PostFacade PostFacade { get; set; }
         public FriendshipFacade FriendshipFacade { get; set; }
         public GroupFacade GroupFacade { get; set; }

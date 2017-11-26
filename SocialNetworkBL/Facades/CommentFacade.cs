@@ -18,7 +18,7 @@ namespace SocialNetworkBL.Facades
     {
         private readonly ICommentService _commentService;
 
-        protected CommentFacade(
+        public CommentFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<Comment, CommentDto, CommentFilterDto> service,
             ICommentService commentService)

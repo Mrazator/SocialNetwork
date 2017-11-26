@@ -53,7 +53,7 @@ namespace WebApi.Controllers
         }
         
         // GET: api/Posts/2
-        public async Task<UserDto> Get(int id)
+        public async Task<PostDto> Get(int id)
         {
             var post = await PostFacade.GetAsync(id);
 

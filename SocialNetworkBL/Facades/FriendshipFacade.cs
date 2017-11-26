@@ -19,7 +19,7 @@ namespace SocialNetworkBL.Facades
     {
         private readonly IFriendshipService _friendshipService;
 
-        protected FriendshipFacade(
+        public FriendshipFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<Friendship, FriendshipDto, FriendshipFilterDto> service,
             IFriendshipService friendshipService
