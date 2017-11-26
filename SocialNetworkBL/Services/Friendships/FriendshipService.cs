@@ -15,7 +15,7 @@ namespace SocialNetworkBL.Services.Friendships
     public class FriendshipService : CrudQueryServiceBase<Friendship, FriendshipDto, FriendshipFilterDto>,
         IFriendshipService
     {
-        protected FriendshipService(IMapper mapper, IRepository<Friendship> repository,
+        public FriendshipService(IMapper mapper, IRepository<Friendship> repository,
             QueryObjectBase<FriendshipDto, Friendship, FriendshipFilterDto, IQuery<Friendship>> query)
             : base(mapper, repository, query)
         {

@@ -20,7 +20,7 @@ namespace SocialNetwork.Entities
         [Required]
         public DateTime PostedAt { get; set; }
 
-        [Required, MaxLength(200)]
+        [Required, MaxLength(5000)]
         public string Text { get; set; }
 
         public bool StayAnonymous { get; set; } = false;

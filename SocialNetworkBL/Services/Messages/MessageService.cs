@@ -14,7 +14,7 @@ namespace SocialNetworkBL.Services.Messages
 {
     public class MessageService : CrudQueryServiceBase<Message, MessageDto, MessageFilterDto>, IMessageService
     {
-        protected MessageService(IMapper mapper, IRepository<Message> repository,
+        public MessageService(IMapper mapper, IRepository<Message> repository,
             QueryObjectBase<MessageDto, Message, MessageFilterDto, IQuery<Message>> query)
             : base(mapper, repository, query)
         {

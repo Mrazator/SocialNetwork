@@ -14,7 +14,7 @@ namespace SocialNetworkBL.Services.GroupUsers
 {
     public class GroupUserService : CrudQueryServiceBase<GroupUser, GroupUserDto, GroupUserFilterDto>, IGroupUserService
     {
-        protected GroupUserService(IMapper mapper, IRepository<GroupUser> repository,
+        public GroupUserService(IMapper mapper, IRepository<GroupUser> repository,
             QueryObjectBase<GroupUserDto, GroupUser, GroupUserFilterDto, IQuery<GroupUser>> query)
             : base(mapper, repository, query)
         {
