@@ -6,9 +6,9 @@
 
 <style type="text/css">
     .profile {
+        padding: 75px 0px 15px;
         padding-top: 75px;
         text-align: center;
-        padding: 75px 0px 15px;
     }
 
     .img {
@@ -19,37 +19,34 @@
     }
 
     .detail {
-        position: relative;
-        padding: 0;
         border: 1px lightgray solid;
+        padding: 0;
+        position: relative;
     }
 
     .friends { }
 
-    @{ var pathToImg = "../../Assets/img/girl-" + @Model.UserDto.Id + ".jpg";}
+    @{ var pathToImg = "../../Assets/img/girl-" + Model.UserDto.Id + ".jpg";}
 
-    .profile-picture {
-        height: 125px;
-        width: 125px;
+.profile-picture {
         background-image: url(@pathToImg);
         background-position: center;
         background-size: cover;
-        position: absolute;
-        transform: translate(-50%, 0);
-        left: 50%;
-        top: 80px;
         border-radius: 50%;
+        height: 125px;
+        left: 50%;
+        position: absolute;
+        top: 80px;
+        transform: translate(-50%, 0);
+        width: 125px;
     }
 
     .sidebar {
         border: 1px lightgray solid;
         padding: 0;
-
     }
 
-    .sidebar h4 {
-        padding: 15px 10px 5px;
-    }
+    .sidebar h4 { padding: 15px 10px 5px; }
 
     .sea {
         background-image: url("../../Assets/img/sea.jpg");
@@ -64,33 +61,34 @@
         margin-bottom: 25px;
     }
 
-    .post {
-        display: flex;
+    .post { display: flex; }
+
+    .post:not(:last-child) {
+        border-bottom: 1px lightgray solid;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
     }
 
-    .posts {
-        padding: 15px 30px 15px 10px !important;
-    }
+    .posts { padding: 15px 30px 15px 10px !important; }
 
     .profile-img {
-        height: 50px;
-        min-width: 50px;
         background-image: url(@pathToImg);
         background-position: center;
         background-size: cover;
         border-radius: 50%;
+        height: 50px;
+        min-width: 50px;
     }
 
     .content {
         padding-left: 15px;
         width: 100%;
-
     }
 
     .content > div {
+        align-items: baseline;
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
     }
 
     .message { }
@@ -109,7 +107,7 @@
             </blockquote>
             <div class="friends">
                 <span>Friends</span>
-                <h6>Number - Todo</h6>
+                <h6>@Model.FriendshipDtos.Count</h6>
             </div>
         </div>
     </div>

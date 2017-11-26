@@ -44,7 +44,7 @@ namespace SocialNetworkBL.Facades
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await _postService.GetPostsByGroupIdAsync(userId);
+                return await _postService.GetPostsByUserIdAsync(userId);
             }
         }
     }
