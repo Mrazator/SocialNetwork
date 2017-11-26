@@ -14,5 +14,8 @@ namespace SocialNetworkBL.DataTransferObjects
         public int UserId { get; set; }
 
         public int GroupId { get; set; }
+
+        public GroupDto GroupDto { get; set; }
+        public UserDto UserDto { get; set; }
     }
 }

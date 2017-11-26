@@ -27,7 +27,7 @@ namespace SocialNetworkBL.Facades
             _groupUserService = groupUserService;
         }
 
-        public async Task<IList<GroupUserDto>> GetGroupsByUserIdAsync(int userId)
+        public async Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId)
         {
             using (UnitOfWorkProvider.Create())
             {
@@ -35,7 +35,7 @@ namespace SocialNetworkBL.Facades
             }
         }
 
-        public async Task<IList<GroupUserDto>> GetUsersByGroupIdAsync(int groupId)
+        public async Task<IList<UserDto>> GetUsersByGroupIdAsync(int groupId)
         {
             using (UnitOfWorkProvider.Create())
             {

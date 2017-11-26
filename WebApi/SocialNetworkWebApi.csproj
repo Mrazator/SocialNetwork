@@ -95,7 +95,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\Windsor\WebApiInstaller.cs" />
     <Compile Include="App_Start\Windsor\WindsorCompositionRoot.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\FriendshipController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\GroupUserController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />

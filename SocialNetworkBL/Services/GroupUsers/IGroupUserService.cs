@@ -11,9 +11,9 @@ namespace SocialNetworkBL.Services.GroupUsers
 {
     public interface IGroupUserService : IService<GroupUserDto, GroupUserFilterDto>
     {
-        Task<IList<GroupUserDto>> GetGroupsByUserIdAsync(int userId);
+        Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId);
 
-        Task<IList<GroupUserDto>> GetUsersByGroupIdAsync(int groupId);
+        Task<IList<UserDto>> GetUsersByGroupIdAsync(int groupId);
 
     }
 }
