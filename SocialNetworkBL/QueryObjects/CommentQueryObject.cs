@@ -17,7 +17,7 @@ namespace SocialNetworkBL.QueryObjects
 {
     public class CommentQueryObject : QueryObjectBase<CommentDto, Comment, CommentFilterDto, IQuery<Comment>>
     {
-        protected CommentQueryObject(IMapper mapper, IQuery<Comment> query) : base(mapper, query) { }
+        public CommentQueryObject(IMapper mapper, IQuery<Comment> query) : base(mapper, query) { }
 
         protected override IQuery<Comment> ApplyWhereClause(IQuery<Comment> query, CommentFilterDto filter)
         {

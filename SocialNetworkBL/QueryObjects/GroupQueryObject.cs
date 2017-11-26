@@ -16,7 +16,7 @@ namespace SocialNetworkBL.QueryObjects
 {
     public class GroupQueryObject : QueryObjectBase<GroupDto, Group, GroupFilterDto, IQuery<Group>>
     {
-        protected GroupQueryObject(IMapper mapper, IQuery<Group> query) : base(mapper, query) { }
+        public GroupQueryObject(IMapper mapper, IQuery<Group> query) : base(mapper, query) { }
 
         protected override IQuery<Group> ApplyWhereClause(IQuery<Group> query, GroupFilterDto filter)
         {

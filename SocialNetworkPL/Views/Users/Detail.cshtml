@@ -1,8 +1,9 @@
-﻿@model SocialNetworkBL.DataTransferObjects.UserDto
+﻿@model SocialNetworkPL.Models.UserDetailViewModel
 
 @{
     ViewBag.Title = "title";
 }
+
 <style type="text/css">
     .profile {
         padding-top: 75px;
@@ -25,7 +26,7 @@
 
     .friends { }
 
-    @{ var pathToImg = "../../Assets/img/girl-" + @Model.Id + ".jpg";}
+    @{ var pathToImg = "../../Assets/img/girl-" + @Model.UserDto.Id + ".jpg";}
 
     .profile-picture {
         height: 125px;
@@ -65,7 +66,6 @@
 
     .post {
         display: flex;
-        justify-content: center;
     }
 
     .posts {
@@ -83,6 +83,8 @@
 
     .content {
         padding-left: 15px;
+        width: 100%;
+
     }
 
     .content > div {
@@ -102,7 +104,7 @@
         <div class="profile">
             <div class="profile-picture"></div>
             <blockquote>
-                <h4>@Model.NickName</h4>
+                <h4>@Model.UserDto.NickName</h4>
                 <footer>I wish i was a little bit taller, wish i was a baller...</footer>
             </blockquote>
             <div class="friends">
@@ -114,19 +116,23 @@
     <div class="col-md-6">
         <div class="post-container">
             <ul class="posts">
-                <li class="post">
-                    <div class="profile-img"></div>
-                    <div class="content">
-                        <div>
-                            <h4>@Model.NickName</h4>
-                            <small>Time-Todo</small>
-                        </div>
-                        <p class="message">
-                            Navzdory všeobecnému přesvědčení Lorem Ipsum není náhodný text. Jeho původ má kořeny v klasické latinské literatuře z roku 45 před Kristem, což znamená, že je více jak 2000 let staré. Richard McClintock, profesor latiny na univerzitě Hampden-Sydney stát Virginia, který se zabýval téměř neznámými latinskými slovy, odhalil prapůvod slova consectetur z pasáže Lorem Ipsum. Nejstarším dílem, v němž se pasáže Lorem Ipsum používají, je Cicerova kniha z roku 45 před Kristem s názvem "De Finibus Bonurum et Malorum" (O koncích dobra a zla), konkrétně jde pak o kapitoly 1.10.32 a 1.10.33. Tato kniha byla nejvíce známá v době renesance, jelikož pojednávala o etice. - TODO
-                        </p>
-                        <div class="images"></div>
-                    </div>
-                </li>
+                @{
+                    foreach (var post in Model.PostDtos)
+                    {
+                        <li class="post">
+                            <div class="profile-img"></div>
+                            <div class="content">
+                                <div>
+                                    <h4>@Model.UserDto.NickName</h4>
+                                    <small>@post.PostedAt.Date</small>
+                                </div>
+                                <p class="message">
+                                    @post.Text
+                                </p>
+                                <div class="images"></div>
+                            </div>
+                        </li>
+                    }}
             </ul>
         </div>
     </div>

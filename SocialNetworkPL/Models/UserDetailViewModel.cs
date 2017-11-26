@@ -9,6 +9,8 @@ namespace SocialNetworkPL.Models
 {
     public class UserDetailViewModel
     {
-        public UserDetailDto UserDto { get; set; }
+        public UserDto UserDto { get; set; }
+        public IList<UserDto> FriendshipDtos { get; set; }
+        public IList<PostDto> PostDtos { get; set; }
     }
 }

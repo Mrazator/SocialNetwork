@@ -16,7 +16,7 @@ namespace SocialNetworkBL.QueryObjects
 {
     public class PostQueryObject : QueryObjectBase<PostDto, Post, PostFilterDto, IQuery<Post>>
     {
-        protected PostQueryObject(IMapper mapper, IQuery<Post> query) : base(mapper, query) { }
+        public PostQueryObject(IMapper mapper, IQuery<Post> query) : base(mapper, query) { }
 
         protected override IQuery<Post> ApplyWhereClause(IQuery<Post> query, PostFilterDto filter)
         {

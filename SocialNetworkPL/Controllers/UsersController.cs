@@ -21,8 +21,10 @@ namespace SocialNetworkPL.Controllers
 
         public UserFacade UserFacade { get; set; }
         public UserDetailFacade UserDetailFacade { get; set; }
+        public PostFacade PostFacade { get; set; }
+        public FriendshipFacade FriendshipFacade { get; set; }
+        public GroupFacade GroupFacade { get; set; }
 
-        [System.Web.Mvc.Route("/Users/GetBySubname?subname=M")]
         public async Task<ActionResult> Index([FromUri] string subname, int page = 1)
         {
             var filter = Session[FilterSessionKey] as UserFilterDto ?? new UserFilterDto() { PageSize = PageSize };
@@ -61,7 +63,15 @@ namespace SocialNetworkPL.Controllers
         public async  Task<ActionResult> Details(int id)
         {
             var user = await UserFacade.GetAsync(id);
-            return View("Detail", user);
+            var posts = await PostFacade.GetPostsByUserIdAsync(id);
+            var friendships = await FriendshipFacade.GetFriendsByUserIdAsync(id);
+
+            return View("Detail", new UserDetailViewModel()
+            {
+                UserDto = user,
+                PostDtos = posts,
+                FriendshipDtos = friendships
+            });
         }
 
         // GET: Users/Create
