@@ -39,6 +39,7 @@ namespace WebApi.Controllers
             return userDtos;
         }
         
+        // GET: api/Users
         public async Task<IEnumerable<UserDto>> GetAll()
         {
             var users = await UserFacade.GetAllItemsAsync();

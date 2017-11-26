@@ -15,5 +15,11 @@ namespace SocialNetworkBL.DataTransferObjects
         public string PasswordHash { get; set; } = "password";
 
         public Visibility PostVisibilityPreference { get; set; } = Visibility.Visible;
+
+        //public virtual HashSet<FriendshipDto> RequestedFriendships { get; set; }
+        //public virtual HashSet<FriendshipDto> AcceptedFriendships { get; set; }
+        //public virtual HashSet<PostDto> Posts { get; set; }
+        //public virtual HashSet<GroupUserDto> GroupUsers { get; set; }
+        //public virtual HashSet<CommentDto> Comments { get; set; }
     }
 }

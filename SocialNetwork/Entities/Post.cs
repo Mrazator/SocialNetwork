@@ -27,8 +27,8 @@ namespace SocialNetwork.Entities
 
         #region Foreign keys
 
-        public int UserId { get; set; }
-        public int GroupId { get; set; }
+        public int? UserId { get; set; }
+        public int? GroupId { get; set; }
 
         #endregion
 

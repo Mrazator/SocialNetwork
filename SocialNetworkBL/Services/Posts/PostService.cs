@@ -6,6 +6,7 @@ using Infrastructure;
 using Infrastructure.Query;
 using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects.Common;
 using SocialNetworkBL.Services.Common;
@@ -24,6 +25,11 @@ namespace SocialNetworkBL.Services.Posts
         {
             var queryResult = await Query.ExecuteQuery(new PostFilterDto {GroupId = groupId, UserId = null});
             return queryResult?.Items.ToList();
+        }
+
+        public async Task<QueryResultDto<PostDto, PostFilterDto>> GetPostsAsync(PostFilterDto filter)
+        {
+            return await Query.ExecuteQuery(filter);
         }
 
         public async Task<IList<PostDto>> GetPostsByUserIdAsync(int userId)

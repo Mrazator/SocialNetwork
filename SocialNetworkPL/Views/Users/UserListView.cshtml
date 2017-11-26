@@ -1,0 +1,42 @@
+﻿@model SocialNetworkPL.Models.UsersListViewModel
+
+@using (Html.BeginForm("Index", "Users", FormMethod.Get))
+{
+    <div class="form-group">
+
+        @Html.Label("search-subname", "Find user by nickname")
+        @Html.TextBox("subname", null, new
+        {
+            @class = "form-control",
+            id = "search-subname",
+            placeholder = "Enter nickname"
+        })
+
+    </div>
+
+    <button class="btn btn-primary" type="submit">Find</button>
+}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">NickName</th>
+        <th scope="col">PasswordHash</th>
+        <th scope="col">VisibilityPreference</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    @{foreach (var user in Model.Users)
+      {
+          <tr>
+              <th scope="row">@user.Id</th>
+              <td>@Html.ActionLink(user.NickName, "Details", new {id = user.Id})</td>
+              <td>@user.PasswordHash</td>
+              <td>@user.PostVisibilityPreference</td>
+          </tr>
+      }
+    }
+    </tbody>
+</table>

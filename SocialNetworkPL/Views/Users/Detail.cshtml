@@ -1,0 +1,140 @@
+﻿@model SocialNetworkBL.DataTransferObjects.UserDto
+
+@{
+    ViewBag.Title = "title";
+}
+<style type="text/css">
+    .profile {
+        padding-top: 75px;
+        text-align: center;
+        padding: 75px 0px 15px;
+    }
+
+    .img {
+        background-image: url("../../Assets/img/background.jpeg");
+        background-position: center;
+        background-size: cover;
+        height: 150px;
+    }
+
+    .detail {
+        position: relative;
+        padding: 0;
+        border: 1px lightgray solid;
+    }
+
+    .friends { }
+
+    @{ var pathToImg = "../../Assets/img/girl-" + @Model.Id + ".jpg";}
+
+    .profile-picture {
+        height: 125px;
+        width: 125px;
+        background-image: url(@pathToImg);
+        background-position: center;
+        background-size: cover;
+        position: absolute;
+        transform: translate(-50%, 0);
+        left: 50%;
+        top: 80px;
+        border-radius: 50%;
+    }
+
+    .sidebar {
+        border: 1px lightgray solid;
+        padding: 0;
+
+    }
+
+    .sidebar h4 {
+        padding: 15px 10px 5px;
+    }
+
+    .sea {
+        background-image: url("../../Assets/img/sea.jpg");
+        background-position: center;
+        background-size: cover;
+        height: 250px;
+        margin-bottom: 15px;
+    }
+
+    .post-container {
+        border: 1px lightgray solid;
+        margin-bottom: 25px;
+    }
+
+    .post {
+        display: flex;
+        justify-content: center;
+    }
+
+    .posts {
+        padding: 15px 30px 15px 10px !important;
+    }
+
+    .profile-img {
+        height: 50px;
+        min-width: 50px;
+        background-image: url(@pathToImg);
+        background-position: center;
+        background-size: cover;
+        border-radius: 50%;
+    }
+
+    .content {
+        padding-left: 15px;
+    }
+
+    .content > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    .message { }
+
+    .images { }
+</style>
+
+<div class="row">
+    <div class="col-md-3 detail">
+        <div class="img"></div>
+        <div class="profile">
+            <div class="profile-picture"></div>
+            <blockquote>
+                <h4>@Model.NickName</h4>
+                <footer>I wish i was a little bit taller, wish i was a baller...</footer>
+            </blockquote>
+            <div class="friends">
+                <span>Friends</span>
+                <h6>Number - Todo</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="post-container">
+            <ul class="posts">
+                <li class="post">
+                    <div class="profile-img"></div>
+                    <div class="content">
+                        <div>
+                            <h4>@Model.NickName</h4>
+                            <small>Time-Todo</small>
+                        </div>
+                        <p class="message">
+                            Navzdory všeobecnému přesvědčení Lorem Ipsum není náhodný text. Jeho původ má kořeny v klasické latinské literatuře z roku 45 před Kristem, což znamená, že je více jak 2000 let staré. Richard McClintock, profesor latiny na univerzitě Hampden-Sydney stát Virginia, který se zabýval téměř neznámými latinskými slovy, odhalil prapůvod slova consectetur z pasáže Lorem Ipsum. Nejstarším dílem, v němž se pasáže Lorem Ipsum používají, je Cicerova kniha z roku 45 před Kristem s názvem "De Finibus Bonurum et Malorum" (O koncích dobra a zla), konkrétně jde pak o kapitoly 1.10.32 a 1.10.33. Tato kniha byla nejvíce známá v době renesance, jelikož pojednávala o etice. - TODO
+                        </p>
+                        <div class="images"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-3 sidebar">
+        <h4>Sponsored</h4>
+        <div class="sea"></div>
+        <blockquote>
+            <footer>Existuje mnoho variant s pasážemi Lorem Ipsum, nicméně valná většina trpí neduhy v podobě snahy o vtipný text či použití naprosto náhodných slov, což nevypadá zrovna uvěřitelně.</footer>
+        </blockquote>
+    </div>
+</div>

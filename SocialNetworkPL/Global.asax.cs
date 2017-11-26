@@ -1,4 +1,6 @@
 ﻿using System.Web;
+using System.Web.Http;
+using System.Web.Http.Dispatcher;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -10,7 +12,7 @@ namespace SocialNetworkPL
 {
     public class MvcApplication : HttpApplication
     {
-        private static readonly IWindsorContainer container = new WindsorContainer();
+        private static readonly IWindsorContainer Container = new WindsorContainer();
 
 
         protected void Application_Start()
@@ -25,10 +27,10 @@ namespace SocialNetworkPL
 
         private void BootstrapContainer()
         {
-            container.Install(new PresentationLayerInstaller());
-            container.Install(new BusinessLayerInstaller());
+            Container.Install(new BusinessLayerInstaller());
+            Container.Install(new PresentationLayerInstaller());
 
-            var controllerFactory = new WindsorControllerFactory(container.Kernel);
+            var controllerFactory = new WindsorControllerFactory(Container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
         }
     }

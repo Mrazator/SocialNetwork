@@ -9,6 +9,7 @@ using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.DataTransferObjects.Common;
 using Infrastructure.Query;
 using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.UserDetailDto;
 
 namespace SocialNetworkBL.Config
 {
@@ -31,8 +32,20 @@ namespace SocialNetworkBL.Config
             config.CreateMap<Group, GroupDto>().ReverseMap();
             config.CreateMap<QueryResult<Group>, QueryResultDto<GroupDto, GroupFilterDto>>();
 
+            config.CreateMap<Post, PostDto>().ReverseMap();
+            config.CreateMap<QueryResult<Post>, QueryResultDto<PostDto, PostFilterDto>>();
+
             config.CreateMap<GroupUser, GroupUserDto>().ReverseMap();
             config.CreateMap<QueryResult<GroupUser>, QueryResultDto<GroupUserDto, GroupUserFilterDto>>();
+
+            config.CreateMap<User, UserDetailDto>().ReverseMap();
+            config.CreateMap<QueryResult<User>, QueryResultDto<UserDetailDto, UserFilterDto>>();
+
+            config.CreateMap<User, UserDetailFriendshipDto>().ReverseMap();
+            config.CreateMap<QueryResult<User>, QueryResultDto<UserDetailFriendshipDto, UserFilterDto>>();
+            
+            config.CreateMap<Friendship, FriendshipDetailDto>().ReverseMap();
+            config.CreateMap<QueryResult<Friendship>, QueryResultDto<FriendshipDetailDto, FriendshipFilterDto>>();
         }
     }
 }

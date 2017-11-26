@@ -1,18 +1,12 @@
-﻿using SocialNetworkBL.Facades.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.UnitOfWork;
-using SocialNetworkBL.Services.Users;
-using SocialNetworkBL.DataTransferObjects.Common;
+using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
+using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
-using SocialNetwork.Entities;
-using SocialNetworkBL.Services.Friendships;
-using User = SocialNetwork.Entities.User;
+using SocialNetworkBL.Services.Users;
 
 namespace SocialNetworkBL.Facades
 {
@@ -24,13 +18,13 @@ namespace SocialNetworkBL.Facades
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<User, UserDto, UserFilterDto> service,
             IUserService userService
-            ) : base(unitOfWorkProvider, service)
+        ) : base(unitOfWorkProvider, service)
         {
             _userService = userService;
         }
 
         /// <summary>
-        /// Gets users according to SubName
+        ///     Gets users according to SubName
         /// </summary>
         /// <param name="subName"></param>
         /// <returns>Users containing subName</returns>

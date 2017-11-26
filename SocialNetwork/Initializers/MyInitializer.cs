@@ -10,13 +10,13 @@ using SocialNetwork.Enums;
 
 namespace SocialNetwork.Initializers
 {
-    public class MyInitializer : CreateDatabaseIfNotExists<EntityFrameworkDbContext>
+    public class MyInitializer : DropCreateDatabaseAlways<EntityFrameworkDbContext>
     {
         protected override void Seed(EntityFrameworkDbContext context)
         {
             var user1 = new User()
             {
-                NickName = "Marcello",
+                NickName = "Bara",
                 PasswordHash = "123456",
                 PostVisibilityPreference = Visibility.NotVisible
             };
@@ -25,7 +25,7 @@ namespace SocialNetwork.Initializers
 
             var user2 = new User()
             {
-                NickName = "Misko",
+                NickName = "Lucie",
                 PasswordHash = "123456"
             };
 
@@ -44,7 +44,7 @@ namespace SocialNetwork.Initializers
 
             var user3 = new User()
             {
-                NickName = "Marcello2",
+                NickName = "Aneta",
                 PasswordHash = "123456",
                 PostVisibilityPreference = Visibility.NotVisible
             };
@@ -53,7 +53,7 @@ namespace SocialNetwork.Initializers
 
             var user4 = new User()
             {
-                NickName = "Misko2",
+                NickName = "Alena",
                 PasswordHash = "123456"
             };
 

@@ -1,16 +1,13 @@
-﻿using SocialNetwork.Entities;
-using SocialNetworkBL.DataTransferObjects;
-using SocialNetworkBL.Facades.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.UnitOfWork;
+using SocialNetwork.Entities;
+using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.Common;
+using SocialNetworkBL.DataTransferObjects.Filters;
+using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.Posts;
-using SocialNetworkBL.DataTransferObjects.Filters;
-using Post = SocialNetwork.Entities.Post;
 
 namespace SocialNetworkBL.Facades
 {
@@ -32,6 +29,14 @@ namespace SocialNetworkBL.Facades
             using (UnitOfWorkProvider.Create())
             {
                 return await _postService.GetPostsByGroupIdAsync(groupId);
+            }
+        }
+
+        public async Task<QueryResultDto<PostDto, PostFilterDto>> GetPostsAsync(PostFilterDto filter)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                return await _postService.GetPostsAsync(filter);
             }
         }
 
