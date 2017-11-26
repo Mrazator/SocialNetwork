@@ -19,6 +19,7 @@ namespace SocialNetworkPL.Controllers
         private const string FilterSessionKey = "postFilter";
 
         public PostFacade PostFacade { get; set; }
+        public UserFacade UserFacade { get; set; }
 
         // GET: Posts
         public async Task<ActionResult> Index(int page = 1)
