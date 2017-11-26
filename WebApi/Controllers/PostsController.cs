@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Common;
+using SocialNetworkBL.DataTransferObjects.Enums;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades;
 
@@ -15,33 +16,92 @@ namespace WebApi.Controllers
     public class PostsController : ApiController
     {
         public PostFacade PostFacade { get; set; }
-
-        // GET: api/Posts
-        public async Task<QueryResultDto<PostDto, PostFilterDto>> Get()
+        public UserFacade UserFacade { get; set; }
+        public GroupFacade GroupFacade { get; set; }
+        
+        // GET: api/Posts/GetByUserId?userId=666
+        public async Task<IEnumerable<PostDto>> GetByUserId(int userId)
         {
-            var posts = await PostFacade.GetPostsAsync(null);
+            var userDto = await UserFacade.GetAsync(userId);
+
+            if (userDto == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            
+            if (userDto.PostVisibilityPreference != Visibility.Visible)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            
+            var posts = await PostFacade.GetPostsByUserIdAsync(userId);
             return posts;
         }
-
-        // GET: api/Posts/5
-        public string Get(int id)
+        
+        // GET: api/Posts/GetByGroupId?groupId=666
+        public async Task<IEnumerable<PostDto>> GetByGroupId(int groupId)
         {
-            return "value";
+            var groupDto = await GroupFacade.GetAsync(groupId);
+
+            if (groupDto == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            
+            var posts = await PostFacade.GetPostsByGroupIdAsync(groupId);
+            return posts;
+        }
+        
+        // GET: api/Posts/2
+        public async Task<UserDto> Get(int id)
+        {
+            var post = await PostFacade.GetAsync(id);
+
+            if (post == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return post;
         }
 
         // POST: api/Posts
-        public void Post([FromBody]string value)
+        public async Task<string> Post(PostDto entity)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+            var postId = await PostFacade.CreateAsync(entity);
+
+            if (postId.Equals(0))
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            return $"Created Post with id: {postId}";
         }
 
         // PUT: api/Posts/5
-        public void Put(int id, [FromBody]string value)
+        public async Task<string> Put(int id, PostDto entity)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            await PostFacade.UpdateAsync(entity);
+            return $"Updated post with id: {id}";
         }
 
         // DELETE: api/Posts/5
-        public void Delete(int id)
+        public async Task<string> Delete(int id)
         {
+            var success = await PostFacade.DeleteAsync(id);
+            if (!success)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return $"Deleted post with id: {id}";
         }
     }
 }
