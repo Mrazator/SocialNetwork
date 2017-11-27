@@ -7,20 +7,14 @@ using SocialNetworkBL.Facades;
 
 namespace WebApi.Controllers
 {
-    public class MessageController : ApiController
+    public class MessagesController : ApiController
     {
         public MessageFacade MessageFacade { get; set; }
         public FriendshipFacade FriendshipFacade { get; set; }
 
+        [Route("api/Messages/GetChat")]
         public async Task<IEnumerable<MessageDto>> GetChat(int friendshipId)
         {
-            var friendShip = await FriendshipFacade.GetAsync(friendshipId);
-
-            if (friendShip == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-
             var chat = await MessageFacade.GetMessagesByFriendshipIdAsync(friendshipId);
             return chat;
         }

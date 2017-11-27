@@ -29,17 +29,18 @@ namespace WebApi.Controllers
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            var userDtos = users as IList<UserDto> ?? users.ToList();
+            //var userDtos = users as IList<UserDto> ?? users.ToList();
 
-            foreach (var user in userDtos)
-            {
-                user.Id = 0;
-            }
+            //foreach (var user in userDtos)
+            //{
+            //    user.Id = 0;
+            //}
 
-            return userDtos;
+            return users;
         }
         
         // GET: api/Users
+        [Route("api/Userss")]
         public async Task<IEnumerable<UserDto>> GetAll()
         {
             var users = await UserFacade.GetAllItemsAsync();

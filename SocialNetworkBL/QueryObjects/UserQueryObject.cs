@@ -22,7 +22,7 @@ namespace SocialNetworkBL.QueryObjects
         {
             var simplePredicate = new SimplePredicate(nameof(User.NickName), ValueComparingOperator.StringContains, filter.SubName);
 
-            return filter.Equals(null)
+            return filter.SubName == null
                 ? query
                 : query.Where(simplePredicate);
         }

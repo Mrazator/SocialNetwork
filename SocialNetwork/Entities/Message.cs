@@ -11,30 +11,30 @@ namespace SocialNetwork.Entities
 {
     public class Message : IEntity
     {
-    public int Id { get; set; }
+        public int Id { get; set; }
 
-    [NotMapped]
-    public string TableName { get; } = nameof(EntityFrameworkDbContext.Messages);
+        [NotMapped]
+        public string TableName { get; } = nameof(EntityFrameworkDbContext.Messages);
 
-    [Required]
-    public DateTime SentAt { get; set; }
+        [Required]
+        public DateTime SentAt { get; set; } = DateTime.Now.ToUniversalTime();
 
-    [Required, MaxLength(100)]
-    public string Text { get; set; }
+        [Required, MaxLength(100)]
+        public string Text { get; set; }
 
-    #region Foreign keys
+        #region Foreign keys
 
-    public int SenderId { get; set; }
-    public int FriendshipId { get; set; }
+        public int SenderId { get; set; }
+        public int FriendshipId { get; set; }
 
-    #endregion
+        #endregion
 
-    #region Navigation properties
+        #region Navigation properties
 
-    public virtual User Sender { get; set; }
-    public virtual Friendship Friendship { get; set; }
+        public virtual User Sender { get; set; }
+        public virtual Friendship Friendship { get; set; }
 
-    #endregion
+        #endregion
 
     }
 }

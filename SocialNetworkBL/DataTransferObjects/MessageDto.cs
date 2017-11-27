@@ -9,7 +9,7 @@ namespace SocialNetworkBL.DataTransferObjects
 {
     public class MessageDto : DtoBase
     {
-        public DateTime SentAt { get; set; }
+        //public DateTime SentAt { get; set; }
 
         public string Text { get; set; }
 
