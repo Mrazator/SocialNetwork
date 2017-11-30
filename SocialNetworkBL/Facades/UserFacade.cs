@@ -7,6 +7,7 @@ using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.Users;
+using System;
 
 namespace SocialNetworkBL.Facades
 {
@@ -33,6 +34,39 @@ namespace SocialNetworkBL.Facades
             using (UnitOfWorkProvider.Create())
             {
                 return await _userService.GetUsersContainingSubNameAsync(subName);
+            }
+        }
+
+        public async Task<UserDto> GetUserByNickNameAsync(string nickName)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                return await _userService.GetByNickNameAsync(nickName);
+            }
+        }
+
+        public async Task<int> RegisterCustomer(UserCreateDto userCreateDto)
+        {
+            using (var uow = UnitOfWorkProvider.Create())
+            {
+                try
+                {
+                    var id = await _userService.RegisterUserAsync(userCreateDto);
+                    await uow.Commit();
+                    return id;
+                }
+                catch (ArgumentException)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public async Task<bool> Login(string username, string password)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                return await _userService.AuthorizeUserAsync(username, password);
             }
         }
     }

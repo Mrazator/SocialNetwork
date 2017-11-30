@@ -11,6 +11,8 @@ namespace SocialNetworkBL.DataTransferObjects.Filters
     {
         public string SubName { get; set; }
 
+        public string NickName { get; set; }
+
         //potreba prepsat tyhle metody, kvuli tomu ze,
         //Mock framework interne porovnava reference filteru v UserFacadeTests/GetUsersContainingGivenSubnameAsyncTest()
         public override bool Equals(object obj)

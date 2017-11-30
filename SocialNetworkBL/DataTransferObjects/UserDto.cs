@@ -12,7 +12,9 @@ namespace SocialNetworkBL.DataTransferObjects
     {
         public string NickName { get; set; }
 
-        public string PasswordHash { get; set; } = "password";
+        public string PasswordHash { get; set; }
+
+        public string PasswordSalt { get; set; }
 
         public Visibility PostVisibilityPreference { get; set; } = Visibility.Visible;
     }

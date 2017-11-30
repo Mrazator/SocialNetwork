@@ -40,6 +40,7 @@
       <HintPath>..\packages\Castle.Windsor.4.1.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Remoting" />
@@ -65,16 +66,19 @@
     <Compile Include="DataTransferObjects\Filters\MessageFilterDto.cs" />
     <Compile Include="DataTransferObjects\Filters\PostFilterDto.cs" />
     <Compile Include="DataTransferObjects\Filters\UserFilterDto.cs" />
+    <Compile Include="DataTransferObjects\Filters\UserGroupFilterDto.cs" />
     <Compile Include="DataTransferObjects\FriendshipDto.cs" />
     <Compile Include="DataTransferObjects\GroupDto.cs" />
     <Compile Include="DataTransferObjects\GroupUserDto.cs" />
     <Compile Include="DataTransferObjects\MessageDto.cs" />
     <Compile Include="DataTransferObjects\PostDto.cs" />
     <Compile Include="DataTransferObjects\Common\QueryResultDto.cs" />
+    <Compile Include="DataTransferObjects\UserCreateDto.cs" />
     <Compile Include="DataTransferObjects\UserDetailDto\FriendshipDetailDto.cs" />
     <Compile Include="DataTransferObjects\UserDetailDto\UserDetailDto.cs" />
     <Compile Include="DataTransferObjects\UserDetailDto\UserDetailFriendshipDto.cs" />
     <Compile Include="DataTransferObjects\UserDto.cs" />
+    <Compile Include="DataTransferObjects\UserGroupDto.cs" />
     <Compile Include="Facades\CommentFacade.cs" />
     <Compile Include="Facades\Common\FacadeBase.cs" />
     <Compile Include="Facades\FriendshipFacade.cs" />
@@ -94,6 +98,7 @@
     <Compile Include="QueryObjects\MessageQueryObject.cs" />
     <Compile Include="QueryObjects\PostQueryObject.cs" />
     <Compile Include="QueryObjects\UserDetailQueryObject.cs" />
+    <Compile Include="QueryObjects\UserGroupQueryObject.cs" />
     <Compile Include="QueryObjects\UserQueryObject.cs" />
     <Compile Include="Services\Comments\CommentService.cs" />
     <Compile Include="Services\Comments\ICommentService.cs" />
@@ -111,6 +116,8 @@
     <Compile Include="Services\Posts\IPostService.cs" />
     <Compile Include="Services\Posts\PostService.cs" />
     <Compile Include="Services\UserDetail\UserDetailService.cs" />
+    <Compile Include="Services\UserGroups\IUserGroupService.cs" />
+    <Compile Include="Services\UserGroups\UserGroupService.cs" />
     <Compile Include="Services\Users\IUserService.cs" />
     <Compile Include="Services\Users\UserService.cs" />
   </ItemGroup>

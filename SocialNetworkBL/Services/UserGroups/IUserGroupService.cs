@@ -7,13 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocialNetworkBL.Services.GroupUsers
+namespace SocialNetworkBL.Services.UserGroups
 {
-    public interface IGroupUserService : IService<GroupUserDto, GroupUserFilterDto>
+    public interface IUserGroupService : IService<UserGroupDto, UserGroupFilterDto>
     {
-        //Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId);
-
-        Task<IList<UserDto>> GetUsersByGroupIdAsync(int groupId);
-
+        Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId);
     }
 }

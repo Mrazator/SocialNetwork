@@ -12,5 +12,11 @@ namespace SocialNetworkBL.Services.Users
     public interface IUserService : IService<UserDto, UserFilterDto>
     {
         Task<IEnumerable<UserDto>> GetUsersContainingSubNameAsync(string subName);
+
+        Task<UserDto> GetByNickNameAsync(string nickName);
+
+        Task<int> RegisterUserAsync(UserCreateDto userDto);
+
+        Task<bool> AuthorizeUserAsync(string nickName, string password);
     }
 }

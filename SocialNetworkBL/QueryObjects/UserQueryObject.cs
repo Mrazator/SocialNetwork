@@ -20,11 +20,19 @@ namespace SocialNetworkBL.QueryObjects
 
         protected override IQuery<User> ApplyWhereClause(IQuery<User> query, UserFilterDto filter)
         {
-            var simplePredicate = new SimplePredicate(nameof(User.NickName), ValueComparingOperator.StringContains, filter.SubName);
+            var simplePredicate = string.IsNullOrEmpty(filter.NickName) ?
+                                        new SimplePredicate(nameof(User.NickName), ValueComparingOperator.StringContains, filter.SubName) :
+                                        new SimplePredicate(nameof(User.NickName), ValueComparingOperator.Equal, filter.NickName);
 
-            return filter.SubName == null
+            return string.IsNullOrEmpty(filter.NickName) && string.IsNullOrEmpty(filter.SubName)
                 ? query
                 : query.Where(simplePredicate);
+
+            //var simplePredicate = new SimplePredicate(nameof(User.NickName), ValueComparingOperator.StringContains, filter.SubName);
+
+            //return filter.SubName == null
+            //    ? query
+            //    : query.Where(simplePredicate);
         }
     }
 }

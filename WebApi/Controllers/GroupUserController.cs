@@ -14,6 +14,7 @@ namespace WebApi.Controllers
         public GroupFacade GroupFacade { get; set; }
         public UserFacade UserFacade { get; set; }
 
+        [Route("api/GroupUser/GetUserGroups")]
         public async Task<IEnumerable<GroupDto>> GetUserGroups(int userId)
         {
             var user = await UserFacade.GetAsync(userId);
@@ -25,7 +26,8 @@ namespace WebApi.Controllers
             var groups = await GroupUserFacade.GetGroupsByUserIdAsync(userId);
             return groups;
         }
-        
+
+        [Route("api/GroupUser/GetGroupUsers")]
         public async Task<IEnumerable<UserDto>> GetGroupUsers(int groupId)
         {
             var group = await GroupFacade.GetAsync(groupId);

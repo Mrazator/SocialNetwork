@@ -22,6 +22,9 @@ namespace SocialNetwork.Entities
         public string NickName { get; set; }
 
         [Required, MinLength(6), MaxLength(50)]
+        public string PasswordSalt { get; set; }
+
+        [Required, MinLength(6), MaxLength(50)]
         public string PasswordHash { get; set; }
 
         #region Settings

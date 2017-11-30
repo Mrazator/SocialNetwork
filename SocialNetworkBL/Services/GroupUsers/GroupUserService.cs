@@ -20,11 +20,11 @@ namespace SocialNetworkBL.Services.GroupUsers
         {
         }
 
-        public async Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId)
-        {
-            var queryResult = await Query.ExecuteQuery(new GroupUserFilterDto {UserId = userId});
-            return queryResult?.Items.Select(groupUser => groupUser.GroupDto).ToList();
-        }
+        //public async Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId)
+        //{
+        //    var queryResult = await Query.ExecuteQuery(new GroupUserFilterDto { UserId = userId });
+        //    return queryResult?.Items.Select(groupUser => groupUser.GroupDto).ToList();
+        //}
 
         public async Task<IList<UserDto>> GetUsersByGroupIdAsync(int groupId)
         {

@@ -20,11 +20,17 @@ namespace SocialNetworkBL.QueryObjects
 
         protected override IQuery<GroupUser> ApplyWhereClause(IQuery<GroupUser> query, GroupUserFilterDto filter)
         {
-            var simplePredicate = filter.GroupId.Equals(null) ?
-                                        new SimplePredicate(nameof(GroupUser.UserId), ValueComparingOperator.Equal, filter.UserId) :
-                                        new SimplePredicate(nameof(GroupUser.GroupId), ValueComparingOperator.Equal, filter.GroupId);
+            //var simplePredicate = filter.GroupId.Equals(null) ?
+            //                            new SimplePredicate(nameof(GroupUser.UserId), ValueComparingOperator.Equal, filter.UserId) :
+            //                            new SimplePredicate(nameof(GroupUser.GroupId), ValueComparingOperator.Equal, filter.GroupId);
 
-            return filter.UserId.Equals(null) && filter.GroupId.Equals(null)
+            //return filter.UserId.Equals(null) && filter.GroupId.Equals(null)
+            //    ? query
+            //    : query.Where(simplePredicate);
+
+            var simplePredicate = new SimplePredicate(nameof(GroupUser.GroupId), ValueComparingOperator.Equal, filter.GroupId);
+
+            return filter.GroupId.Equals(null)
                 ? query
                 : query.Where(simplePredicate);
         }

@@ -5,18 +5,19 @@ using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.GroupUsers;
+using SocialNetworkBL.Services.UserGroups;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GroupUser = SocialNetwork.Entities.GroupUser;
 
 namespace SocialNetworkBL.Facades
 {
     public class GroupUserFacade : FacadeBase<GroupUser, GroupUserDto, GroupUserFilterDto>
     {
         private readonly IGroupUserService _groupUserService;
+        private readonly IUserGroupService _userGroupService;
 
         public GroupUserFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
@@ -31,7 +32,7 @@ namespace SocialNetworkBL.Facades
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await _groupUserService.GetGroupsByUserIdAsync(userId);
+                return await _userGroupService.GetGroupsByUserIdAsync(userId);
             }
         }
 

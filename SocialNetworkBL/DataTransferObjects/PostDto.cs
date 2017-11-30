@@ -18,5 +18,7 @@ namespace SocialNetworkBL.DataTransferObjects
         public int? UserId { get; set; }
 
         public int? GroupId { get; set; }
+
+        public virtual HashSet<CommentDto> Comments { get; set; }
     }
 }

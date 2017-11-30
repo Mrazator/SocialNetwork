@@ -23,6 +23,8 @@ namespace SocialNetworkBL.Config
             config.CreateMap<User, UserDto>().ReverseMap();
             config.CreateMap<QueryResult<User>, QueryResultDto<UserDto, UserFilterDto>>();
 
+            config.CreateMap<User, UserCreateDto>().ReverseMap();
+
             config.CreateMap<Message, MessageDto>().ReverseMap();
             config.CreateMap<QueryResult<Message>, QueryResultDto<MessageDto, MessageFilterDto>>();
 
@@ -37,6 +39,9 @@ namespace SocialNetworkBL.Config
 
             config.CreateMap<GroupUser, GroupUserDto>().ReverseMap();
             config.CreateMap<QueryResult<GroupUser>, QueryResultDto<GroupUserDto, GroupUserFilterDto>>();
+
+            config.CreateMap<GroupUser, UserGroupDto>().ReverseMap();
+            config.CreateMap<QueryResult<GroupUser>, QueryResultDto<UserGroupDto, UserGroupFilterDto>>();
 
             config.CreateMap<User, UserDetailDto>().ReverseMap();
             config.CreateMap<QueryResult<User>, QueryResultDto<UserDetailDto, UserFilterDto>>();

@@ -17,6 +17,7 @@ namespace SocialNetwork.Initializers
             var user1 = new User()
             {
                 NickName = "Bara",
+                PasswordSalt = "99asdasdasdass",
                 PasswordHash = "123456",
                 PostVisibilityPreference = Visibility.NotVisible
             };
@@ -26,6 +27,7 @@ namespace SocialNetwork.Initializers
             var user2 = new User()
             {
                 NickName = "Lucie",
+                PasswordSalt = "99asdasdasdas",
                 PasswordHash = "123456"
             };
 
@@ -45,6 +47,7 @@ namespace SocialNetwork.Initializers
             var user3 = new User()
             {
                 NickName = "Aneta",
+                PasswordSalt = "99asdasdasdas",
                 PasswordHash = "123456",
                 PostVisibilityPreference = Visibility.NotVisible
             };
@@ -54,6 +57,7 @@ namespace SocialNetwork.Initializers
             var user4 = new User()
             {
                 NickName = "Alena",
+                PasswordSalt = "9asdasdasdas",
                 PasswordHash = "123456"
             };
 

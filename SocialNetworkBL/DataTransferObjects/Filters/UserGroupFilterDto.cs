@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace SocialNetworkBL.DataTransferObjects.Filters
 {
-    public class GroupUserFilterDto : FilterDtoBase
+    public class UserGroupFilterDto : FilterDtoBase
     {
-        //public int? UserId { get; set; }
-        public int? GroupId { get; set; }
+        public int? UserId { get; set; }
     }
 }

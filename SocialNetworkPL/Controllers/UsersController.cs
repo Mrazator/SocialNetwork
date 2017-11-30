@@ -21,6 +21,7 @@ namespace SocialNetworkPL.Controllers
 
         public UserFacade UserFacade { get; set; }
         public PostFacade PostFacade { get; set; }
+        public CommentFacade CommentFacade { get; set; }
         public FriendshipFacade FriendshipFacade { get; set; }
         public GroupFacade GroupFacade { get; set; }
 
@@ -63,6 +64,12 @@ namespace SocialNetworkPL.Controllers
         {
             var user = await UserFacade.GetAsync(id);
             var posts = await PostFacade.GetPostsByUserIdAsync(id);
+
+            //foreach (var post in posts)
+            //{
+            //    post.Comments = await CommentFacade.GetPostsCommentsAsync(post.Id).ToList();
+            //}
+
             var friendships = await FriendshipFacade.GetFriendsByUserIdAsync(id);
 
             return View("Detail", new UserDetailViewModel()
