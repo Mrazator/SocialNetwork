@@ -11,9 +11,7 @@ namespace SocialNetworkPL.Models
     public class UsersListViewModel
     {
         public IPagedList<UserDto> Users { get; set; }
-
         public UserFilterDto Filter { get; set; }
-
         public string SearchedSubname { get; set; }
     }
 }

@@ -14,11 +14,12 @@ namespace SocialNetwork.Initializers
     {
         protected override void Seed(EntityFrameworkDbContext context)
         {
+            //PV226jesuper
             var user1 = new User()
             {
                 NickName = "Bara",
-                PasswordSalt = "99asdasdasdass",
-                PasswordHash = "123456",
+                PasswordSalt = "hFrDVp5UB9eMycpU+4wSEA==",
+                PasswordHash = "ZXnjeNKhDTSH6Rc6q4++tVoQVHo=",
                 PostVisibilityPreference = Visibility.NotVisible
             };
 
@@ -27,8 +28,8 @@ namespace SocialNetwork.Initializers
             var user2 = new User()
             {
                 NickName = "Lucie",
-                PasswordSalt = "99asdasdasdas",
-                PasswordHash = "123456"
+                PasswordSalt = "hFrDVp5UB9eMycpU+4wSEA==",
+                PasswordHash = "ZXnjeNKhDTSH6Rc6q4++tVoQVHo=",
             };
 
             context.Users.Add(user2);
@@ -47,8 +48,8 @@ namespace SocialNetwork.Initializers
             var user3 = new User()
             {
                 NickName = "Aneta",
-                PasswordSalt = "99asdasdasdas",
-                PasswordHash = "123456",
+                PasswordSalt = "hFrDVp5UB9eMycpU+4wSEA==",
+                PasswordHash = "ZXnjeNKhDTSH6Rc6q4++tVoQVHo=",
                 PostVisibilityPreference = Visibility.NotVisible
             };
 
@@ -57,8 +58,8 @@ namespace SocialNetwork.Initializers
             var user4 = new User()
             {
                 NickName = "Alena",
-                PasswordSalt = "9asdasdasdas",
-                PasswordHash = "123456"
+                PasswordSalt = "hFrDVp5UB9eMycpU+4wSEA==",
+                PasswordHash = "ZXnjeNKhDTSH6Rc6q4++tVoQVHo=",
             };
 
             context.Users.Add(user4);

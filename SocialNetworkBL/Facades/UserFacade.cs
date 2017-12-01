@@ -45,20 +45,13 @@ namespace SocialNetworkBL.Facades
             }
         }
 
-        public async Task<int> RegisterCustomer(UserCreateDto userCreateDto)
+        public async Task<int> RegisterUser(UserCreateDto userCreateDto)
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                try
-                {
-                    var id = await _userService.RegisterUserAsync(userCreateDto);
-                    await uow.Commit();
-                    return id;
-                }
-                catch (ArgumentException)
-                {
-                    throw;
-                }
+                var id = await _userService.RegisterUserAsync(userCreateDto);
+                await uow.Commit();
+                return id;
             }
         }
 

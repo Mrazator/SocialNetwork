@@ -15,10 +15,8 @@ namespace SocialNetworkBL.DataTransferObjects
 
         public bool StayAnonymous { get; set; } = false;
 
-        public int? UserId { get; set; }
+        public int? UserId { get; set; } 
 
         public int? GroupId { get; set; }
-
-        public virtual HashSet<CommentDto> Comments { get; set; }
     }
 }

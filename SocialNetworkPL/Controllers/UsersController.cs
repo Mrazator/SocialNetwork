@@ -63,20 +63,16 @@ namespace SocialNetworkPL.Controllers
         public async  Task<ActionResult> Details(int id)
         {
             var user = await UserFacade.GetAsync(id);
+            user.Id = id;
             var posts = await PostFacade.GetPostsByUserIdAsync(id);
-
-            //foreach (var post in posts)
-            //{
-            //    post.Comments = await CommentFacade.GetPostsCommentsAsync(post.Id).ToList();
-            //}
-
             var friendships = await FriendshipFacade.GetFriendsByUserIdAsync(id);
 
             return View("Detail", new UserDetailViewModel()
             {
                 UserDto = user,
                 PostDtos = posts,
-                FriendshipDtos = friendships
+                FriendshipDtos = friendships,
+                NewPostText = ""
             });
         }
 
@@ -139,6 +135,31 @@ namespace SocialNetworkPL.Controllers
                 await UserFacade.DeleteAsync(id);
 
                 return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult AddPost()
+        {
+            return View();
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public async Task<ActionResult> AddPost(UserDetailViewModel model)
+        {
+            try
+            {
+                var newPost = new PostDto()
+                {
+                    Text = model.NewPostText,
+                    UserId = model.UserDto.Id,
+                    PostedAt = DateTime.Now.AddMinutes(30)
+                };
+                await PostFacade.CreateAsync(newPost);
+                return RedirectToAction("Details", new { id = model.UserDto.Id});
             }
             catch
             {

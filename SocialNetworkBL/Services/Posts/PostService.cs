@@ -24,7 +24,7 @@ namespace SocialNetworkBL.Services.Posts
         public async Task<IList<PostDto>> GetPostsByGroupIdAsync(int groupId)
         {
             var queryResult = await Query.ExecuteQuery(new PostFilterDto {GroupId = groupId, UserId = null});
-            return queryResult?.Items.ToList();
+            return queryResult?.Items.OrderByDescending(x => x.PostedAt).ToList();
         }
 
         public async Task<QueryResultDto<PostDto, PostFilterDto>> GetPostsAsync(PostFilterDto filter)
@@ -35,7 +35,7 @@ namespace SocialNetworkBL.Services.Posts
         public async Task<IList<PostDto>> GetPostsByUserIdAsync(int userId)
         {
             var queryResult = await Query.ExecuteQuery(new PostFilterDto {UserId = userId, GroupId = null});
-            return queryResult?.Items.ToList();
+            return queryResult?.Items.OrderByDescending(x => x.PostedAt).ToList();
         }
     }
 }
