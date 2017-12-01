@@ -50,6 +50,12 @@ namespace SocialNetworkPL.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(LoginModel model, string returnUrl)
         {
+            if (string.IsNullOrWhiteSpace(model.NickName) || string.IsNullOrWhiteSpace(model.Password))
+            {
+                ModelState.AddModelError("", "Wrong username or password!");
+                return View();
+            }
+
             bool success = await UserFacade.Login(model.NickName, model.Password);
             if (success)
             {

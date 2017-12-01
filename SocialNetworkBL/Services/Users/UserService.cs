@@ -11,6 +11,7 @@ using SocialNetworkBL.Services.Common;
 using System;
 using System.Security.Cryptography;
 using System.Linq;
+using System.Web;
 
 namespace SocialNetworkBL.Services.Users
 {
@@ -59,7 +60,11 @@ namespace SocialNetworkBL.Services.Users
             var userResult = await Query.ExecuteQuery(new UserFilterDto { NickName = nickName });
             var user = userResult.Items.SingleOrDefault();
 
-            return VerifyHashedPassword(user.PasswordHash, user.PasswordSalt, password);
+            if (user != null)
+            {
+                return VerifyHashedPassword(user.PasswordHash, user.PasswordSalt, password);
+            }
+            return false;
         }
 
         private async Task<bool> GetIfUserExistsAsync(string nickName)

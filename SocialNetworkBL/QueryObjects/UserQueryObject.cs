@@ -20,7 +20,8 @@ namespace SocialNetworkBL.QueryObjects
 
         protected override IQuery<User> ApplyWhereClause(IQuery<User> query, UserFilterDto filter)
         {
-            var simplePredicate = string.IsNullOrEmpty(filter.NickName) ?
+            var simplePredicate = string.IsNullOrEmpty(filter.NickName)  && 
+                                    !string.IsNullOrEmpty(filter.SubName) ?
                                         new SimplePredicate(nameof(User.NickName), ValueComparingOperator.StringContains, filter.SubName) :
                                         new SimplePredicate(nameof(User.NickName), ValueComparingOperator.Equal, filter.NickName);
 
