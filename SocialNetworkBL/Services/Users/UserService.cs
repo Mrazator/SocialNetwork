@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using AutoMapper;
 using Infrastructure;
@@ -8,10 +11,6 @@ using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects.Common;
 using SocialNetworkBL.Services.Common;
-using System;
-using System.Security.Cryptography;
-using System.Linq;
-using System.Web;
 
 namespace SocialNetworkBL.Services.Users
 {
@@ -23,17 +22,19 @@ namespace SocialNetworkBL.Services.Users
 
         public UserService(IMapper mapper, IRepository<User> repository,
             QueryObjectBase<UserDto, User, UserFilterDto, IQuery<User>> query)
-            : base(mapper, repository, query) { }
+            : base(mapper, repository, query)
+        {
+        }
 
         public async Task<IEnumerable<UserDto>> GetUsersContainingSubNameAsync(string subName)
         {
-            var queryResult = await Query.ExecuteQuery(new UserFilterDto { SubName = subName });
+            var queryResult = await Query.ExecuteQuery(new UserFilterDto {SubName = subName});
             return queryResult?.Items;
         }
 
         public async Task<UserDto> GetByNickNameAsync(string nickName)
         {
-            var queryResult = await Query.ExecuteQuery(new UserFilterDto { NickName = nickName });
+            var queryResult = await Query.ExecuteQuery(new UserFilterDto {NickName = nickName});
             return queryResult?.Items.FirstOrDefault();
         }
 
@@ -42,9 +43,7 @@ namespace SocialNetworkBL.Services.Users
             var user = Mapper.Map<User>(userDto);
 
             if (await GetIfUserExistsAsync(user.NickName))
-            {
                 throw new ArgumentException();
-            }
 
             var password = CreateHash(userDto.Password);
             user.PasswordHash = password.Item1;
@@ -57,20 +56,18 @@ namespace SocialNetworkBL.Services.Users
 
         public async Task<bool> AuthorizeUserAsync(string nickName, string password)
         {
-            var userResult = await Query.ExecuteQuery(new UserFilterDto { NickName = nickName });
+            var userResult = await Query.ExecuteQuery(new UserFilterDto {NickName = nickName});
             var user = userResult.Items.SingleOrDefault();
 
             if (user != null)
-            {
                 return VerifyHashedPassword(user.PasswordHash, user.PasswordSalt, password);
-            }
             return false;
         }
 
         private async Task<bool> GetIfUserExistsAsync(string nickName)
         {
-            var queryResult = await Query.ExecuteQuery(new UserFilterDto { NickName = nickName });
-            return (queryResult.Items.Count() == 1);
+            var queryResult = await Query.ExecuteQuery(new UserFilterDto {NickName = nickName});
+            return queryResult.Items.Count() == 1;
         }
 
         private bool VerifyHashedPassword(string hashedPassword, string salt, string password)
@@ -89,8 +86,8 @@ namespace SocialNetworkBL.Services.Users
         {
             using (var deriveBytes = new Rfc2898DeriveBytes(password, saltSize, PBKDF2IterCount))
             {
-                byte[] salt = deriveBytes.Salt;
-                byte[] subkey = deriveBytes.GetBytes(PBKDF2SubkeyLength);
+                var salt = deriveBytes.Salt;
+                var subkey = deriveBytes.GetBytes(PBKDF2SubkeyLength);
 
                 return Tuple.Create(Convert.ToBase64String(subkey), Convert.ToBase64String(salt));
             }

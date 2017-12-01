@@ -7,7 +7,6 @@ using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.Users;
-using System;
 
 namespace SocialNetworkBL.Facades
 {

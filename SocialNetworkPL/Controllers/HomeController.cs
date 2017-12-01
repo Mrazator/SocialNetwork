@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Common;
@@ -24,7 +20,7 @@ namespace SocialNetworkPL.Controllers
         // GET: Posts
         public async Task<ActionResult> Index(int page = 1)
         {
-            var filter = Session[FilterSessionKey] as PostFilterDto ?? new PostFilterDto() { PageSize = PageSize };
+            var filter = Session[FilterSessionKey] as PostFilterDto ?? new PostFilterDto {PageSize = PageSize};
             filter.RequestedPageNumber = page;
 
             var result = await PostFacade.GetPostsAsync(filter);
@@ -34,7 +30,7 @@ namespace SocialNetworkPL.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Index(PostsListViewModel model)
+        public async Task<ActionResult> Index(PostListModel model)
         {
             model.Filter.PageSize = PageSize;
             Session[FilterSessionKey] = model.Filter;
@@ -45,11 +41,12 @@ namespace SocialNetworkPL.Controllers
         }
 
 
-        private PostsListViewModel InitializeProductListViewModel(QueryResultDto<PostDto, PostFilterDto> result)
+        private PostListModel InitializeProductListViewModel(QueryResultDto<PostDto, PostFilterDto> result)
         {
-            return new PostsListViewModel
+            return new PostListModel
             {
-                Posts = new StaticPagedList<PostDto>(result.Items, result.RequestedPageNumber ?? 1, PageSize, (int)result.TotalItemsCount),
+                Posts = new StaticPagedList<PostDto>(result.Items, result.RequestedPageNumber ?? 1, PageSize,
+                    (int) result.TotalItemsCount),
                 Filter = result.Filter
             };
         }
@@ -64,7 +61,7 @@ namespace SocialNetworkPL.Controllers
         // GET: Posts/Create
         public ActionResult Create()
         {
-             return View();
+            return View();
         }
 
         // POST: Posts/Create

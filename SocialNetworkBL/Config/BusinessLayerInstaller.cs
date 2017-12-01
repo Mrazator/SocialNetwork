@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.MicroKernel.SubSystems.Configuration;
@@ -25,21 +20,17 @@ namespace SocialNetworkBL.Config
                 Component.For(typeof(QueryObjectBase<,,,>))
                     .ImplementedBy(typeof(IQueryObjectBase))
                     .LifestyleTransient(),
-
                 Classes.FromThisAssembly()
                     .BasedOn(typeof(QueryObjectBase<,,,>))
                     .WithServiceBase()
                     .LifestyleTransient(),
-
                 Classes.FromThisAssembly()
                     .BasedOn<ServiceBase>()
                     .WithServiceDefaultInterfaces()
                     .LifestyleTransient(),
-
                 Classes.FromThisAssembly()
                     .BasedOn(typeof(FacadeBase<,,>))
                     .LifestyleTransient(),
-
                 Component.For<IMapper>()
                     .Instance(new Mapper(new MapperConfiguration(MappingConfig.ConfigureMapping)))
                     .LifestyleSingleton()

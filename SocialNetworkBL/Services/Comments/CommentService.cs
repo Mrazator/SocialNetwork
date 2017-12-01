@@ -28,7 +28,13 @@ namespace SocialNetworkBL.Services.Comments
 
         public async Task<IList<CommentDto>> GetLatestCommentsByPostIdAsync(int postId, int pageSize)
         {
-            var queryResult = await Query.ExecuteQuery(new CommentFilterDto { PostId = postId, PageSize = pageSize, RequestedPageNumber = 1, SortAscending = true });
+            var queryResult = await Query.ExecuteQuery(new CommentFilterDto
+            {
+                PostId = postId,
+                PageSize = pageSize,
+                RequestedPageNumber = 1,
+                SortAscending = true
+            });
             return queryResult?.Items.ToList();
         }
     }

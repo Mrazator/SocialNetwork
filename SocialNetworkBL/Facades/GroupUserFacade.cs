@@ -1,4 +1,6 @@
-﻿using Infrastructure.UnitOfWork;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Infrastructure.UnitOfWork;
 using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
@@ -6,11 +8,6 @@ using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.GroupUsers;
 using SocialNetworkBL.Services.UserGroups;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialNetworkBL.Facades
 {
@@ -23,7 +20,7 @@ namespace SocialNetworkBL.Facades
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<GroupUser, GroupUserDto, GroupUserFilterDto> service,
             IGroupUserService groupUserService
-            ) : base(unitOfWorkProvider, service)
+        ) : base(unitOfWorkProvider, service)
         {
             _groupUserService = groupUserService;
         }

@@ -1,13 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using Infrastructure;
 using Infrastructure.Query;
 using SocialNetworkBL.DataTransferObjects.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SocialNetwork.Entities;
 
 namespace SocialNetworkBL.QueryObjects.Common
 {
@@ -33,13 +28,9 @@ namespace SocialNetworkBL.QueryObjects.Common
         {
             var query = ApplyWhereClause(Query, filter);
             if (!string.IsNullOrWhiteSpace(filter.SortCriteria))
-            {
                 query = query.SortBy(filter.SortCriteria, filter.SortAscending);
-            }
             if (filter.RequestedPageNumber.HasValue)
-            {
                 query = query.Page(filter.RequestedPageNumber.Value, filter.PageSize);
-            }
             var queryResult = await query.ExecuteAsync();
 
             var queryResultDto = _mapper.Map<QueryResultDto<TDto, TFilter>>(queryResult);

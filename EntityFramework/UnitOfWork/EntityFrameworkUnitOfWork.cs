@@ -8,20 +8,20 @@ namespace EntityFrameworkINFR.UnitOfWork
     public class EntityFrameworkUnitOfWork : UnitOfWorkBase
     {
         /// <summary>
-        /// Gets the <see cref="DbContext"/>.
+        ///     Initializes a new instance of the <see cref="EntityFrameworkUnitOfWork" /> class.
+        /// </summary>
+        public EntityFrameworkUnitOfWork(Func<DbContext> dbContextFactory)
+        {
+            Context = dbContextFactory?.Invoke() ?? throw new ArgumentException("Db context factory cant be null!");
+        }
+
+        /// <summary>
+        ///     Gets the <see cref="DbContext" />.
         /// </summary>
         public DbContext Context { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityFrameworkUnitOfWork"/> class.
-        /// </summary>
-        public EntityFrameworkUnitOfWork(Func<DbContext> dbContextFactory)
-        {
-            this.Context = dbContextFactory?.Invoke() ?? throw new ArgumentException("Db context factory cant be null!");
-        }
-
-        /// <summary>
-        /// Commits the changes.
+        ///     Commits the changes.
         /// </summary>
         protected override async Task CommitCore()
         {

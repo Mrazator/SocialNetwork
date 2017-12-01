@@ -1,4 +1,7 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
 using Infrastructure;
 using Infrastructure.Query;
 using SocialNetwork.Entities;
@@ -6,11 +9,6 @@ using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects.Common;
 using SocialNetworkBL.Services.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialNetworkBL.Services.UserGroups
 {
@@ -24,7 +22,7 @@ namespace SocialNetworkBL.Services.UserGroups
 
         public async Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId)
         {
-            var queryResult = await Query.ExecuteQuery(new UserGroupFilterDto { UserId = userId });
+            var queryResult = await Query.ExecuteQuery(new UserGroupFilterDto {UserId = userId});
             return queryResult?.Items.Select(userGroup => userGroup.GroupDto).ToList();
         }
     }

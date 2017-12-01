@@ -1,16 +1,12 @@
-﻿using SocialNetwork.Entities;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Infrastructure.UnitOfWork;
+using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Infrastructure.UnitOfWork;
-using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.Comments;
-using Comment = SocialNetwork.Entities.Comment;
+using SocialNetworkBL.Services.Common;
 
 namespace SocialNetworkBL.Facades
 {
@@ -25,7 +21,6 @@ namespace SocialNetworkBL.Facades
             : base(unitOfWorkProvider, service)
         {
             _commentService = commentService;
-
         }
 
         public async Task<IList<CommentDto>> GetPostLatestCommentsAsync(int postId, int pageSize)

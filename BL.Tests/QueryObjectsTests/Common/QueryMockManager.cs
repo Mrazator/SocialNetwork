@@ -4,11 +4,6 @@ using Infrastructure.Query;
 using Infrastructure.Query.Predicates;
 using Moq;
 using SocialNetworkBL.DataTransferObjects.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BL.Tests.QueryObjectsTests.Common
 {
@@ -26,7 +21,8 @@ namespace BL.Tests.QueryObjectsTests.Common
             return queryMock;
         }
 
-        internal Mock<IMapper> ConfigureMapperMock<TEntity, TDto, TFilterDto>() where TFilterDto : FilterDtoBase where TEntity : IEntity
+        internal Mock<IMapper> ConfigureMapperMock<TEntity, TDto, TFilterDto>()
+            where TFilterDto : FilterDtoBase where TEntity : IEntity
         {
             var mapperMock = new Mock<IMapper>(MockBehavior.Loose);
             mapperMock

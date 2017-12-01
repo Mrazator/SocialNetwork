@@ -1,17 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using Infrastructure;
 
 namespace SocialNetwork.Entities
 {
     public class GroupUser : IEntity
     {
+        public bool IsAdmin { get; set; } = false;
         public int Id { get; set; }
 
         [NotMapped]
         public string TableName { get; } = nameof(EntityFrameworkDbContext.GroupUsers);
-
-        public bool IsAdmin { get; set; } = false;
 
         #region Foreign keys
 

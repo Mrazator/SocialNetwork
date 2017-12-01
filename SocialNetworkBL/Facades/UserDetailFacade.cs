@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Infrastructure.UnitOfWork;
+﻿using Infrastructure.UnitOfWork;
 using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.DataTransferObjects.UserDetailDto;
 using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
-using SocialNetworkBL.Services.Users;
 using SocialNetworkBL.Services.Posts;
+using SocialNetworkBL.Services.Users;
 
 namespace SocialNetworkBL.Facades
 {
@@ -27,7 +22,6 @@ namespace SocialNetworkBL.Facades
             CrudQueryServiceBase<User, UserDetailDto, UserFilterDto> service,
             IUserService userService,
             IPostService postService
-
         ) : base(unitOfWorkProvider, service)
         {
             _userService = userService;

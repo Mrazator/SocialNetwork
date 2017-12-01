@@ -11,15 +11,15 @@ namespace EntityFrameworkINFR
     {
         private readonly IUnitOfWorkProvider provider;
 
-        /// <summary>
-        /// Gets the <see cref="DbContext"/>.
-        /// </summary>
-        protected DbContext Context => ((EntityFrameworkUnitOfWork)provider.GetUnitOfWorkInstance()).Context;
-
         public EntityFrameworkRepository(IUnitOfWorkProvider provider)
         {
             this.provider = provider;
         }
+
+        /// <summary>
+        ///     Gets the <see cref="DbContext" />.
+        /// </summary>
+        protected DbContext Context => ((EntityFrameworkUnitOfWork) provider.GetUnitOfWorkInstance()).Context;
 
         public void Create(TEntity entity)
         {
@@ -30,9 +30,7 @@ namespace EntityFrameworkINFR
         {
             var entity = Context.Set<TEntity>().Find(id);
             if (entity != null)
-            {
                 Context.Set<TEntity>().Remove(entity);
-            }
         }
 
         public async Task<TEntity> GetAsync(int id)
@@ -44,9 +42,7 @@ namespace EntityFrameworkINFR
         {
             DbQuery<TEntity> ctx = Context.Set<TEntity>();
             foreach (var include in includes)
-            {
                 ctx = ctx.Include(include);
-            }
             return await ctx
                 .SingleOrDefaultAsync(entity => entity.Id.Equals(id));
         }

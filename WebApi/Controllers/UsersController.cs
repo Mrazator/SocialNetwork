@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using SocialNetworkBL.DataTransferObjects;
@@ -19,15 +16,11 @@ namespace WebApi.Controllers
         public async Task<IEnumerable<UserDto>> GetBySubname(string subname)
         {
             if (string.IsNullOrWhiteSpace(subname))
-            {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            }
             var users = await UserFacade.GetUsersContainingSubNameAsync(subname);
 
             if (users == null)
-            {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
 
             //var userDtos = users as IList<UserDto> ?? users.ToList();
 
@@ -38,7 +31,7 @@ namespace WebApi.Controllers
 
             return users;
         }
-        
+
         // GET: api/Users
         [Route("api/Userss")]
         public async Task<IEnumerable<UserDto>> GetAll()
@@ -53,9 +46,7 @@ namespace WebApi.Controllers
             var user = await UserFacade.GetAsync(id);
 
             if (user == null)
-            {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
             return user;
         }
 
@@ -63,15 +54,11 @@ namespace WebApi.Controllers
         public async Task<string> Post(UserDto entity)
         {
             if (!ModelState.IsValid)
-            {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            }
             var userId = await UserFacade.CreateAsync(entity);
 
             if (userId.Equals(0))
-            {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            }
 
             return $"Created user with id: {userId}";
         }
@@ -80,9 +67,7 @@ namespace WebApi.Controllers
         public async Task<string> Put(int id, UserDto entity)
         {
             if (!ModelState.IsValid)
-            {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            }
 
             await UserFacade.UpdateAsync(entity);
             return $"Updated user with id: {id}";
@@ -93,9 +78,7 @@ namespace WebApi.Controllers
         {
             var success = await UserFacade.DeleteAsync(id);
             if (!success)
-            {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
             return $"Deleted user with id: {id}";
         }
     }

@@ -1,17 +1,12 @@
-﻿using SocialNetworkBL.Facades.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.UnitOfWork;
+using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
-using SocialNetwork.Entities;
+using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.Friendships;
-using SocialNetworkBL.Services.Messages;
-using Friendship = SocialNetwork.Entities.Friendship;
 
 namespace SocialNetworkBL.Facades
 {
@@ -23,7 +18,7 @@ namespace SocialNetworkBL.Facades
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<Friendship, FriendshipDto, FriendshipFilterDto> service,
             IFriendshipService friendshipService
-            ) : base(unitOfWorkProvider, service)
+        ) : base(unitOfWorkProvider, service)
         {
             _friendshipService = friendshipService;
         }

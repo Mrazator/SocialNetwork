@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Infrastructure;
 
 namespace SocialNetwork.Entities
 {
     public class Group : IEntity
     {
-        public int Id { get; set; }
-
-        [NotMapped]
-        public string TableName { get; } = nameof(EntityFrameworkDbContext.Groups);
-
-        [Required, MaxLength(30)]
+        [Required]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         #region Settings
@@ -26,6 +18,11 @@ namespace SocialNetwork.Entities
         public bool AllowAnonymousPosts { get; set; } = false;
 
         #endregion
+
+        public int Id { get; set; }
+
+        [NotMapped]
+        public string TableName { get; } = nameof(EntityFrameworkDbContext.Groups);
 
         #region Navigation properties
 

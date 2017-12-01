@@ -1,16 +1,12 @@
-﻿using SocialNetwork.Entities;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Infrastructure.UnitOfWork;
+using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
-using SocialNetworkBL.Services.Messages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Infrastructure.UnitOfWork;
 using SocialNetworkBL.Services.Common;
-using Message = SocialNetwork.Entities.Message;
+using SocialNetworkBL.Services.Messages;
 
 namespace SocialNetworkBL.Facades
 {
@@ -21,7 +17,7 @@ namespace SocialNetworkBL.Facades
         public MessageFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<Message, MessageDto, MessageFilterDto> service,
-            IMessageService messageService) 
+            IMessageService messageService)
             : base(unitOfWorkProvider, service)
         {
             _messageService = messageService;

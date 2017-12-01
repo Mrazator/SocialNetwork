@@ -15,9 +15,10 @@ namespace WebApi.Windsor
             this.container = container;
         }
 
-        public IHttpController Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+        public IHttpController Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor,
+            Type controllerType)
         {
-            var controller = (IHttpController)container.Resolve(controllerType);
+            var controller = (IHttpController) container.Resolve(controllerType);
             request.RegisterForDispose(new Release(() => container.Release(controller)));
             return controller;
         }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SocialNetworkBL.DataTransferObjects.Common
+﻿namespace SocialNetworkBL.DataTransferObjects.Common
 {
     public abstract class DtoBase
     {

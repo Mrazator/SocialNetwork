@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Infrastructure;
 using SocialNetwork.Enums;
 
@@ -13,18 +8,19 @@ namespace SocialNetwork.Entities
 {
     public class User : IEntity
     {
-        public int Id { get; set; }
-
-        [NotMapped]
-        public string TableName { get; } = nameof(EntityFrameworkDbContext.Users);
-
-        [Required, MaxLength(50)]
+        [Required]
+        [MaxLength(50)]
+        [Index(IsUnique = true)]
         public string NickName { get; set; }
 
-        [Required, MinLength(6), MaxLength(50)]
+        [Required]
+        [MinLength(6)]
+        [MaxLength(100)]
         public string PasswordSalt { get; set; }
 
-        [Required, MinLength(6), MaxLength(50)]
+        [Required]
+        [MinLength(6)]
+        [MaxLength(100)]
         public string PasswordHash { get; set; }
 
         #region Settings
@@ -33,6 +29,11 @@ namespace SocialNetwork.Entities
         public Visibility PostVisibilityPreference { get; set; } = Visibility.Visible;
 
         #endregion
+
+        public int Id { get; set; }
+
+        [NotMapped]
+        public string TableName { get; } = nameof(EntityFrameworkDbContext.Users);
 
         #region Navigation properties
 

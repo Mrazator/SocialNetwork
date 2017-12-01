@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Infrastructure.Query;
 using Infrastructure.Query.Predicates;
 using Infrastructure.Query.Predicates.Operators;
 using SocialNetwork.Entities;
-using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.DataTransferObjects.UserDetailDto;
 using SocialNetworkBL.QueryObjects.Common;
@@ -23,7 +17,8 @@ namespace SocialNetworkBL.QueryObjects
 
         protected override IQuery<User> ApplyWhereClause(IQuery<User> query, UserFilterDto filter)
         {
-            var simplePredicate = new SimplePredicate(nameof(User.NickName), ValueComparingOperator.StringContains, filter.SubName);
+            var simplePredicate = new SimplePredicate(nameof(User.NickName), ValueComparingOperator.StringContains,
+                filter.SubName);
 
             return filter.Equals(null)
                 ? query

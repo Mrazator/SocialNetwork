@@ -17,24 +17,20 @@ namespace WebApi.Controllers
             var userDto = await UserFacade.GetAsync(userId);
 
             if (userDto == null)
-            {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
 
             var friends = await FriendshipFacade.GetFriendsByUserIdAsync(userId);
 
             return friends;
         }
-        
+
         // GET: api/Friendships/2
         public async Task<FriendshipDto> Get(int id)
         {
             var post = await FriendshipFacade.GetAsync(id);
 
             if (post == null)
-            {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
             return post;
         }
 
@@ -42,15 +38,11 @@ namespace WebApi.Controllers
         public async Task<string> Post(FriendshipDto entity)
         {
             if (!ModelState.IsValid)
-            {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            }
             var postId = await FriendshipFacade.CreateAsync(entity);
 
             if (postId.Equals(0))
-            {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            }
 
             return $"Created Friendship with id: {postId}";
         }
@@ -59,9 +51,7 @@ namespace WebApi.Controllers
         public async Task<string> Put(int id, FriendshipDto entity)
         {
             if (!ModelState.IsValid)
-            {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            }
 
             await FriendshipFacade.UpdateAsync(entity);
             return $"Updated Friendship with id: {id}";
@@ -72,9 +62,7 @@ namespace WebApi.Controllers
         {
             var success = await FriendshipFacade.DeleteAsync(id);
             if (!success)
-            {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
             return $"Deleted Friendship with id: {id}";
         }
     }

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using SocialNetwork.Entities;
-using SocialNetworkBL.DataTransferObjects.Filters;
-using SocialNetworkBL.DataTransferObjects.Common;
+﻿using AutoMapper;
 using Infrastructure.Query;
+using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.Common;
+using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.DataTransferObjects.UserDetailDto;
 
 namespace SocialNetworkBL.Config
@@ -48,7 +43,7 @@ namespace SocialNetworkBL.Config
 
             config.CreateMap<User, UserDetailFriendshipDto>().ReverseMap();
             config.CreateMap<QueryResult<User>, QueryResultDto<UserDetailFriendshipDto, UserFilterDto>>();
-            
+
             config.CreateMap<Friendship, FriendshipDetailDto>().ReverseMap();
             config.CreateMap<QueryResult<Friendship>, QueryResultDto<FriendshipDetailDto, FriendshipFilterDto>>();
         }

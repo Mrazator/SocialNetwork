@@ -1,12 +1,8 @@
-﻿using Infrastructure;
+﻿using System.Threading.Tasks;
+using Infrastructure;
 using Infrastructure.UnitOfWork;
 using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.Services.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialNetworkBL.Facades.Common
 {
@@ -15,13 +11,14 @@ namespace SocialNetworkBL.Facades.Common
         where TEntity : class, IEntity, new()
         where TDto : DtoBase
     {
-        protected readonly IUnitOfWorkProvider UnitOfWorkProvider;
         protected readonly CrudQueryServiceBase<TEntity, TDto, TFilterDto> Service;
+        protected readonly IUnitOfWorkProvider UnitOfWorkProvider;
 
-        protected FacadeBase(IUnitOfWorkProvider unitOfWorkProvider, CrudQueryServiceBase<TEntity,TDto,TFilterDto> service)
+        protected FacadeBase(IUnitOfWorkProvider unitOfWorkProvider,
+            CrudQueryServiceBase<TEntity, TDto, TFilterDto> service)
         {
             UnitOfWorkProvider = unitOfWorkProvider;
-            this.Service = service;
+            Service = service;
         }
 
         public async Task<QueryResultDto<TDto, TFilterDto>> GetAllItemsAsync()
@@ -64,9 +61,7 @@ namespace SocialNetworkBL.Facades.Common
             using (var uow = UnitOfWorkProvider.Create())
             {
                 if (await Service.GetAsync(entityId, false) == null)
-                {
                     return false;
-                }
                 Service.Delete(entityId);
                 await uow.Commit();
                 return true;

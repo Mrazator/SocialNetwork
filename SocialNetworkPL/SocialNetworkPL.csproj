@@ -234,9 +234,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\PostsListViewModel.cs" />
-    <Compile Include="Models\UserDetailViewModel.cs" />
-    <Compile Include="Models\UsersListViewModel.cs" />
+    <Compile Include="Models\PostListModel.cs" />
+    <Compile Include="Models\UserProfileModel.cs" />
+    <Compile Include="Models\FindUsersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

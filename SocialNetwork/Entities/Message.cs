@@ -1,26 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Infrastructure;
 
 namespace SocialNetwork.Entities
 {
     public class Message : IEntity
     {
+        [Required]
+        public DateTime SentAt { get; set; } = DateTime.Now.ToUniversalTime();
+
+        [Required]
+        [MaxLength(100)]
+        public string Text { get; set; }
+
         public int Id { get; set; }
 
         [NotMapped]
         public string TableName { get; } = nameof(EntityFrameworkDbContext.Messages);
-
-        [Required]
-        public DateTime SentAt { get; set; } = DateTime.Now.ToUniversalTime();
-
-        [Required, MaxLength(100)]
-        public string Text { get; set; }
 
         #region Foreign keys
 
@@ -35,6 +32,5 @@ namespace SocialNetwork.Entities
         public virtual Friendship Friendship { get; set; }
 
         #endregion
-
     }
 }

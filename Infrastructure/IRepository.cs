@@ -1,31 +1,31 @@
-﻿    using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Infrastructure
 {
     public interface IRepository<TEntity> where TEntity : class, IEntity, new()
     {
         /// <summary>
-        /// Gets the entity with given id.
+        ///     Gets the entity with given id.
         /// </summary>
         Task<TEntity> GetAsync(int id);
 
         /// <summary>
-        /// Gets the entity with given id.
+        ///     Gets the entity with given id.
         /// </summary>
         Task<TEntity> GetAsync(int id, params string[] includes);
 
         /// <summary>
-        /// Persists the given entity.
+        ///     Persists the given entity.
         /// </summary>
         void Create(TEntity entity);
 
         /// <summary>
-        /// Updates the given entity.
+        ///     Updates the given entity.
         /// </summary>
         void Update(TEntity entity);
 
         /// <summary>
-        /// Deletes an entity with the given id.
+        ///     Deletes an entity with the given id.
         /// </summary>
         void Delete(int id);
     }

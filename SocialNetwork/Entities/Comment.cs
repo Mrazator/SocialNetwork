@@ -8,15 +8,16 @@ namespace SocialNetwork.Entities
 {
     public class Comment : IPostable, IEntity
     {
-        public int Id { get; set; }
-
         [NotMapped]
         public string TableName { get; } = nameof(EntityFrameworkDbContext.Comments);
 
-        [Required]
-        public DateTime PostedAt { get; set; }
+        public int Id { get; set; }
 
-        [Required, MaxLength(200)]
+        [Required]
+        public DateTime PostedAt { get; set; } = DateTime.Now.ToUniversalTime();
+
+        [Required]
+        [MaxLength(200)]
         public string Text { get; set; }
 
         public bool StayAnonymous { get; set; } = false;
@@ -34,6 +35,5 @@ namespace SocialNetwork.Entities
         public virtual User User { get; set; }
 
         #endregion
-
     }
 }

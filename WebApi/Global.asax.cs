@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
-using System.Web.Routing;
 using Castle.Windsor;
 using SocialNetworkBL.Config;
 using WebApi.Windsor;
 
 namespace WebApi
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    public class WebApiApplication : HttpApplication
     {
         private readonly IWindsorContainer container = new WindsorContainer();
 
@@ -22,6 +18,7 @@ namespace WebApi
 
             BootstrapContainer();
         }
+
         private void BootstrapContainer()
         {
             container.Install(new WebApiInstaller());

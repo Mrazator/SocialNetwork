@@ -1,13 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using Infrastructure;
 using Infrastructure.Query;
 using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.QueryObjects.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialNetworkBL.Services.Common
 {
@@ -16,18 +12,18 @@ namespace SocialNetworkBL.Services.Common
         where TEntity : class, IEntity, new()
         where TDto : DtoBase
     {
+        protected readonly QueryObjectBase<TDto, TEntity, TFilterDto, IQuery<TEntity>> Query;
         protected readonly IRepository<TEntity> Repository;
 
-        protected readonly QueryObjectBase<TDto, TEntity, TFilterDto, IQuery<TEntity>> Query;
-
-        public CrudQueryServiceBase(IMapper mapper, IRepository<TEntity> repository, QueryObjectBase<TDto, TEntity, TFilterDto, IQuery<TEntity>> query) : base(mapper)
+        public CrudQueryServiceBase(IMapper mapper, IRepository<TEntity> repository,
+            QueryObjectBase<TDto, TEntity, TFilterDto, IQuery<TEntity>> query) : base(mapper)
         {
-            this.Query = query;
-            this.Repository = repository;
+            Query = query;
+            Repository = repository;
         }
 
         /// <summary>
-        /// Gets DTO representing the entity according to ID
+        ///     Gets DTO representing the entity according to ID
         /// </summary>
         /// <param name="entityId">entity ID</param>
         /// <param name="withIncludes">include all entity complex types</param>
@@ -36,18 +32,14 @@ namespace SocialNetworkBL.Services.Common
         {
             TEntity entity;
             if (withIncludes)
-            {
                 entity = await GetWithIncludesAsync(entityId);
-            }
             else
-            {
                 entity = await Repository.GetAsync(entityId);
-            }
             return entity != null ? Mapper.Map<TDto>(entity) : null;
         }
 
         /// <summary>
-        /// Gets entity (with complex types) according to ID
+        ///     Gets entity (with complex types) according to ID
         /// </summary>
         /// <param name="entityId">entity ID</param>
         /// <returns>The DTO representing the entity</returns>
@@ -57,7 +49,7 @@ namespace SocialNetworkBL.Services.Common
         }
 
         /// <summary>
-        /// Creates new entity
+        ///     Creates new entity
         /// </summary>
         /// <param name="entityDto">entity details</param>
         public virtual int Create(TDto entityDto)
@@ -68,7 +60,7 @@ namespace SocialNetworkBL.Services.Common
         }
 
         /// <summary>
-        /// Updates entity
+        ///     Updates entity
         /// </summary>
         /// <param name="entityDto">entity details</param>
         public virtual async Task Update(TDto entityDto)
@@ -79,7 +71,7 @@ namespace SocialNetworkBL.Services.Common
         }
 
         /// <summary>
-        /// Deletes entity with given Id
+        ///     Deletes entity with given Id
         /// </summary>
         /// <param name="entityId">Id of the entity to delete</param>
         public virtual void Delete(int entityId)
@@ -88,7 +80,7 @@ namespace SocialNetworkBL.Services.Common
         }
 
         /// <summary>
-        /// Gets all DTOs (for given type)
+        ///     Gets all DTOs (for given type)
         /// </summary>
         /// <returns>all available dtos (for given type)</returns>
         public virtual async Task<QueryResultDto<TDto, TFilterDto>> ListAllAsync()

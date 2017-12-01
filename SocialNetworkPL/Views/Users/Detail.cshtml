@@ -1,4 +1,4 @@
-﻿@model SocialNetworkPL.Models.UserDetailViewModel
+﻿@model SocialNetworkPL.Models.UserProfileModel
 
 @{
     ViewBag.Title = "title";
@@ -26,7 +26,7 @@
 
     .friends { }
 
-    @{ var pathToImg = "../../Assets/img/girl-" + Model.UserDto.Id + ".jpg";}
+    @{ var pathToImg = "../../Assets/img/girl-" + Model.UserDto.Id + ".jpg"; }
 
 .profile-picture {
         background-image: url(@pathToImg);
@@ -118,13 +118,12 @@
                 {
                     using (Html.BeginForm("AddPost", "Users", FormMethod.Post))
                     {
-                        @Html.EditorFor(model => model.NewPostText, new { htmlAtributes = new { @class = "form-control", placeholder = "What's on your mind, " + @Model.UserDto.NickName + "?" }})
-                        @Html.HiddenFor(model => model.UserDto.Id)  
+                        @Html.EditorFor(model => model.NewPostText, new {htmlAtributes = new {@class = "form-control", placeholder = "What's on your mind, " + Model.UserDto.NickName + "?"}})
+                        @Html.HiddenFor(model => model.UserDto.Id)
 
                         <button type="submit" class="btn btn-default">Post</button>
                     }
                 }
-
             }
         </div>
         <div class="post-container">
@@ -145,7 +144,8 @@
                                 <div class="images"></div>
                             </div>
                         </li>
-                    }}
+                    }
+                }
             </ul>
         </div>
     </div>

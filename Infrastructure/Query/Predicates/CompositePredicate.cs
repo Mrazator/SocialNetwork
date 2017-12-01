@@ -27,14 +27,10 @@ namespace Infrastructure.Query.Predicates
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
-            {
                 return false;
-            }
             if (ReferenceEquals(this, obj))
-            {
                 return true;
-            }
-            return obj.GetType() == this.GetType() && Equals((CompositePredicate) obj);
+            return obj.GetType() == GetType() && Equals((CompositePredicate) obj);
         }
 
         public override int GetHashCode()

@@ -5,7 +5,8 @@ namespace Infrastructure.Query
 {
     public class QueryResult<TEntity> where TEntity : IEntity
     {
-        public QueryResult(IList<TEntity> items, long totalItemsCount, int pageSize = 10, int? requestedPageNumber = null)
+        public QueryResult(IList<TEntity> items, long totalItemsCount, int pageSize = 10,
+            int? requestedPageNumber = null)
         {
             TotalItemsCount = totalItemsCount;
             RequestedPageNumber = requestedPageNumber;
@@ -14,22 +15,22 @@ namespace Infrastructure.Query
         }
 
         /// <summary>
-        /// Total number of items for the query
+        ///     Total number of items for the query
         /// </summary>
         public long TotalItemsCount { get; }
 
         /// <summary>
-        /// Number of page (indexed from 1) which was requested
+        ///     Number of page (indexed from 1) which was requested
         /// </summary>
         public int? RequestedPageNumber { get; }
 
         /// <summary>
-        /// Size of the page
+        ///     Size of the page
         /// </summary>
         public int PageSize { get; }
 
         /// <summary>
-        /// The query results page
+        ///     The query results page
         /// </summary>
         public IList<TEntity> Items { get; }
 
@@ -46,15 +47,11 @@ namespace Infrastructure.Query
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
-            {
                 return false;
-            }
             if (ReferenceEquals(this, obj))
-            {
                 return true;
-            }
             return obj.GetType() == GetType() &&
-                Equals((QueryResult<TEntity>)obj);
+                   Equals((QueryResult<TEntity>) obj);
         }
 
         public override int GetHashCode()

@@ -1,30 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SocialNetworkBL.DataTransferObjects.Common
+﻿namespace SocialNetworkBL.DataTransferObjects.Common
 {
     public class FilterDtoBase
     {
         /// <summary>
-        /// Number of page (indexed from 1) which was requested
+        ///     Number of page (indexed from 1) which was requested
         /// </summary>
         public int? RequestedPageNumber { get; set; }
 
         /// <summary>
-        /// Size of the page
+        ///     Size of the page
         /// </summary>
         public int PageSize { get; set; }
 
         /// <summary>
-        /// Name of the property for sorting query results
+        ///     Name of the property for sorting query results
         /// </summary>
         public string SortCriteria { get; set; }
 
         /// <summary>
-        /// Determines whether ASC sorting should be used
+        ///     Determines whether ASC sorting should be used
         /// </summary>
         public bool SortAscending { get; set; }
     }

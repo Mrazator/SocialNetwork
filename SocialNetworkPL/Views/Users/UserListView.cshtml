@@ -1,4 +1,4 @@
-﻿@model SocialNetworkPL.Models.UsersListViewModel
+﻿@model SocialNetworkPL.Models.FindUsersModel
 
 @using (Html.BeginForm("Index", "Users", FormMethod.Get))
 {
@@ -28,15 +28,16 @@
     </thead>
     <tbody>
 
-    @{foreach (var user in Model.Users)
-      {
-          <tr>
-              <th scope="row">@user.Id</th>
-              <td>@Html.ActionLink(user.NickName, "Details", new {id = user.Id})</td>
-              @*<td>@user.PasswordHash</td>*@
-              <td>@user.PostVisibilityPreference</td>
-          </tr>
-      }
+    @{
+        foreach (var user in Model.Users)
+        {
+            <tr>
+                <th scope="row">@user.Id</th>
+                <td>@Html.ActionLink(user.NickName, "Details", new {id = user.Id})</td>
+                @*<td>@user.PasswordHash</td>*@
+                <td>@user.PostVisibilityPreference</td>
+            </tr>
+        }
     }
     </tbody>
 </table>

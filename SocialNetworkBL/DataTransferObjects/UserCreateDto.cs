@@ -1,11 +1,6 @@
-﻿using SocialNetwork.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using SocialNetwork.Enums;
 using SocialNetworkBL.DataTransferObjects.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialNetworkBL.DataTransferObjects
 {

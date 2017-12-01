@@ -9,15 +9,13 @@ namespace Infrastructure.UnitOfWork
         private readonly IList<Action> afterCommitActions = new List<Action>();
 
         /// <summary>
-        /// Commits the changes made inside this unit of work.
+        ///     Commits the changes made inside this unit of work.
         /// </summary>
         public async Task Commit()
         {
             await CommitCore();
             foreach (var action in afterCommitActions)
-            {
                 action();
-            }
             afterCommitActions.Clear();
         }
 
@@ -27,13 +25,13 @@ namespace Infrastructure.UnitOfWork
         }
 
         /// <summary>
-        /// Performs the real commit work.
-        /// </summary>
-        protected abstract Task CommitCore();
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public abstract void Dispose();
+
+        /// <summary>
+        ///     Performs the real commit work.
+        /// </summary>
+        protected abstract Task CommitCore();
     }
 }

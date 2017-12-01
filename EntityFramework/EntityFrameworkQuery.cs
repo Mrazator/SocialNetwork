@@ -18,14 +18,17 @@ namespace EntityFrameworkINFR
     {
         private const string LamdaParameterName = "param";
 
-        private readonly ParameterExpression parameterExpression = Expression.Parameter(typeof(TEntity), LamdaParameterName);
-
-        protected DbContext Context => ((EntityFrameworkUnitOfWork)Provider.GetUnitOfWorkInstance()).Context;
+        private readonly ParameterExpression parameterExpression =
+            Expression.Parameter(typeof(TEntity), LamdaParameterName);
 
         /// <summary>
-        ///   Initializes a new instance of the <see cref="EntityFrameworkQuery{TResult}" /> class.
+        ///     Initializes a new instance of the <see cref="EntityFrameworkQuery{TResult}" /> class.
         /// </summary>
-        public EntityFrameworkQuery(IUnitOfWorkProvider provider) : base(provider) { }
+        public EntityFrameworkQuery(IUnitOfWorkProvider provider) : base(provider)
+        {
+        }
+
+        protected DbContext Context => ((EntityFrameworkUnitOfWork) Provider.GetUnitOfWorkInstance()).Context;
 
         public override async Task<QueryResult<TEntity>> ExecuteAsync()
         {
@@ -38,18 +41,12 @@ namespace EntityFrameworkINFR
                 UseAscendingOrder = true;
             }
             if (SortAccordingTo != null)
-            {
                 queryable = UseSortCriteria(queryable);
-            }
             if (Predicate != null)
-            {
                 queryable = UseFilterCriteria(queryable);
-            }
             var itemsCount = queryable.Count();
             if (DesiredPage.HasValue)
-            {
                 queryable = queryable.Skip(PageSize * (DesiredPage.Value - 1)).Take(PageSize);
-            }
             var items = await queryable.ToListAsync();
             return new QueryResult<TEntity>(items, itemsCount, PageSize, DesiredPage);
         }
@@ -73,7 +70,9 @@ namespace EntityFrameworkINFR
 
         private IQueryable<TEntity> UseFilterCriteria(IQueryable<TEntity> queryable)
         {
-            var bodyExpression = Predicate is CompositePredicate composite ? CombineBinaryExpressions(composite) : BuildBinaryExpression(Predicate as SimplePredicate);
+            var bodyExpression = Predicate is CompositePredicate composite
+                ? CombineBinaryExpressions(composite)
+                : BuildBinaryExpression(Predicate as SimplePredicate);
             var lambdaExpression = Expression.Lambda<Func<TEntity, bool>>(bodyExpression, parameterExpression);
             Debug.WriteLine(lambdaExpression.ToString());
             return queryable.Where(lambdaExpression);
@@ -83,27 +82,19 @@ namespace EntityFrameworkINFR
         private Expression CombineBinaryExpressions(CompositePredicate compositePredicate)
         {
             if (compositePredicate.Predicates.Count == 0)
-            {
                 throw new InvalidOperationException("At least one simple predicate must be given");
-            }
             var expression = compositePredicate.Predicates.First() is CompositePredicate composite
                 ? CombineBinaryExpressions(composite)
                 : BuildBinaryExpression(compositePredicate.Predicates.First());
             for (var i = 1; i < compositePredicate.Predicates.Count; i++)
-            {
                 if (compositePredicate.Predicates[i] is CompositePredicate predicate)
-                {
-                    expression = compositePredicate.Operator == LogicalOperator.OR ?
-                        Expression.OrElse(expression, CombineBinaryExpressions(predicate)) :
-                        Expression.AndAlso(expression, CombineBinaryExpressions(predicate));
-                }
+                    expression = compositePredicate.Operator == LogicalOperator.OR
+                        ? Expression.OrElse(expression, CombineBinaryExpressions(predicate))
+                        : Expression.AndAlso(expression, CombineBinaryExpressions(predicate));
                 else
-                {
-                    expression = compositePredicate.Operator == LogicalOperator.OR ?
-                        Expression.OrElse(expression, BuildBinaryExpression(compositePredicate.Predicates[i])) :
-                        Expression.AndAlso(expression, BuildBinaryExpression(compositePredicate.Predicates[i]));
-                }
-            }
+                    expression = compositePredicate.Operator == LogicalOperator.OR
+                        ? Expression.OrElse(expression, BuildBinaryExpression(compositePredicate.Predicates[i]))
+                        : Expression.AndAlso(expression, BuildBinaryExpression(compositePredicate.Predicates[i]));
             return expression;
         }
 
@@ -111,9 +102,7 @@ namespace EntityFrameworkINFR
         {
             var simplePredicate = predicate as SimplePredicate;
             if (simplePredicate == null)
-            {
                 throw new ArgumentException("Expected simple predicate!");
-            }
             return simplePredicate.GetExpression(parameterExpression);
         }
     }

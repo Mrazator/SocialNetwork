@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Data.Entity.SqlServer;
 using SocialNetwork.Config;
 using SocialNetwork.Entities;
 using SocialNetwork.Initializers;
@@ -12,7 +11,7 @@ namespace SocialNetwork
         public EntityFrameworkDbContext() : base(EntityFrameworkInstaller.ConnectionString)
         {
             Database.SetInitializer(new MyInitializer());
-            var instance = SqlProviderServices.Instance;
+            //var instance = SqlProviderServices.Instance;
         }
 
         public DbSet<Comment> Comments { get; set; }

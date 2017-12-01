@@ -8,26 +8,27 @@ namespace Infrastructure.Query
 {
     public abstract class QueryBase<TEntity> : IQuery<TEntity> where TEntity : class, IEntity, new()
     {
+        private const int DefaultPageSize = 10;
         protected readonly IUnitOfWorkProvider Provider;
+
+        private string sortAccordingTo;
 
         protected QueryBase(IUnitOfWorkProvider uowProvider)
         {
             Provider = uowProvider;
         }
 
-        private const int DefaultPageSize = 10;
-
         public int PageSize { get; private set; } = DefaultPageSize;
 
         public int? DesiredPage { get; private set; }
 
-        private string sortAccordingTo;
         public string SortAccordingTo
         {
             get => sortAccordingTo;
             protected set
             {
-                var properties = typeof(TEntity).GetProperties().Select(prop => prop.Name).Except(new[] { nameof(IEntity.TableName) });
+                var properties = typeof(TEntity).GetProperties().Select(prop => prop.Name)
+                    .Except(new[] {nameof(IEntity.TableName)});
                 var matchedName = properties
                     .FirstOrDefault(name => name.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0);
                 sortAccordingTo = matchedName;
@@ -46,7 +47,9 @@ namespace Infrastructure.Query
 
         public IQuery<TEntity> SortBy(string sortAccordingTo, bool ascendingOrder = true)
         {
-            SortAccordingTo = !string.IsNullOrWhiteSpace(sortAccordingTo) ? sortAccordingTo : throw new ArgumentException($"{nameof(sortAccordingTo)} must be defined!");
+            SortAccordingTo = !string.IsNullOrWhiteSpace(sortAccordingTo)
+                ? sortAccordingTo
+                : throw new ArgumentException($"{nameof(sortAccordingTo)} must be defined!");
             UseAscendingOrder = ascendingOrder;
             return this;
         }
@@ -54,13 +57,9 @@ namespace Infrastructure.Query
         public IQuery<TEntity> Page(int pageToFetch, int pageSize = DefaultPageSize)
         {
             if (pageToFetch < 1)
-            {
                 throw new ArgumentException("Desired page number must be greater than zero!");
-            }
             if (pageSize < 1)
-            {
                 throw new ArgumentException("Page size must be greater than zero!");
-            }
             DesiredPage = pageToFetch;
             PageSize = pageSize;
             return this;
