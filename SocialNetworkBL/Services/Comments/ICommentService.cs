@@ -12,5 +12,7 @@ namespace SocialNetworkBL.Services.Comments
     public interface ICommentService : IService<CommentDto, CommentFilterDto>
     {
         Task<IList<CommentDto>> GetCommentsByPostIdAsync(int postId);
+
+        Task<IList<CommentDto>> GetLatestCommentsByPostIdAsync(int postId, int pageSize);
     }
 }

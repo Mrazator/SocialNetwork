@@ -21,7 +21,7 @@ namespace WebApi.Controllers
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            var comments = await CommentFacade.GetPostsCommentsAsync(postId);
+            var comments = await CommentFacade.GetPostCommentsAsync(postId);
             return comments;
         }
         

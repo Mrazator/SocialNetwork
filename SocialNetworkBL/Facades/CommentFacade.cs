@@ -28,7 +28,15 @@ namespace SocialNetworkBL.Facades
 
         }
 
-        public async Task<IList<CommentDto>> GetPostsCommentsAsync(int postId)
+        public async Task<IList<CommentDto>> GetPostLatestCommentsAsync(int postId, int pageSize)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                return await _commentService.GetLatestCommentsByPostIdAsync(postId, pageSize);
+            }
+        }
+
+        public async Task<IList<CommentDto>> GetPostCommentsAsync(int postId)
         {
             using (UnitOfWorkProvider.Create())
             {

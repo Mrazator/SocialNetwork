@@ -24,19 +24,19 @@ namespace SocialNetworkBL.Facades
             _postService = postService;
         }
 
-        public async Task<IList<PostDto>> GetPostsByGroupIdAsync(int groupId)
-        {
-            using (UnitOfWorkProvider.Create())
-            {
-                return await _postService.GetPostsByGroupIdAsync(groupId);
-            }
-        }
-
         public async Task<QueryResultDto<PostDto, PostFilterDto>> GetPostsAsync(PostFilterDto filter)
         {
             using (UnitOfWorkProvider.Create())
             {
                 return await _postService.GetPostsAsync(filter);
+            }
+        }
+
+        public async Task<IList<PostDto>> GetPostsByGroupIdAsync(int groupId)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                return await _postService.GetPostsByGroupIdAsync(groupId);
             }
         }
 
