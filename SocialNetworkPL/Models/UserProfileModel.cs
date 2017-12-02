@@ -7,6 +7,7 @@ namespace SocialNetworkPL.Models
     {
         public UserDto UserDto { get; set; }
         public string NewPostText { get; set; }
+        public bool StayAnonymous { get; set; }
         public IList<int> FriendsIds { get; set; }
         public IList<PostDto> PostDtos { get; set; }
     }

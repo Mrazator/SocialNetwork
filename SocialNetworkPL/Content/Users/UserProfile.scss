@@ -84,18 +84,40 @@
         }
     }
 
-    .add-post .form-inline {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 15px;
+    .add-post {
+        .search-btn {
+            display: flex;
+            justify-content: space-between;
 
-        .form-control {
-            border-right: none;
+            .form-control {
+                border-right: none;
+            }
         }
 
-        .btn, .form-control {
-            border-radius: 0;
-            border-color: lightgray;
+        .checkbox-under-search-btn {
+            display: flex;
+            align-items: center;
+            margin: 5px 0 20px;
+
+            input[type="checkbox"] {
+                margin: 0;
+                margin-right: 5px;
+            }
+
+            .label-checkbox {
+                margin: 0;
+                font-weight: 300;
+                color: grey;
+            }
+        }
+
+        .form-inline {
+            margin-bottom: 15px;
+
+            .btn, .form-control {
+                border-radius: 0;
+                border-color: lightgray;
+            }
         }
     }
 }

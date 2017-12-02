@@ -118,12 +118,26 @@ input, button {
           justify-content: space-between;
           align-items: baseline; }
 
-.UserProfile .add-post .form-inline {
+.UserProfile .add-post .search-btn {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px; }
-  .UserProfile .add-post .form-inline .form-control {
+  justify-content: space-between; }
+  .UserProfile .add-post .search-btn .form-control {
     border-right: none; }
+
+.UserProfile .add-post .checkbox-under-search-btn {
+  display: flex;
+  align-items: center;
+  margin: 5px 0 20px; }
+  .UserProfile .add-post .checkbox-under-search-btn input[type="checkbox"] {
+    margin: 0;
+    margin-right: 5px; }
+  .UserProfile .add-post .checkbox-under-search-btn .label-checkbox {
+    margin: 0;
+    font-weight: 300;
+    color: grey; }
+
+.UserProfile .add-post .form-inline {
+  margin-bottom: 15px; }
   .UserProfile .add-post .form-inline .btn, .UserProfile .add-post .form-inline .form-control {
     border-radius: 0;
     border-color: lightgray; }

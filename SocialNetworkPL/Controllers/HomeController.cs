@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Common;
@@ -19,17 +21,19 @@ namespace SocialNetworkPL.Controllers
             var filter = new PostFilterDto();
 
             var result = await PostFacade.GetPostsAsync(filter);
-            var model = InitializeProductListViewModel(result);
+            var user = await UserFacade.GetUserByNickNameAsync(User.Identity.Name);
+            var model = InitializeProductListViewModel(result, user);
 
             return View("Index", model);
         }
 
-        private PostListModel InitializeProductListViewModel(QueryResultDto<PostDto, PostFilterDto> result)
+        private PostListModel InitializeProductListViewModel(QueryResultDto<PostDto, PostFilterDto> result, UserDto user)
         {
             return new PostListModel
             {
-                Posts = result.Items,
-                Filter = result.Filter
+                Posts = result.Items.OrderByDescending(x => x.PostedAt),
+                Filter = result.Filter,
+                AuthenticatedUser = user
             };
         }
 

@@ -153,7 +153,8 @@ namespace SocialNetworkPL.Controllers
                 {
                     Text = model.NewPostText,
                     UserId = model.UserDto.Id,
-                    PostedAt = DateTime.Now.ToUniversalTime()
+                    PostedAt = DateTime.Now.ToUniversalTime(),
+                    StayAnonymous = model.StayAnonymous
                 };
 
                 await PostFacade.CreateAsync(newPost);
@@ -164,7 +165,6 @@ namespace SocialNetworkPL.Controllers
                 return RedirectToAction("UserProfile", new { nickName = model.UserDto.NickName });
             }
         }
-
 
         [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> AddFriend(int id)

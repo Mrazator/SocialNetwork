@@ -1,25 +1,57 @@
-﻿@model SocialNetworkPL.Models.PostListModel
+﻿@using Castle.Core.Internal
+@model SocialNetworkPL.Models.PostListModel
 
 @{
     ViewBag.Title = "PostListView";
 }
 
 @{
-    foreach (var post in Model.Posts)
+    if (!User.Identity.IsAuthenticated)
     {
-        <div class="row">
-            <div class="col-md-6 post">
-                <div class="profile-img"></div>
-                <div class="content">
-                    <div>
-                        <small>@post.PostedAt</small>
+        foreach (var post in Model.Posts)
+        {
+            if (!post.StayAnonymous)
+            {
+                <div class="row">
+                    <div class="col-md-7 post">
+                        <div class="profile-img"></div>
+                        <div class="content">
+                            <div>
+                                <small>@post.PostedAt</small>
+                            </div>
+                            <p class="message">
+                                @post.Text
+                            </p>
+                            <div class="images"></div>
+                        </div>
                     </div>
-                    <p class="message">
-                        @post.Text
-                    </p>
-                    <div class="images"></div>
                 </div>
-            </div>
-        </div>
+            }
+        }
+    }
+    else
+    {
+        foreach (var post in Model.Posts)
+        {
+            var friendsAccepted = Model.AuthenticatedUser.AcceptedFriendships.Where(x => x.User1Id == post.UserId);
+            var friendsRequested = Model.AuthenticatedUser.RequestedFriendships.Where(x => x.User2Id == post.UserId);
+            if (!post.StayAnonymous || !friendsAccepted.IsNullOrEmpty() || !friendsRequested.IsNullOrEmpty() || post.UserId == Model.AuthenticatedUser.Id)
+            {
+                <div class="row">
+                    <div class="col-md-7 post">
+                        <div class="profile-img"></div>
+                        <div class="content">
+                            <div>
+                                <small>@post.PostedAt</small>
+                            </div>
+                            <p class="message">
+                                @post.Text
+                            </p>
+                            <div class="images"></div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
     }
 }
