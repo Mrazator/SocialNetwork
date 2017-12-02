@@ -5,113 +5,17 @@
 }
 
 <style type="text/css">
-    .profile {
-        padding: 75px 0px 15px;
-        padding-top: 75px;
-        text-align: center;
+    @{
+        var pathToImg = "../../Assets/img/girl-" + Model.UserDto.Id + "-400.jpg";
     }
 
-    .img {
-        background-image: url("../../Assets/img/background.jpeg");
-        background-position: center;
-        background-size: cover;
-        height: 150px;
-    }
-
-    .detail {
-        border: 1px lightgray solid;
-        padding: 0;
-        position: relative;
-    }
-
-    .friends { }
-
-    @{ var pathToImg = "../../Assets/img/girl-" + Model.UserDto.Id + "-400.jpg"; }
-
-.profile-picture {
+    .profile-picture, .profile-img {
         background-image: url(@pathToImg);
-        background-position: center;
-        background-size: cover;
-        border-radius: 50%;
-        height: 125px;
-        left: 50%;
-        position: absolute;
-        top: 80px;
-        transform: translate(-50%, 0);
-        width: 125px;
     }
-
-    .sidebar {
-        border: 1px lightgray solid;
-        padding: 0;
-    }
-
-    .sidebar h4 { padding: 15px 10px 5px; }
-
-    .sea {
-        background-image: url("../../Assets/img/sea-400.jpg");
-        background-position: center;
-        background-size: cover;
-        height: 250px;
-        margin-bottom: 15px;
-    }
-
-    .post-container {
-        border: 1px lightgray solid;
-        margin-bottom: 25px;
-    }
-
-    .post { display: flex; }
-
-    .post:not(:last-child) {
-        border-bottom: 1px lightgray solid;
-        margin-bottom: 25px;
-        padding-bottom: 15px;
-    }
-
-    .posts { padding: 15px 30px 15px 10px !important; }
-
-    .profile-img {
-        background-image: url(@pathToImg);
-        background-position: center;
-        background-size: cover;
-        border-radius: 50%;
-        height: 50px;
-        min-width: 50px;
-    }
-
-    .content {
-        padding-left: 15px;
-        width: 100%;
-    }
-
-    .content > div {
-        align-items: baseline;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .message { }
-
-    .images { }
-
-    .add-post .form-inline {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 15px;
-    }
-
-    .add-post .form-inline .form-control {
-        border-right: none;
-    }
-
-    .add-post .form-inline .btn, .add-post .form-inline .form-control  {
-        border-radius: 0;
-        border-color: lightgray;
-    }
+     
 </style>
 
-<div class="row">
+<div class="row UserProfile">
     <div class="col-md-3 detail">
         <div class="img"></div>
         <div class="profile">

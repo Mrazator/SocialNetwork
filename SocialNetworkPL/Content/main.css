@@ -1,0 +1,87 @@
+﻿.my-navbar {
+  background-color: white !important;
+  border-color: aliceblue !important; }
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+  background-color: cadetblue !important;
+  color: #ffffff !important; }
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+  background-color: dimgray !important; }
+
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: black !important; }
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+  background-color: grey !important; }
+
+.UserProfile .detail {
+  position: relative;
+  padding: 0 !important;
+  border: 1px lightgray solid; }
+  .UserProfile .detail .profile {
+    padding: 75px 0px 15px;
+    text-align: center; }
+    .UserProfile .detail .profile .profile-picture {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      height: 125px;
+      width: 125px;
+      background-position: center;
+      background-size: cover;
+      border-radius: 50%; }
+  .UserProfile .detail .img {
+    height: 150px;
+    background: url("../../Assets/img/background.jpeg") no-repeat center;
+    background-size: cover; }
+
+.UserProfile .sidebar {
+  padding: 0 !important;
+  border: 1px lightgray solid; }
+  .UserProfile .sidebar h4 {
+    padding: 15px 10px 5px; }
+  .UserProfile .sidebar .sea {
+    height: 250px;
+    margin-bottom: 15px;
+    background: url("../../Assets/img/sea-400.jpg") no-repeat center;
+    background-size: cover; }
+
+.UserProfile .post-container {
+  margin-bottom: 25px;
+  border: 1px lightgray solid; }
+  .UserProfile .post-container .posts {
+    padding: 15px 30px 15px 10px !important; }
+    .UserProfile .post-container .posts .post {
+      display: flex; }
+      .UserProfile .post-container .posts .post:not(:last-child) {
+        border-bottom: 1px lightgray solid;
+        margin-bottom: 25px;
+        padding-bottom: 15px; }
+      .UserProfile .post-container .posts .post .profile-img {
+        position: relative;
+        top: 6px;
+        height: 50px;
+        min-width: 50px;
+        background-position: center;
+        background-size: cover;
+        border-radius: 50%; }
+      .UserProfile .post-container .posts .post .content {
+        width: 100%;
+        padding-left: 15px; }
+        .UserProfile .post-container .posts .post .content > div {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline; }
+
+.UserProfile .add-post .form-inline {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px; }
+  .UserProfile .add-post .form-inline .form-control {
+    border-right: none; }
+  .UserProfile .add-post .form-inline .btn, .UserProfile .add-post .form-inline .form-control {
+    border-radius: 0;
+    border-color: lightgray; }
+
