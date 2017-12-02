@@ -5,23 +5,18 @@ using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades;
 using SocialNetworkPL.Models;
-using X.PagedList;
 
 namespace SocialNetworkPL.Controllers
 {
     public class HomeController : Controller
     {
-        public const int PageSize = 10;
-        private const string FilterSessionKey = "postFilter";
-
         public PostFacade PostFacade { get; set; }
         public UserFacade UserFacade { get; set; }
 
         // GET: Posts
         public async Task<ActionResult> Index(int page = 1)
         {
-            var filter = Session[FilterSessionKey] as PostFilterDto ?? new PostFilterDto {PageSize = PageSize};
-            filter.RequestedPageNumber = page;
+            var filter = new PostFilterDto();
 
             var result = await PostFacade.GetPostsAsync(filter);
             var model = InitializeProductListViewModel(result);
@@ -29,29 +24,16 @@ namespace SocialNetworkPL.Controllers
             return View("Index", model);
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Index(PostListModel model)
-        {
-            model.Filter.PageSize = PageSize;
-            Session[FilterSessionKey] = model.Filter;
-
-            var result = await PostFacade.GetPostsAsync(model.Filter);
-            var newModel = InitializeProductListViewModel(result);
-            return View("Index", newModel);
-        }
-
-
         private PostListModel InitializeProductListViewModel(QueryResultDto<PostDto, PostFilterDto> result)
         {
             return new PostListModel
             {
-                Posts = new StaticPagedList<PostDto>(result.Items, result.RequestedPageNumber ?? 1, PageSize,
-                    (int) result.TotalItemsCount),
+                Posts = result.Items,
                 Filter = result.Filter
             };
         }
 
-        // GET: Posts/Details/5
+        // GET: Posts/UserProfile/5
         public async Task<ActionResult> Details(int id)
         {
             var model = await PostFacade.GetAsync(id);

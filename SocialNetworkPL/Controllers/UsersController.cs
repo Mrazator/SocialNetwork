@@ -18,14 +18,14 @@ namespace SocialNetworkPL.Controllers
         public FriendshipFacade FriendshipFacade { get; set; }
         public GroupFacade GroupFacade { get; set; }
 
-        public async Task<ActionResult> Index([FromUri] string subname, int page = 1)
+        public async Task<ActionResult> Index([FromUri] string subname)
         {
             var filter = new UserFilterDto {SubName = subname};
 
             var users = await UserFacade.GetUsersContainingSubNameAsync(filter.SubName);
             var model = InitializeProductListViewModel(filter, users);
 
-            return View("UserListView", model);
+            return View("FindUsersView", model);
         }
 
         private FindUsersModel InitializeProductListViewModel(UserFilterDto filter, IEnumerable<UserDto> users)
@@ -37,14 +37,32 @@ namespace SocialNetworkPL.Controllers
             };
         }
 
-        // GET: Users/Details/5
-        public async Task<ActionResult> Details(int id)
+        // GET: Users/UserProfile/5
+        public async Task<ActionResult> UserProfile(string nickName = "")
         {
-            var user = await UserFacade.GetAsync(id);
-            var posts = await PostFacade.GetPostsByUserIdAsync(id);
-            var friendships = await FriendshipFacade.GetFriendsByUserIdAsync(id);
+            UserDto user;
+            List<PostDto> posts;
+            List<UserDto> friendships;
 
-            return View("Detail", new UserProfileModel
+            if (nickName != "")
+            {
+                try
+                {
+                    user = await UserFacade.GetUserByNickNameAsync(nickName);
+                    posts = await PostFacade.GetPostsByUserIdAsync(user.Id) as List<PostDto>;
+                    friendships = await FriendshipFacade.GetFriendsByUserIdAsync(user.Id) as List<UserDto>;
+                }
+                catch
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View("UserProfile", new UserProfileModel
             {
                 UserDto = user,
                 PostDtos = posts,
@@ -136,7 +154,7 @@ namespace SocialNetworkPL.Controllers
                 };
 
                 await PostFacade.CreateAsync(newPost);
-                return RedirectToAction("Details", new {id = model.UserDto.Id});
+                return RedirectToAction("UserProfile", new {name = model.UserDto.NickName});
             }
             catch
             {

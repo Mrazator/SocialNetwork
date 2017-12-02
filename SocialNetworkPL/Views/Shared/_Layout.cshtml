@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <style type="text/css">
@@ -10,72 +10,88 @@
             border-color: aliceblue !important;
         }
 
-        .navbar-inverse .navbar-brand:hover { background-color: cadetblue !important; }
+        .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+            background-color: cadetblue !important;
+            color: #ffffff !important;
+        }
 
-        .navbar-inverse .navbar-nav > li > a:hover { background-color: dimgray !important; }
+        .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+            background-color: dimgray !important;
+        }
+
+        .navbar-inverse .navbar-toggle .icon-bar {
+            background-color: black !important;
+        }
+
+        .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+            background-color: grey !important;
+        }
+
     </style>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top my-navbar">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("Social network", "Index", "Home", null, new {@class = "navbar-brand"})
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Find friend", "Index", "Users")</li>
+    <div class="navbar navbar-inverse navbar-fixed-top my-navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Social network", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Find friend", "Index", "Users")</li>
 
-            </ul>
-            <ul class="nav navbar-nav  navbar-right">
-                @if (Request.IsAuthenticated)
-                {
-                    <li class="dropdown pull-right">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-user "></span> @User.Identity.Name.Split('@')[0] <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header">Account management</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
-                        </ul>
-                    </li>
-                }
-                else
-                {
-                    <li class="dropdown pull-right">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-user"></span><b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header">Get started</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Log in", "Login", "Account")</li>
-                        </ul>
-                    </li>
-                }
-            </ul>
+                </ul>
+                <ul class="nav navbar-nav  navbar-right">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="dropdown pull-right">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user "></span> @User.Identity.Name.Split('@')[0] <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("Profile", "UserProfile","Users", new { nickName = User.Identity.Name }, null)
+                                </li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="dropdown pull-right">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user"></span><b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header">Get started</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Log in", "Login", "Account")</li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<div class="container body-content">
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Social network</p>
-    </footer>
-</div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Social network</p>
+        </footer>
+    </div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", false)
 </body>
 </html>

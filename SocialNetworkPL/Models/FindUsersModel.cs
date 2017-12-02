@@ -6,7 +6,7 @@ namespace SocialNetworkPL.Models
 {
     public class FindUsersModel
     {
-        public IEnumerable<UserDto> Users { get; set; }
         public UserFilterDto Filter { get; set; }
+        public IEnumerable<UserDto> Users { get; set; }
     }
 }

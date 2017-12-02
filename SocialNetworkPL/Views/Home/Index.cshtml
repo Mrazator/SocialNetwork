@@ -5,49 +5,17 @@
 }
 
 @{
-    for (var i = 0; i < Model.Posts.Count; i += 2)
-    {
-        if (i != 0 && i % 2 == 0)
-        {
-            <div class="row">
-                <div class="col-md-6 post">
-                    <div class="profile-img"></div>
-                    <div class="content">
-                        <div>
-                            <small>@Model.Posts[i - 1].PostedAt.Date</small>
-                        </div>
-                        <p class="message">
-                            @Model.Posts[i - 1].Text
-                        </p>
-                        <div class="images"></div>
-                    </div>
-                </div>
-                <div class="col-md-6 post">
-                    <div class="profile-img"></div>
-                    <div class="content">
-                        <div>
-                            <small>@Model.Posts[i].PostedAt.Date</small>
-                        </div>
-                        <p class="message">
-                            @Model.Posts[i].Text
-                        </p>
-                        <div class="images"></div>
-                    </div>
-                </div>
-            </div>
-        }
-    }
-    if (Model.Posts.Count % 2 == 1)
+    foreach (var post in Model.Posts)
     {
         <div class="row">
             <div class="col-md-6 post">
                 <div class="profile-img"></div>
                 <div class="content">
                     <div>
-                        <small>@Model.Posts[Model.Posts.Count - 1].PostedAt.Date</small>
+                        <small>@post.PostedAt</small>
                     </div>
                     <p class="message">
-                        @Model.Posts[Model.Posts.Count - 1].Text
+                        @post.Text
                     </p>
                     <div class="images"></div>
                 </div>

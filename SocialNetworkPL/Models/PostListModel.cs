@@ -7,7 +7,7 @@ namespace SocialNetworkPL.Models
 {
     public class PostListModel
     {
-        public IPagedList<PostDto> Posts { get; set; }
+        public IEnumerable<PostDto> Posts { get; set; }
         public IEnumerable<UserDto> Users { get; set; }
         public PostFilterDto Filter { get; set; }
     }

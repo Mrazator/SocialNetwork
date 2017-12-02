@@ -26,7 +26,7 @@
 
     .friends { }
 
-    @{ var pathToImg = "../../Assets/img/girl-" + Model.UserDto.Id + ".jpg"; }
+    @{ var pathToImg = "../../Assets/img/girl-" + Model.UserDto.Id + "-400.jpg"; }
 
 .profile-picture {
         background-image: url(@pathToImg);
@@ -49,7 +49,7 @@
     .sidebar h4 { padding: 15px 10px 5px; }
 
     .sea {
-        background-image: url("../../Assets/img/sea.jpg");
+        background-image: url("../../Assets/img/sea-400.jpg");
         background-position: center;
         background-size: cover;
         height: 250px;
@@ -94,6 +94,21 @@
     .message { }
 
     .images { }
+
+    .add-post .form-inline {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    .add-post .form-inline .form-control {
+        border-right: none;
+    }
+
+    .add-post .form-inline .btn, .add-post .form-inline .form-control  {
+        border-radius: 0;
+        border-color: lightgray;
+    }
 </style>
 
 <div class="row">
@@ -116,9 +131,9 @@
             @{
                 if (User.Identity.IsAuthenticated && Model.UserDto.NickName.Equals(User.Identity.Name))
                 {
-                    using (Html.BeginForm("AddPost", "Users", FormMethod.Post))
+                    using (Html.BeginForm("AddPost", "Users", FormMethod.Post, new { @class = "form-inline"}))
                     {
-                        @Html.EditorFor(model => model.NewPostText, new {htmlAtributes = new {@class = "form-control", placeholder = "What's on your mind, " + Model.UserDto.NickName + "?"}})
+                        @Html.EditorFor(model => model.NewPostText, new { htmlAttributes = new { @class = "form-control", placeholder = "What's on your mind, " + Model.UserDto.NickName + "?"}})
                         @Html.HiddenFor(model => model.UserDto.Id)
 
                         <button type="submit" class="btn btn-default">Post</button>
