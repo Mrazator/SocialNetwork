@@ -13,15 +13,27 @@
     }
 
     table {
-        border: 1px solid lightgrey;
-
-        th,td {
-            vertical-align: middle !important;
+        tr {
+            border: 1px solid #d3d3d3;
+            padding: 10px;
+            display: table-caption;
+            margin-bottom: 15px;
+            margin-right: 15px;
         }
 
-        tbody th{
+        th, td {
+            vertical-align: middle !important;
+            border: none !important;
+        }
+
+        tbody {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+
+            th {
+                display: flex;
+                align-items: center;
+            }
         }
 
         .profile-picture {

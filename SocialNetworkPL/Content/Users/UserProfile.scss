@@ -25,22 +25,6 @@
         }
     }
 
-    .sidebar {
-        padding: 0 !important;
-        border: 1px lightgray solid;
-
-        h4 {
-            padding: 15px 10px 5px;
-        }
-
-        .sea {
-            height: 250px;
-            margin-bottom: 15px;
-            background: url("../../Assets/img/sea-400.jpg") no-repeat center;
-            background-size: cover;
-        }
-    }
-
     .posts-column {
         @media screen and (max-width: 991px){
             margin-top: 25px;

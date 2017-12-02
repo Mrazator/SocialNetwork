@@ -3,96 +3,96 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <div class="FriendManagement">
+    <div class="FriendManagement col-md-7">
         @using (Html.BeginForm("Index", "Users", FormMethod.Get, new { @class = "form-search" }))
         {
-        <div class="form-group">
+            <div class="form-group">
 
-            @Html.Label("search-subname", "Find user by nickname")
-            @Html.TextBox("subname", null, new
-       {
-           @class = "form-control",
-           id = "search-subname",
-           placeholder = "Enter nickname"
-       })
+                @Html.TextBox("subname", null, new
+                {
+                    @class = "form-control",
+                    id = "search-subname",
+                    placeholder = "Enter nickname"
+                })
 
-        </div>
+            </div>
 
-        <button class="btn btn-primary" type="submit">Find</button>
+            <button class="btn btn-primary" type="submit">Find</button>
         }
 
         <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">NickName</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
             <tbody>
-                @{
-                    var requestedFriendsYetNotAcceptedIds = Model.User.RequestedFriendships
-                        .Where(x => !x.IsAccepted)
-                        .Select(x => x.User2Id)
-                        .ToList();
+            @{
+                var requestedFriendsYetNotAcceptedIds = Model.User.RequestedFriendships
+                    .Where(x => !x.IsAccepted)
+                    .Select(x => x.User2Id)
+                    .ToList();
 
-                    var friendsIdsWaitingForMyAcceptance = Model.User.AcceptedFriendships
-                        .Where(x => !x.IsAccepted)
-                        .ToList();
+                var friendsIdsWaitingForMyAcceptance = Model.User.AcceptedFriendships
+                    .Where(x => !x.IsAccepted)
+                    .ToList();
 
-                    var friendsIdsIRequested = Model.User.RequestedFriendships
-                        .Where(x => x.IsAccepted)
-                        .Select(x => x.User2Id)
-                        .ToList();
-                    var friendsIdsIAccepted = Model.User.AcceptedFriendships
-                        .Where(x => x.IsAccepted)
-                        .Select(x => x.User1Id)
-                        .ToList();
-                }
+                var friendsIdsIRequested = Model.User.RequestedFriendships
+                    .Where(x => x.IsAccepted)
+                    .Select(x => x.User2Id)
+                    .ToList();
+                var friendsIdsIAccepted = Model.User.AcceptedFriendships
+                    .Where(x => x.IsAccepted)
+                    .Select(x => x.User1Id)
+                    .ToList();
+            }
 
-                @foreach (var user in Model.Users)
+            @foreach (var user in Model.Users)
+            {
+                if (user.NickName != Model.User.NickName)
                 {
-                    if (user.NickName != Model.User.NickName)
-                    {
-                        <tr>
-                            <th scope="row">
-                                @{ var pathToImg = "../../Assets/img/girl-" + user.Id + "-400.jpg";} 
-                                <div class="profile-picture" style="background-image: url(@pathToImg)"></div>
-                                @Html.ActionLink(user.NickName, "UserProfile", new {nickName = user.NickName})
-                            </th>
+                    <tr>
+                        <th scope="row">
+                            @{ var pathToImg = "../../Assets/img/girl-" + user.Id + "-400.jpg";} 
+                            <div class="profile-picture" style="background-image: url(@pathToImg)"></div>
+                            @Html.ActionLink(user.NickName, "UserProfile", new {nickName = user.NickName})
+                        </th>
 
-                            <td>
-                                @if (requestedFriendsYetNotAcceptedIds.Contains(user.Id))
-                        {
-                                    <input type="submit" value="Waiting for confirmation" class="btn btn-default" />
-                                }
-                                else if (!friendsIdsWaitingForMyAcceptance.Where(x => x.User1Id == user.Id).IsNullOrEmpty())
-                                {
-                                    var friendship = friendsIdsWaitingForMyAcceptance
-                                        .Select(x => x.User1Id == user.Id)
-                                        .FirstOrDefault();
+                        <td>
+                            @if (requestedFriendsYetNotAcceptedIds.Contains(user.Id))
+                            {
+                                <input type="submit" value="Waiting for confirmation" class="btn btn-default" />
+                            }
+                            else if (!friendsIdsWaitingForMyAcceptance.Where(x => x.User1Id == user.Id).IsNullOrEmpty())
+                            {
+                                var friendship = friendsIdsWaitingForMyAcceptance
+                                    .Select(x => x.User1Id == user.Id)
+                                    .FirstOrDefault();
 
-                                    using (Html.BeginForm("AcceptFriend", "Users", new { friendId = user.Id }, FormMethod.Post, null))
-                                    {
-                                        <input type="submit" value="Accept friendship" class="btn btn-success" />
-                                    }
-                                }
-                                else if (friendsIdsIAccepted.Contains(user.Id) || friendsIdsIRequested.Contains(user.Id))
+                                using (Html.BeginForm("AcceptFriend", "Users", new { friendId = user.Id }, FormMethod.Post, null))
                                 {
-                                    //remove friend for the future
-                                    <input type="submit" value="Already friends" class="btn btn-default" />
+                                    <input type="submit" value="Accept friendship" class="btn btn-success" />
                                 }
-                                else
+                            }
+                            else if (friendsIdsIAccepted.Contains(user.Id) || friendsIdsIRequested.Contains(user.Id))
+                            {
+                                //remove friend for the future
+                                <input type="submit" value="Already friends" class="btn btn-default" />
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("AddFriend", "Users", new { id = user.Id }, FormMethod.Post, null))
                                 {
-                                    using (Html.BeginForm("AddFriend", "Users", new { id = user.Id }, FormMethod.Post, null))
-                                    {
-                                        <input type="submit" value="Add friend" class="btn btn-primary" />
-                                    }
+                                    <input type="submit" value="Add friend" class="btn btn-primary" />
                                 }
-                            </td>
-                        </tr>
-                    }
+                            }
+                        </td>
+                    </tr>
                 }
+            }
             </tbody>
         </table>
     </div>
-                    }
+    <div class="col-md-4 pull-right sidebar">
+        <div class="city"></div>
+        <blockquote>
+            <footer>Existuje mnoho variant s pasážemi Lorem Ipsum, nicméně valná většina trpí neduhy v podobě snahy o vtipný text či použití naprosto náhodných slov, což nevypadá zrovna uvěřitelně.</footer>
+        </blockquote>
+    </div>
+    <div class="clearfix"></div>
+                                }

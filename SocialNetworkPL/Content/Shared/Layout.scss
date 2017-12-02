@@ -27,9 +27,38 @@
 input, button {
     border-radius: 0 !important;
 }
+//sidebar
+.sidebar {
+    padding: 0 !important;
+    border: 1px lightgray solid;
+
+    h4 {
+        padding: 15px 10px 5px;
+    }
+
+    @mixin sponsor-img() {
+        height: 250px;
+        margin-bottom: 15px;
+        background-size: cover;
+    }
+
+    .sea {
+        @include sponsor-img();
+        background: url("../../Assets/img/sea-400.jpg") no-repeat center;
+    }
+
+    .city {
+        @include sponsor-img();
+        background: url("../../Assets/img/city-400.jpg") no-repeat center;
+    }
+
+    .road {
+        @include sponsor-img();
+        background: url("../../Assets/img/road-400.jpg") no-repeat center;
+    }
+}
 
 //posts
-
 .post-container {
     margin-bottom: 25px;
     border: 1px lightgray solid;

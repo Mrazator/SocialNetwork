@@ -46,7 +46,7 @@
                         </div>
                         <div class="checkbox-under-search-btn ">
                             @Html.EditorFor(x => x.StayAnonymous)
-                            @Html.LabelForModel("post anonymous", new {@class = "label-checkbox"})
+                            @Html.LabelFor(x => x.StayAnonymous, "post anonymous", new {@class = "label-checkbox"})
 
                         </div>
                     }
@@ -85,7 +85,6 @@
         </div>
     </div>
     <div class="col-md-3 sidebar">
-        <h4>Sponsored</h4>
         <div class="sea"></div>
         <blockquote>
             <footer>Existuje mnoho variant s pasážemi Lorem Ipsum, nicméně valná většina trpí neduhy v podobě snahy o vtipný text či použití naprosto náhodných slov, což nevypadá zrovna uvěřitelně.</footer>

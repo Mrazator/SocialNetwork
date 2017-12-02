@@ -5,69 +5,70 @@
     ViewBag.Title = "PostListView";
 }
 
-@{
-    if (!User.Identity.IsAuthenticated)
-    {
-        foreach (var post in Model.Posts)
+<div class="Index col-md-7">
+    @{
+        if (!User.Identity.IsAuthenticated)
         {
-            if (!post.StayAnonymous)
+            foreach (var post in Model.Posts)
             {
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="post-container">
-                            <ul class="posts">
-                                <li class="post">
-                                    @{var pathToImg = "../../Assets/img/girl-" + post.UserId + "-400.jpg";} 
-                                    <div class="profile-picture" style="background-image: url('@pathToImg')"></div>
-                                    <div class="content">
-                                        <div>
-                                            <h4>Nickname - Todo</h4>
-                                            <small>@post.PostedAt</small>
-                                        </div>
-                                        <p class="message">
-                                            @post.Text
-                                        </p>
-                                        <div class="images"></div>
+                if (!post.StayAnonymous)
+                {
+                    <div class="post-container">
+                        <ul class="posts">
+                            <li class="post">
+                                @{var pathToImg = "../../Assets/img/girl-" + post.UserId + "-400.jpg";} 
+                                <div class="profile-picture" style="background-image: url('@pathToImg')"></div>
+                                <div class="content">
+                                    <div>
+                                        <h4>Nickname - Todo</h4>
+                                        <small>@post.PostedAt</small>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
+                                    <p class="message">
+                                        @post.Text
+                                    </p>
+                                    <div class="images"></div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                </div>
+                }
+            }
+        }
+        else
+        {
+            foreach (var post in Model.Posts)
+            {
+                var friendsAccepted = Model.AuthenticatedUser.AcceptedFriendships.Where(x => x.User1Id == post.UserId);
+                var friendsRequested = Model.AuthenticatedUser.RequestedFriendships.Where(x => x.User2Id == post.UserId);
+                if (!post.StayAnonymous || !friendsAccepted.IsNullOrEmpty() || !friendsRequested.IsNullOrEmpty() || post.UserId == Model.AuthenticatedUser.Id)
+                {
+                    <div class="post-container">
+                        <ul class="posts">
+                            <li class="post">
+                                @{var pathToImg = "../../Assets/img/girl-" + post.UserId + "-400.jpg";} 
+                                <div class="profile-picture" style="background-image: url('@pathToImg')"></div>
+                                <div class="content">
+                                    <div>
+                                        <h4>Nickname - Todo</h4>
+                                        <small>@post.PostedAt</small>
+                                    </div>
+                                    <p class="message">
+                                        @post.Text
+                                    </p>
+                                    <div class="images"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                }
             }
         }
     }
-    else
-    {
-        foreach (var post in Model.Posts)
-        {
-            var friendsAccepted = Model.AuthenticatedUser.AcceptedFriendships.Where(x => x.User1Id == post.UserId);
-            var friendsRequested = Model.AuthenticatedUser.RequestedFriendships.Where(x => x.User2Id == post.UserId);
-            if (!post.StayAnonymous || !friendsAccepted.IsNullOrEmpty() || !friendsRequested.IsNullOrEmpty() || post.UserId == Model.AuthenticatedUser.Id)
-            {
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="post-container">
-                            <ul class="posts">
-                                <li class="post">
-                                    @{var pathToImg = "../../Assets/img/girl-" + post.UserId + "-400.jpg";} 
-                                    <div class="profile-picture" style="background-image: url('@pathToImg')"></div>
-                                    <div class="content">
-                                        <div>
-                                            <h4>Nickname - Todo</h4>
-                                            <small>@post.PostedAt</small>
-                                        </div>
-                                        <p class="message">
-                                            @post.Text
-                                        </p>
-                                        <div class="images"></div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            }
-        }
-    }
-}
+</div>
+<div class="col-md-4 pull-right sidebar">
+    <div class="road"></div>
+    <blockquote>
+        <footer>Existuje mnoho variant s pasážemi Lorem Ipsum, nicméně valná většina trpí neduhy v podobě snahy o vtipný text či použití naprosto náhodných slov, což nevypadá zrovna uvěřitelně.</footer>
+    </blockquote>
+</div>
+<div class="clearfix"></div>
