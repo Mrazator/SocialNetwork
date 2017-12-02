@@ -13,6 +13,6 @@ namespace SocialNetworkBL.Services.Friendships
         /// </summary>
         /// <param name="userId">Id of the user</param>
         /// <returns>list of friends</returns>
-        Task<IList<UserDto>> GetFriendsByUserIdAsync(int userId);
+        Task<IList<int>> GetFriendsIdsByUserIdAsync(int userId);
     }
 }

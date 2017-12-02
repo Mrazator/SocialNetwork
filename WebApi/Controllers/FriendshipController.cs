@@ -12,16 +12,16 @@ namespace WebApi.Controllers
         public FriendshipFacade FriendshipFacade { get; set; }
         public UserFacade UserFacade { get; set; }
 
-        public async Task<IEnumerable<UserDto>> GetUserFriends(int userId)
+        public async Task<IEnumerable<int>> GetUserFriendIds(int userId)
         {
             var userDto = await UserFacade.GetAsync(userId);
 
             if (userDto == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            var friends = await FriendshipFacade.GetFriendsByUserIdAsync(userId);
+            var friendsIds = await FriendshipFacade.GetFriendsIdsByUserIdAsync(userId);
 
-            return friends;
+            return friendsIds;
         }
 
         // GET: api/Friendships/2

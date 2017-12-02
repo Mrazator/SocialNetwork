@@ -15,7 +15,7 @@ namespace SocialNetwork.Entities
         public string TableName { get; } = nameof(EntityFrameworkDbContext.Friendships);
 
         [Required]
-        public DateTime FriendshipStart { get; set; } = DateTime.Now;
+        public DateTime FriendshipStart { get; set; } = DateTime.Now.ToUniversalTime();
 
         public bool IsAccepted { get; set; } = false;
 

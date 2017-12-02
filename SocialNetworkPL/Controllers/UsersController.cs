@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -27,7 +28,7 @@ namespace SocialNetworkPL.Controllers
 
             var model = InitializeProductListViewModel(filter, users, user);
 
-            return View("FindUsersView", model);
+            return View("FriendManagementView", model);
         }
 
         private FindUsersModel InitializeProductListViewModel(UserFilterDto filter, IEnumerable<UserDto> users, UserDto user)
@@ -40,12 +41,11 @@ namespace SocialNetworkPL.Controllers
             };
         }
 
-        // GET: Users/UserProfile/5
         public async Task<ActionResult> UserProfile(string nickName = "")
         {
             UserDto user;
             List<PostDto> posts;
-            List<UserDto> friendships;
+            List<int> friendships;
 
             if (nickName != "")
             {
@@ -53,7 +53,7 @@ namespace SocialNetworkPL.Controllers
                 {
                     user = await UserFacade.GetUserByNickNameAsync(nickName);
                     posts = await PostFacade.GetPostsByUserIdAsync(user.Id) as List<PostDto>;
-                    friendships = await FriendshipFacade.GetFriendsByUserIdAsync(user.Id) as List<UserDto>;
+                    friendships = await FriendshipFacade.GetFriendsIdsByUserIdAsync(user.Id) as List<int>;
                 }
                 catch
                 {
@@ -69,7 +69,7 @@ namespace SocialNetworkPL.Controllers
             {
                 UserDto = user,
                 PostDtos = posts,
-                FriendshipDtos = friendships
+                FriendsIds = friendships
             });
         }
 
@@ -153,7 +153,7 @@ namespace SocialNetworkPL.Controllers
                 {
                     Text = model.NewPostText,
                     UserId = model.UserDto.Id,
-                    PostedAt = DateTime.Now
+                    PostedAt = DateTime.Now.ToUniversalTime()
                 };
 
                 await PostFacade.CreateAsync(newPost);
@@ -175,10 +175,27 @@ namespace SocialNetworkPL.Controllers
             {
                 User1Id = user.Id,
                 User2Id = id,
-                FriendshipStart = DateTime.Now,
+                FriendshipStart = DateTime.Now.ToUniversalTime(),
             };
 
-            var friend = await FriendshipFacade.CreateAsync(friendship);
+            await FriendshipFacade.CreateAsync(friendship);
+            return RedirectToAction("Index");
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public async Task<ActionResult> AcceptFriend(int friendId)
+        {
+            var user = await UserFacade.GetUserByNickNameAsync(User.Identity.Name);
+            var friendship = user.AcceptedFriendships
+                .FirstOrDefault(x => !x.IsAccepted && x.User1Id == friendId);
+
+            if (friendship != null)
+            {
+                friendship.IsAccepted = true;
+
+                await FriendshipFacade.UpdateAsync(friendship);
+            }
+
             return RedirectToAction("Index");
         }
     }

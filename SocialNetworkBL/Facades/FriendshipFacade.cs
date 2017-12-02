@@ -23,11 +23,11 @@ namespace SocialNetworkBL.Facades
             _friendshipService = friendshipService;
         }
 
-        public async Task<IList<UserDto>> GetFriendsByUserIdAsync(int userId)
+        public async Task<IList<int>> GetFriendsIdsByUserIdAsync(int userId)
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await _friendshipService.GetFriendsByUserIdAsync(userId);
+                return await _friendshipService.GetFriendsIdsByUserIdAsync(userId);
             }
         }
     }

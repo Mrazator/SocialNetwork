@@ -257,7 +257,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -268,7 +267,7 @@
     <Content Include="Content\Home\Index.scss" />
     <Content Include="Content\Home\PostDetailView.scss" />
     <Content Include="Content\Shared\Layout.scss" />
-    <Content Include="Content\Users\FindUsers.scss" />
+    <Content Include="Content\Users\FriendManagement.scss" />
     <Content Include="Content\Users\UserProfile.scss" />
     <Content Include="Content\main.scss" />
     <None Include="compilerconfig.json" />
@@ -302,7 +301,7 @@
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
-    <Content Include="Views\Users\FindUsersView.cshtml" />
+    <Content Include="Views\Users\FriendManagementView.cshtml" />
     <Content Include="Views\Home\DeletePost.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />

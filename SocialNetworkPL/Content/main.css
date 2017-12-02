@@ -1,4 +1,26 @@
-﻿.my-navbar {
+﻿body {
+  padding-bottom: 20px;
+  padding-top: 50px; }
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+  white-space: normal; }
+
+/* Set width on the form input elements since they're 100% wide by default */
+.body-content {
+  padding: 25px 0; }
+
+input, button {
+  border-radius: 0 !important; }
+
+.my-navbar {
   background-color: white !important;
   border-color: aliceblue !important; }
 
@@ -14,6 +36,18 @@
 
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
   background-color: grey !important; }
+
+.FriendManagement .form-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px; }
+  .FriendManagement .form-search .form-group {
+    width: 100%;
+    margin-bottom: 0; }
+
+.FriendManagement table th {
+  vertical-align: middle !important; }
 
 .UserProfile .detail {
   position: relative;
