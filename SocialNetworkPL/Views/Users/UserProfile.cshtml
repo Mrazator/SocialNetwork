@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 posts-column">
         <div class="add-post">
             @{
                 if (User.Identity.IsAuthenticated && Model.UserDto.NickName.Equals(User.Identity.Name))
@@ -42,7 +42,7 @@
                             @Html.HiddenFor(model => model.UserDto.NickName)
                             @Html.HiddenFor(model => model.UserDto.Id)
 
-                            <button type="submit" class="btn btn-default">Post</button>
+                            <button type="submit" class="btn btn-primary">Post</button>
                         </div>
                         <div class="checkbox-under-search-btn ">
                             @Html.EditorFor(x => x.StayAnonymous)
@@ -53,24 +53,32 @@
                 }
             }
         </div>
+
         <div class="post-container">
             <ul class="posts">
                 @{
+                    if (User.Identity.IsAuthenticated && Model.FriendsIds.Contains(Model.UserDto.Id))
+                    {
+
+                    }
                     foreach (var post in Model.PostDtos)
                     {
-                        <li class="post">
-                            <div class="profile-picture"></div>
-                            <div class="content">
-                                <div>
-                                    <h4>@Model.UserDto.NickName</h4>
-                                    <small>@post.PostedAt</small>
+                        if(!post.StayAnonymous || Model.UserDto.NickName.Equals(User.Identity.Name) || User.Identity.IsAuthenticated && Model.FriendsIds.Contains(Model.UserDto.Id))
+                        {
+                            <li class="post">
+                                <div class="profile-picture"></div>
+                                <div class="content">
+                                    <div>
+                                        <h4>@Model.UserDto.NickName</h4>
+                                        <small>@post.PostedAt</small>
+                                    </div>
+                                    <p class="message">
+                                        @post.Text
+                                    </p>
+                                    <div class="images"></div>
                                 </div>
-                                <p class="message">
-                                    @post.Text
-                                </p>
-                                <div class="images"></div>
-                            </div>
-                        </li>
+                            </li>   
+                        }
                     }
                 }
             </ul>

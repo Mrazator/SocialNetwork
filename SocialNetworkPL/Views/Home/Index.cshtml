@@ -13,16 +13,24 @@
             if (!post.StayAnonymous)
             {
                 <div class="row">
-                    <div class="col-md-7 post">
-                        <div class="profile-img"></div>
-                        <div class="content">
-                            <div>
-                                <small>@post.PostedAt</small>
-                            </div>
-                            <p class="message">
-                                @post.Text
-                            </p>
-                            <div class="images"></div>
+                    <div class="col-md-7">
+                        <div class="post-container">
+                            <ul class="posts">
+                                <li class="post">
+                                    @{var pathToImg = "../../Assets/img/girl-" + post.UserId + "-400.jpg";} 
+                                    <div class="profile-picture" style="background-image: url('@pathToImg')"></div>
+                                    <div class="content">
+                                        <div>
+                                            <h4>Nickname - Todo</h4>
+                                            <small>@post.PostedAt</small>
+                                        </div>
+                                        <p class="message">
+                                            @post.Text
+                                        </p>
+                                        <div class="images"></div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -38,16 +46,24 @@
             if (!post.StayAnonymous || !friendsAccepted.IsNullOrEmpty() || !friendsRequested.IsNullOrEmpty() || post.UserId == Model.AuthenticatedUser.Id)
             {
                 <div class="row">
-                    <div class="col-md-7 post">
-                        <div class="profile-img"></div>
-                        <div class="content">
-                            <div>
-                                <small>@post.PostedAt</small>
-                            </div>
-                            <p class="message">
-                                @post.Text
-                            </p>
-                            <div class="images"></div>
+                    <div class="col-md-7">
+                        <div class="post-container">
+                            <ul class="posts">
+                                <li class="post">
+                                    @{var pathToImg = "../../Assets/img/girl-" + post.UserId + "-400.jpg";} 
+                                    <div class="profile-picture" style="background-image: url('@pathToImg')"></div>
+                                    <div class="content">
+                                        <div>
+                                            <h4>Nickname - Todo</h4>
+                                            <small>@post.PostedAt</small>
+                                        </div>
+                                        <p class="message">
+                                            @post.Text
+                                        </p>
+                                        <div class="images"></div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

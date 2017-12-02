@@ -28,6 +28,51 @@ input, button {
     border-radius: 0 !important;
 }
 
+//posts
+
+.post-container {
+    margin-bottom: 25px;
+    border: 1px lightgray solid;
+
+    .posts {
+        padding: 15px 30px 15px 10px !important;
+
+        .post {
+            display: flex;
+
+            &:not(:last-child) {
+                border-bottom: 1px lightgray solid;
+                margin-bottom: 25px;
+                padding-bottom: 15px;
+            }
+
+            .profile-picture {
+                position: relative;
+                top: 9px;
+                height: 50px;
+                min-width: 50px;
+            }
+
+            .content {
+                width: 100%;
+                padding-left: 15px;
+
+                & > div {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: baseline;
+                }
+
+                .message {
+                }
+
+                .images {
+                }
+            }
+        }
+    }
+}
+
 //profile picture
 
 .profile-picture {

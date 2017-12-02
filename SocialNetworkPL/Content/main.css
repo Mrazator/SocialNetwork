@@ -20,6 +20,30 @@
 input, button {
   border-radius: 0 !important; }
 
+.post-container {
+  margin-bottom: 25px;
+  border: 1px lightgray solid; }
+  .post-container .posts {
+    padding: 15px 30px 15px 10px !important; }
+    .post-container .posts .post {
+      display: flex; }
+      .post-container .posts .post:not(:last-child) {
+        border-bottom: 1px lightgray solid;
+        margin-bottom: 25px;
+        padding-bottom: 15px; }
+      .post-container .posts .post .profile-picture {
+        position: relative;
+        top: 9px;
+        height: 50px;
+        min-width: 50px; }
+      .post-container .posts .post .content {
+        width: 100%;
+        padding-left: 15px; }
+        .post-container .posts .post .content > div {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline; }
+
 .profile-picture {
   position: absolute;
   background-position: center;
@@ -52,18 +76,18 @@ input, button {
     width: 100%;
     margin-bottom: 0; }
 
-.FriendManagement table th {
-  vertical-align: middle !important; }
-
-.FriendManagement table tbody th {
-  display: flex;
-  align-items: center; }
-
-.FriendManagement table .profile-picture {
-  position: relative;
-  width: 45px;
-  height: 45px;
-  margin-right: 15px; }
+.FriendManagement table {
+  border: 1px solid lightgrey; }
+  .FriendManagement table th, .FriendManagement table td {
+    vertical-align: middle !important; }
+  .FriendManagement table tbody th {
+    display: flex;
+    align-items: center; }
+  .FriendManagement table .profile-picture {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    margin-right: 15px; }
 
 .UserProfile .detail {
   position: relative;
@@ -94,51 +118,31 @@ input, button {
     background: url("../../Assets/img/sea-400.jpg") no-repeat center;
     background-size: cover; }
 
-.UserProfile .post-container {
-  margin-bottom: 25px;
-  border: 1px lightgray solid; }
-  .UserProfile .post-container .posts {
-    padding: 15px 30px 15px 10px !important; }
-    .UserProfile .post-container .posts .post {
-      display: flex; }
-      .UserProfile .post-container .posts .post:not(:last-child) {
-        border-bottom: 1px lightgray solid;
-        margin-bottom: 25px;
-        padding-bottom: 15px; }
-      .UserProfile .post-container .posts .post .profile-picture {
-        position: relative;
-        top: 6px;
-        height: 50px;
-        min-width: 50px; }
-      .UserProfile .post-container .posts .post .content {
-        width: 100%;
-        padding-left: 15px; }
-        .UserProfile .post-container .posts .post .content > div {
-          display: flex;
-          justify-content: space-between;
-          align-items: baseline; }
+@media screen and (max-width: 991px) {
+  .UserProfile .posts-column {
+    margin-top: 25px; } }
 
-.UserProfile .add-post .search-btn {
+.UserProfile .posts-column .add-post .search-btn {
   display: flex;
   justify-content: space-between; }
-  .UserProfile .add-post .search-btn .form-control {
+  .UserProfile .posts-column .add-post .search-btn .form-control {
     border-right: none; }
 
-.UserProfile .add-post .checkbox-under-search-btn {
+.UserProfile .posts-column .add-post .checkbox-under-search-btn {
   display: flex;
   align-items: center;
   margin: 5px 0 20px; }
-  .UserProfile .add-post .checkbox-under-search-btn input[type="checkbox"] {
+  .UserProfile .posts-column .add-post .checkbox-under-search-btn input[type="checkbox"] {
     margin: 0;
     margin-right: 5px; }
-  .UserProfile .add-post .checkbox-under-search-btn .label-checkbox {
+  .UserProfile .posts-column .add-post .checkbox-under-search-btn .label-checkbox {
     margin: 0;
     font-weight: 300;
     color: grey; }
 
-.UserProfile .add-post .form-inline {
+.UserProfile .posts-column .add-post .form-inline {
   margin-bottom: 15px; }
-  .UserProfile .add-post .form-inline .btn, .UserProfile .add-post .form-inline .form-control {
+  .UserProfile .posts-column .add-post .form-inline .btn, .UserProfile .posts-column .add-post .form-inline .form-control {
     border-radius: 0;
     border-color: lightgray; }
 

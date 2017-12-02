@@ -41,82 +41,45 @@
         }
     }
 
-    .post-container {
-        margin-bottom: 25px;
-        border: 1px lightgray solid;
+    .posts-column {
+        @media screen and (max-width: 991px){
+            margin-top: 25px;
+        }
 
-        .posts {
-            padding: 15px 30px 15px 10px !important;
-
-            .post {
+        .add-post {
+            .search-btn {
                 display: flex;
+                justify-content: space-between;
 
-                &:not(:last-child) {
-                    border-bottom: 1px lightgray solid;
-                    margin-bottom: 25px;
-                    padding-bottom: 15px;
-                }
-
-                .profile-picture {
-                    position: relative;
-                    top: 6px;
-                    height: 50px;
-                    min-width: 50px;
-                }
-
-                .content {
-                    width: 100%;
-                    padding-left: 15px;
-
-                    & > div {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: baseline;
-                    }
-
-                    .message {
-                    }
-
-                    .images {
-                    }
+                .form-control {
+                    border-right: none;
                 }
             }
-        }
-    }
 
-    .add-post {
-        .search-btn {
-            display: flex;
-            justify-content: space-between;
+            .checkbox-under-search-btn {
+                display: flex;
+                align-items: center;
+                margin: 5px 0 20px;
 
-            .form-control {
-                border-right: none;
-            }
-        }
+                input[type="checkbox"] {
+                    margin: 0;
+                    margin-right: 5px;
+                }
 
-        .checkbox-under-search-btn {
-            display: flex;
-            align-items: center;
-            margin: 5px 0 20px;
-
-            input[type="checkbox"] {
-                margin: 0;
-                margin-right: 5px;
+                .label-checkbox {
+                    margin: 0;
+                    font-weight: 300;
+                    color: grey;
+                }
             }
 
-            .label-checkbox {
-                margin: 0;
-                font-weight: 300;
-                color: grey;
-            }
-        }
+            .form-inline {
+                margin-bottom: 15px;
 
-        .form-inline {
-            margin-bottom: 15px;
-
-            .btn, .form-control {
-                border-radius: 0;
-                border-color: lightgray;
+                .btn, .form-control {
+                    border-radius: 0;
+                    border-color: lightgray;
+                }
             }
         }
     }
