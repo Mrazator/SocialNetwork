@@ -12,7 +12,21 @@
         }
     }
 
-    table th {
-        vertical-align: middle !important;
+    table {
+        th {
+            vertical-align: middle !important;
+        }
+
+        tbody th{
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-picture {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            margin-right: 15px;
+        }
     }
 }

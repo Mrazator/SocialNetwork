@@ -28,6 +28,15 @@ input, button {
     border-radius: 0 !important;
 }
 
+//profile picture
+
+.profile-picture {
+    position: absolute;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+}
+
 //botstrap navbar
 
 .my-navbar {

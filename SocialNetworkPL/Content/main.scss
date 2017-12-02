@@ -1,12 +1,12 @@
-﻿//Account
+﻿//Shared
+@import 'Shared/Layout.scss';
+
+//Account
 @import 'Account/Login.scss';
 @import 'Account/Register.scss';
 
 //Home
 @import 'Home/Index.scss';
-
-//Shared
-@import 'Shared/Layout.scss';
 
 //Users
 @import 'Users/FriendManagement.scss';

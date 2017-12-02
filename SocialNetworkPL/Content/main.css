@@ -20,6 +20,12 @@
 input, button {
   border-radius: 0 !important; }
 
+.profile-picture {
+  position: absolute;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%; }
+
 .my-navbar {
   background-color: white !important;
   border-color: aliceblue !important; }
@@ -49,6 +55,16 @@ input, button {
 .FriendManagement table th {
   vertical-align: middle !important; }
 
+.FriendManagement table tbody th {
+  display: flex;
+  align-items: center; }
+
+.FriendManagement table .profile-picture {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  margin-right: 15px; }
+
 .UserProfile .detail {
   position: relative;
   padding: 0 !important;
@@ -57,15 +73,11 @@ input, button {
     padding: 75px 0px 15px;
     text-align: center; }
     .UserProfile .detail .profile .profile-picture {
-      position: absolute;
       top: 80px;
       left: 50%;
       transform: translate(-50%, 0);
       height: 125px;
-      width: 125px;
-      background-position: center;
-      background-size: cover;
-      border-radius: 50%; }
+      width: 125px; }
   .UserProfile .detail .img {
     height: 150px;
     background: url("../../Assets/img/background.jpeg") no-repeat center;
@@ -93,14 +105,11 @@ input, button {
         border-bottom: 1px lightgray solid;
         margin-bottom: 25px;
         padding-bottom: 15px; }
-      .UserProfile .post-container .posts .post .profile-img {
+      .UserProfile .post-container .posts .post .profile-picture {
         position: relative;
         top: 6px;
         height: 50px;
-        min-width: 50px;
-        background-position: center;
-        background-size: cover;
-        border-radius: 50%; }
+        min-width: 50px; }
       .UserProfile .post-container .posts .post .content {
         width: 100%;
         padding-left: 15px; }

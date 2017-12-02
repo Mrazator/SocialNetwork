@@ -54,7 +54,11 @@
                     if (user.NickName != Model.User.NickName)
                     {
                         <tr>
-                            <th scope="row">@Html.ActionLink(user.NickName, "UserProfile", new { nickName = user.NickName })</th>
+                            <th scope="row">
+                                @{ var pathToImg = "../../Assets/img/girl-" + user.Id + "-400.jpg";} 
+                                <div class="profile-picture" style="background-image: url(@pathToImg)"></div>
+                                @Html.ActionLink(user.NickName, "UserProfile", new {nickName = user.NickName})
+                            </th>
 
                             <td>
                                 @if (requestedFriendsYetNotAcceptedIds.Contains(user.Id))
