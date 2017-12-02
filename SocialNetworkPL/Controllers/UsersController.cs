@@ -154,11 +154,11 @@ namespace SocialNetworkPL.Controllers
                 };
 
                 await PostFacade.CreateAsync(newPost);
-                return RedirectToAction("UserProfile", new {name = model.UserDto.NickName});
+                return RedirectToAction("UserProfile", new {nickName = model.UserDto.NickName});
             }
             catch
             {
-                return View();
+                return RedirectToAction("UserProfile", new { nickName = model.UserDto.NickName });
             }
         }
     }
