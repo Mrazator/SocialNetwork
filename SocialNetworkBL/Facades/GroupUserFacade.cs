@@ -19,10 +19,12 @@ namespace SocialNetworkBL.Facades
         public GroupUserFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<GroupUser, GroupUserDto, GroupUserFilterDto> service,
-            IGroupUserService groupUserService
+            IGroupUserService groupUserService,
+            IUserGroupService userGroupService
         ) : base(unitOfWorkProvider, service)
         {
             _groupUserService = groupUserService;
+            _userGroupService = userGroupService;
         }
 
         public async Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId)

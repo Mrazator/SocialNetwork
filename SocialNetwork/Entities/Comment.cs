@@ -8,10 +8,10 @@ namespace SocialNetwork.Entities
 {
     public class Comment : IPostable, IEntity
     {
+        public int Id { get; set; }
+
         [NotMapped]
         public string TableName { get; } = nameof(EntityFrameworkDbContext.Comments);
-
-        public int Id { get; set; }
 
         [Required]
         public DateTime PostedAt { get; set; } = DateTime.Now.ToUniversalTime();

@@ -7,14 +7,14 @@ namespace SocialNetwork.Entities
 {
     public class Message : IEntity
     {
+        public int Id { get; set; }
+
         [Required]
         public DateTime SentAt { get; set; } = DateTime.Now.ToUniversalTime();
 
         [Required]
         [MaxLength(100)]
         public string Text { get; set; }
-
-        public int Id { get; set; }
 
         [NotMapped]
         public string TableName { get; } = nameof(EntityFrameworkDbContext.Messages);

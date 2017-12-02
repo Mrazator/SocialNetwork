@@ -21,19 +21,22 @@ namespace SocialNetworkPL.Controllers
         public async Task<ActionResult> Index([FromUri] string subname)
         {
             var filter = new UserFilterDto {SubName = subname};
-
+            
             var users = await UserFacade.GetUsersContainingSubNameAsync(filter.SubName);
-            var model = InitializeProductListViewModel(filter, users);
+            var user = await UserFacade.GetUserByNickNameAsync(User.Identity.Name);
+
+            var model = InitializeProductListViewModel(filter, users, user);
 
             return View("FindUsersView", model);
         }
 
-        private FindUsersModel InitializeProductListViewModel(UserFilterDto filter, IEnumerable<UserDto> users)
+        private FindUsersModel InitializeProductListViewModel(UserFilterDto filter, IEnumerable<UserDto> users, UserDto user)
         {
             return new FindUsersModel
             {
                 Filter = filter,
-                Users = new HashSet<UserDto>(users)
+                Users = new HashSet<UserDto>(users),
+                User = user
             };
         }
 
@@ -160,6 +163,23 @@ namespace SocialNetworkPL.Controllers
             {
                 return RedirectToAction("UserProfile", new { nickName = model.UserDto.NickName });
             }
+        }
+
+
+        [System.Web.Mvc.HttpPost]
+        public async Task<ActionResult> AddFriend(int id)
+        {
+            var user = await UserFacade.GetUserByNickNameAsync(User.Identity.Name);
+
+            var friendship = new FriendshipDto()
+            {
+                User1Id = user.Id,
+                User2Id = id,
+                FriendshipStart = DateTime.Now,
+            };
+
+            var friend = await FriendshipFacade.CreateAsync(friendship);
+            return RedirectToAction("Index");
         }
     }
 }

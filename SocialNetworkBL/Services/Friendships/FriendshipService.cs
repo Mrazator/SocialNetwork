@@ -21,11 +21,15 @@ namespace SocialNetworkBL.Services.Friendships
         {
         }
 
-        public async Task<IList<UserDto>> GetFriendsByUserIdAsync(int userId)
+        //public async Task<IList<UserDto>> GetFriendsByUserIdAsync(int userId)
+        //{
+        //    var queryResult = await Query.ExecuteQuery(new FriendshipFilterDto {UserId = userId});
+        //    return queryResult?.Items
+        //        .Select(friendship => friendship.User1Id == userId ? friendship.User2 : friendship.User1).ToList();
+        //}
+        public Task<IList<UserDto>> GetFriendsByUserIdAsync(int userId)
         {
-            var queryResult = await Query.ExecuteQuery(new FriendshipFilterDto {UserId = userId});
-            return queryResult?.Items
-                .Select(friendship => friendship.User1Id == userId ? friendship.User2 : friendship.User1).ToList();
+            throw new System.NotImplementedException();
         }
     }
 }

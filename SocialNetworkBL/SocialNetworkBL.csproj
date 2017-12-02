@@ -68,6 +68,7 @@
     <Compile Include="DataTransferObjects\Filters\UserFilterDto.cs" />
     <Compile Include="DataTransferObjects\Filters\UserGroupFilterDto.cs" />
     <Compile Include="DataTransferObjects\FriendshipDto.cs" />
+    <Compile Include="DataTransferObjects\FriendshipDtoWithNavigationProps.cs" />
     <Compile Include="DataTransferObjects\GroupDto.cs" />
     <Compile Include="DataTransferObjects\GroupUserDto.cs" />
     <Compile Include="DataTransferObjects\MessageDto.cs" />

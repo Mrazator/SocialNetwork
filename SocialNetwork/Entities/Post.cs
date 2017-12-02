@@ -9,10 +9,10 @@ namespace SocialNetwork.Entities
 {
     public class Post : IPostable, IEntity
     {
+        public int Id { get; set; }
+
         [NotMapped]
         public string TableName { get; } = nameof(EntityFrameworkDbContext.Posts);
-
-        public int Id { get; set; }
 
         [Required]
         public DateTime PostedAt { get; set; } = DateTime.Now.ToUniversalTime();

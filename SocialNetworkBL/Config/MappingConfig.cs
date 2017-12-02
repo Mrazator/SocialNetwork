@@ -15,6 +15,9 @@ namespace SocialNetworkBL.Config
             config.CreateMap<Friendship, FriendshipDto>().ReverseMap();
             config.CreateMap<QueryResult<Friendship>, QueryResultDto<FriendshipDto, FriendshipFilterDto>>();
 
+            config.CreateMap<Friendship, FriendshipDtoWithNavigationProps>().ReverseMap();
+            config.CreateMap<QueryResult<Friendship>, QueryResultDto<FriendshipDtoWithNavigationProps, FriendshipFilterDto>>();
+
             config.CreateMap<User, UserDto>().ReverseMap();
             config.CreateMap<QueryResult<User>, QueryResultDto<UserDto, UserFilterDto>>();
 

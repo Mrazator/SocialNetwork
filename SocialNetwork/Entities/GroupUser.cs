@@ -5,8 +5,8 @@ namespace SocialNetwork.Entities
 {
     public class GroupUser : IEntity
     {
-        public bool IsAdmin { get; set; } = false;
         public int Id { get; set; }
+        public bool IsAdmin { get; set; } = false;
 
         [NotMapped]
         public string TableName { get; } = nameof(EntityFrameworkDbContext.GroupUsers);

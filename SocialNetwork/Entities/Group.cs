@@ -7,6 +7,8 @@ namespace SocialNetwork.Entities
 {
     public class Group : IEntity
     {
+        public int Id { get; set; }
+
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
@@ -18,8 +20,6 @@ namespace SocialNetwork.Entities
         public bool AllowAnonymousPosts { get; set; } = false;
 
         #endregion
-
-        public int Id { get; set; }
 
         [NotMapped]
         public string TableName { get; } = nameof(EntityFrameworkDbContext.Groups);

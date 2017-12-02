@@ -9,6 +9,14 @@ namespace SocialNetwork.Initializers
     {
         protected override void Seed(EntityFrameworkDbContext context)
         {
+            var userM = new User()
+            {
+                NickName = "Mrazator",
+                PasswordSalt = "hFrDVp5UB9eMycpU+4wSEA==",
+                PasswordHash = "ZXnjeNKhDTSH6Rc6q4++tVoQVHo=",
+            };
+
+            context.Users.Add(userM);
             //PV226jesuper
             var user1 = new User
             {
@@ -58,6 +66,17 @@ namespace SocialNetwork.Initializers
             };
 
             context.Users.Add(user4);
+            context.SaveChanges();
+
+            var marcelFriendship = new Friendship()
+            {
+                FriendshipStart = DateTime.Now.ToUniversalTime(),
+                User1 = userM,
+                User2 = user4
+
+            };
+
+            context.Friendships.Add(marcelFriendship);
             context.SaveChanges();
 
             var friendship2 = new Friendship

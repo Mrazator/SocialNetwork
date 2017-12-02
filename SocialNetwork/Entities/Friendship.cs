@@ -8,13 +8,16 @@ namespace SocialNetwork.Entities
 {
     public class Friendship : IEntity
     {
-        [Required]
-        public DateTime FriendshipStart { get; set; } = DateTime.Now.ToUniversalTime();
 
         public int Id { get; set; }
 
         [NotMapped]
         public string TableName { get; } = nameof(EntityFrameworkDbContext.Friendships);
+
+        [Required]
+        public DateTime FriendshipStart { get; set; } = DateTime.Now;
+
+        public bool IsAccepted { get; set; } = false;
 
         #region Foreign keys
 

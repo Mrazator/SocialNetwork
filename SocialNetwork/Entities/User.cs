@@ -8,6 +8,8 @@ namespace SocialNetwork.Entities
 {
     public class User : IEntity
     {
+        public int Id { get; set; }
+
         [Required]
         [MaxLength(50)]
         [Index(IsUnique = true)]
@@ -29,8 +31,6 @@ namespace SocialNetwork.Entities
         public Visibility PostVisibilityPreference { get; set; } = Visibility.Visible;
 
         #endregion
-
-        public int Id { get; set; }
 
         [NotMapped]
         public string TableName { get; } = nameof(EntityFrameworkDbContext.Users);
