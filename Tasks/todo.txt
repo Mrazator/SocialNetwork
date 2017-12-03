@@ -1,0 +1,30 @@
+Jde o to ze uz na tento projekt nemam moc cas, muzu tomu venovat zitrek (dnesek :D) plus max jeden-dva dny, zkusim dodelat co je oznaceny ze udelam, ostatni co je oznacene Misko budes muset zvladnout, staci se inspirovat tim co jsem udelal nebo DemoEshopem, nic extra noveho vymyslet nebudes.
+
+Webová aplikácia bude umoòova:
+	done - autentizáciu uívate¾ov
+	done - registrovanım uívate¾om pridáva inıch uívate¾ov do zoznamu priate¾ov
+	done - uívate¾ovi uverejòova svoje statusy, ktoré bude môc uvidie kadı alebo iba jeho priatelia (pod¾a jeho preferencií)
+	done - na tieto statusy ostatnım uívate¾om reagova príspevkami
+	udelam - zasiela súkromné správy inım uívate¾om (nemusí to by formou real-time chatu) //mozna by bylo dobre realtime
+	udelam - pre kadı úèet uívate¾ovi nejaké nastavenia
+
+	Misko - Priorita 1 - zvladnes udelat? se stylama pak pomuzu, jde o funkcnost - V prípade práce vo dvojici je moné aplikáciu rozšíri o umonenie uívate¾ovi vytvori vlastnú skupinu (verejnú alebo na pozvánky), ktorej sa stane adminom a môe ju spravova (maza príspevky, vyhadzova ¾udí zo skupiny, …), prípadne vytváranie udalostí, na ktoré sa môu ¾udia prihlási. //inspirace DemoEshop a SocialNetwork
+	Misko - Priorita 2 - neco si si psal ze na tom delas, jak ses na tom? - cez verejné API získa informácie o konkrétnom uívate¾ovi, taktie pridáva anonymné príspevky do verejnıch skupín, ktoré to majú povolené
+
+Nedolevaky:
+	udelam - Proc nefununguje funkce ListAll? //nic nevraci - u Usera uz vraci, jinde nezkontrolovano - ez
+	udelam - Proc musi byt v PL a WebApi reference na DAL? //bez ni to nefunguje - wut?
+	udelam - Delete: zrusit cascade delete - upravit DAL //diky tomu nefunguje Delete - tohle je nahovno
+	udelam - Put - nefunguje
+	- Save settings - nefunguje update - neco s cascade delete
+	
+
+	Misko - Priorita 3 - inspirace DemoEshop - Zprovoznit strankovani //vsude'
+	Misko - projit controllery v PL a pridat try catch a reakci na nevalidni vstup (if else + try catch) metodam ktere tohle nemaji osetrene
+
+Az bude vse vyresene:
+	1. WebApi: zkontrolovat controllery
+	2. Zprovoznit stary dobry update panel (aby stranka po pridani prispevku/komentare neskakala nahoru)
+	3. Doladit styly a UX
+	4. Zacit s optimalizaci - Dto pro kazdy usecase, prochazet views a controllery a upravit je na vykon //tohle muze zabrat klidne 50 hodin :D 
+	5. Zkusit si implementovat realtime chat
