@@ -29,7 +29,8 @@ input, button {
     height: 250px;
     margin-bottom: 15px;
     background-size: cover;
-    background: url("../../Assets/img/sea-400.jpg") no-repeat center; }
+    background: url("../../Assets/img/sea-400.jpg") no-repeat center;
+    height: 200px; }
   .sidebar .city {
     height: 250px;
     margin-bottom: 15px;
@@ -47,11 +48,12 @@ input, button {
   .post-container .posts {
     padding: 15px 30px 15px 10px !important; }
     .post-container .posts .post {
-      display: flex; }
+      display: flex;
+      padding-bottom: 15px; }
       .post-container .posts .post:not(:last-child) {
         border-bottom: 1px lightgray solid;
         margin-bottom: 25px;
-        padding-bottom: 15px; }
+        padding-bottom: 40px; }
       .post-container .posts .post .profile-picture {
         position: relative;
         top: 9px;
@@ -64,6 +66,25 @@ input, button {
           display: flex;
           justify-content: space-between;
           align-items: baseline; }
+
+.send-comment {
+  margin-top: 15px; }
+  .send-comment form {
+    width: 100%; }
+
+.comments {
+  padding-left: 0 !important;
+  padding-top: 15px !important; }
+  .comments .comment {
+    display: flex;
+    border-top: 1px solid lightgrey;
+    padding-top: 15px; }
+
+.search-btn {
+  display: flex;
+  justify-content: space-between; }
+  .search-btn .form-control {
+    border-right: none; }
 
 .profile-picture {
   position: absolute;
@@ -136,18 +157,12 @@ input, button {
       width: 125px; }
   .UserProfile .detail .img {
     height: 150px;
-    background: url("../../Assets/img/background.jpeg") no-repeat center;
+    background: url("../../Assets/img/background-400.jpg") no-repeat center;
     background-size: cover; }
 
 @media screen and (max-width: 991px) {
   .UserProfile .posts-column {
     margin-top: 25px; } }
-
-.UserProfile .posts-column .add-post .search-btn {
-  display: flex;
-  justify-content: space-between; }
-  .UserProfile .posts-column .add-post .search-btn .form-control {
-    border-right: none; }
 
 .UserProfile .posts-column .add-post .checkbox-under-search-btn {
   display: flex;

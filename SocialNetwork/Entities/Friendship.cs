@@ -8,7 +8,6 @@ namespace SocialNetwork.Entities
 {
     public class Friendship : IEntity
     {
-
         public int Id { get; set; }
 
         [NotMapped]

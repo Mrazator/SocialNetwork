@@ -21,10 +21,11 @@ namespace SocialNetworkPL.Controllers
 
         public async Task<ActionResult> Index([FromUri] string subname)
         {
-            var filter = new UserFilterDto {SubName = subname};
-            
+            var filter = new UserFilterDto { SubName = subname };
+
             var users = await UserFacade.GetUsersContainingSubNameAsync(filter.SubName);
             var user = await UserFacade.GetUserByNickNameAsync(User.Identity.Name);
+
 
             var model = InitializeProductListViewModel(filter, users, user);
 
@@ -43,15 +44,19 @@ namespace SocialNetworkPL.Controllers
 
         public async Task<ActionResult> UserProfile(string nickName = "")
         {
-            UserDto user;
+            UserDto user, authUser;
             List<PostDto> posts;
             List<int> friendships;
+            List<UserDto> users;
 
             if (nickName != "")
             {
                 try
                 {
+                    var usersQueryResultDto = await UserFacade.GetAllItemsAsync();
+                    users = usersQueryResultDto.Items.ToList();
                     user = await UserFacade.GetUserByNickNameAsync(nickName);
+                    authUser = await UserFacade.GetUserByNickNameAsync(User.Identity.Name);
                     posts = await PostFacade.GetPostsByUserIdAsync(user.Id) as List<PostDto>;
                     friendships = await FriendshipFacade.GetFriendsIdsByUserIdAsync(user.Id) as List<int>;
                 }
@@ -67,9 +72,11 @@ namespace SocialNetworkPL.Controllers
 
             return View("UserProfile", new UserProfileModel
             {
-                UserDto = user,
+                UserProfileDto = user,
                 PostDtos = posts,
-                FriendsIds = friendships
+                FriendsIds = friendships,
+                Users = users,
+                AuthenticatedUser = authUser
             });
         }
 
@@ -152,17 +159,17 @@ namespace SocialNetworkPL.Controllers
                 var newPost = new PostDto
                 {
                     Text = model.NewPostText,
-                    UserId = model.UserDto.Id,
+                    UserId = model.UserProfileDto.Id,
                     PostedAt = DateTime.Now.ToUniversalTime(),
                     StayAnonymous = model.StayAnonymous
                 };
 
                 await PostFacade.CreateAsync(newPost);
-                return RedirectToAction("UserProfile", new {nickName = model.UserDto.NickName});
+                return RedirectToAction("UserProfile", new { nickName = model.UserProfileDto.NickName });
             }
             catch
             {
-                return RedirectToAction("UserProfile", new { nickName = model.UserDto.NickName });
+                return RedirectToAction("UserProfile", new { nickName = model.UserProfileDto.NickName });
             }
         }
 
@@ -197,6 +204,29 @@ namespace SocialNetworkPL.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public async Task<ActionResult> AddComment(UserProfileModel model)
+        {
+            try
+            {
+                var newComment = new CommentDto()
+                {
+                    Text = model.CommentText,
+                    PostedAt = DateTime.Now.ToUniversalTime(),
+                    StayAnonymous = model.StayAnonymous,
+                    UserId = model.AuthenticatedUser.Id,
+                    PostId = model.PostId
+                };
+
+                await CommentFacade.CreateAsync(newComment);
+                return RedirectToAction("UserProfile", new { nickName = model.UserProfileDto.NickName });
+            }
+            catch
+            {
+                return RedirectToAction("UserProfile", new { nickName = model.UserProfileDto.NickName });
+            }
         }
     }
 }

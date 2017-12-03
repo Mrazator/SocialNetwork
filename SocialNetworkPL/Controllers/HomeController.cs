@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -14,6 +15,7 @@ namespace SocialNetworkPL.Controllers
     {
         public PostFacade PostFacade { get; set; }
         public UserFacade UserFacade { get; set; }
+        public CommentFacade CommentFacade { get; set; }
 
         // GET: Posts
         public async Task<ActionResult> Index(int page = 1)
@@ -22,18 +24,20 @@ namespace SocialNetworkPL.Controllers
 
             var result = await PostFacade.GetPostsAsync(filter);
             var user = await UserFacade.GetUserByNickNameAsync(User.Identity.Name);
-            var model = InitializeProductListViewModel(result, user);
+            var users = await UserFacade.GetAllItemsAsync();
+            var model = InitializeProductListViewModel(result, user, users.Items);
 
             return View("Index", model);
         }
 
-        private PostListModel InitializeProductListViewModel(QueryResultDto<PostDto, PostFilterDto> result, UserDto user)
+        private PostListModel InitializeProductListViewModel(QueryResultDto<PostDto, PostFilterDto> result, UserDto user, IEnumerable<UserDto> users)
         {
             return new PostListModel
             {
                 Posts = result.Items.OrderByDescending(x => x.PostedAt),
                 Filter = result.Filter,
-                AuthenticatedUser = user
+                AuthenticatedUser = user,
+                Users = users
             };
         }
 
@@ -107,6 +111,29 @@ namespace SocialNetworkPL.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddComment(PostListModel model)
+        {
+            try
+            {
+                var newComment = new CommentDto()
+                {
+                    Text = model.CommentText,
+                    PostedAt = DateTime.Now.ToUniversalTime(),
+                    StayAnonymous = model.StayAnonymous,
+                    UserId = model.AuthenticatedUser.Id,
+                    PostId = model.PostId
+                };
+
+                await CommentFacade.CreateAsync(newComment);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return RedirectToAction("Index");
             }
         }
     }

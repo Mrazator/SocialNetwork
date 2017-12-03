@@ -20,7 +20,7 @@
 
         .img {
             height: 150px;
-            background: url("../../Assets/img/background.jpeg") no-repeat center;
+            background: url("../../Assets/img/background-400.jpg") no-repeat center;
             background-size: cover;
         }
     }
@@ -31,14 +31,6 @@
         }
 
         .add-post {
-            .search-btn {
-                display: flex;
-                justify-content: space-between;
-
-                .form-control {
-                    border-right: none;
-                }
-            }
 
             .checkbox-under-search-btn {
                 display: flex;

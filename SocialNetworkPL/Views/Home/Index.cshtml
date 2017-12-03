@@ -20,13 +20,38 @@
                                 <div class="profile-picture" style="background-image: url('@pathToImg')"></div>
                                 <div class="content">
                                     <div>
-                                        <h4>Nickname - Todo</h4>
+                                        @{ var nick = Model.Users.FirstOrDefault(x => x.Id == post.UserId)?.NickName;}
+                                        <h4>@nick</h4>
                                         <small>@post.PostedAt</small>
                                     </div>
                                     <p class="message">
                                         @post.Text
                                     </p>
                                     <div class="images"></div>
+                                    @{ var comments = post.Comments?.ToList();}
+                                    @if (comments != null)
+                                    {
+                                        <ul class="comments">
+                                            @foreach (var comment in comments)
+                                            {
+                                                <li class="comment">
+                                                    @{var pathToImgComment = "../../Assets/img/girl-" + comment.UserId + "-400.jpg";} 
+
+                                                    <div class="profile-picture" style="background-image: url('@pathToImgComment')"></div>
+                                                    <div class="content">
+                                                        <div>
+                                                            @{ var nameComment = Model.Users.FirstOrDefault(x => x.Id == comment.UserId)?.NickName;}
+                                                            <h4>@nameComment</h4>
+                                                            <small>@comment.PostedAt</small>
+                                                        </div>
+                                                        <p class="message">
+                                                            @comment.Text
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
                                 </div>
                             </li>
                         </ul>
@@ -46,16 +71,54 @@
                         <ul class="posts">
                             <li class="post">
                                 @{var pathToImg = "../../Assets/img/girl-" + post.UserId + "-400.jpg";} 
+
                                 <div class="profile-picture" style="background-image: url('@pathToImg')"></div>
                                 <div class="content">
                                     <div>
-                                        <h4>Nickname - Todo</h4>
+                                        @{ var name = Model.Users.FirstOrDefault(x => x.Id == post.UserId)?.NickName;}
+                                        <h4>@name</h4>
                                         <small>@post.PostedAt</small>
                                     </div>
                                     <p class="message">
                                         @post.Text
                                     </p>
                                     <div class="images"></div>
+                                    @{ var comments = post.Comments?.ToList();}
+                                    @if (comments != null)
+                                    {
+                                        <ul class="comments">
+                                        @foreach (var comment in comments)
+                                        {
+                                            <li class="comment">
+                                                @{var pathToImgComment = "../../Assets/img/girl-" + comment.UserId + "-400.jpg";} 
+
+                                                <div class="profile-picture" style="background-image: url('@pathToImgComment')"></div>
+                                                <div class="content">
+                                                    <div>
+                                                        @{ var nameComment = Model.Users.FirstOrDefault(x => x.Id == comment.UserId)?.NickName;}
+                                                        <h4>@nameComment</h4>
+                                                        <small>@comment.PostedAt</small>
+                                                    </div>
+                                                    <p class="message">
+                                                        @comment.Text
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        }
+                                        </ul>
+                                    }
+                                    <div class="send-comment">
+                                        @using (Html.BeginForm("AddComment", "Home", FormMethod.Post))
+                                        {
+                                        <div class="search-btn">
+                                            @Html.EditorFor(model => model.CommentText, new { htmlAttributes = new { @class = "form-control", placeholder = "Write a commment, " + Model.AuthenticatedUser.NickName}})
+                                            @Html.HiddenFor(model => model.AuthenticatedUser.Id)
+                                            @Html.HiddenFor(model => model.PostId, new { @Value = post.Id})
+
+                                            <button type="submit" class="btn btn-primary">Post</button>
+                                        </div>
+                                        }
+                                    </div>
                                 </div>
                             </li>
                         </ul>

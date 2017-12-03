@@ -6,7 +6,7 @@
 
 <style type="text/css">
     @{
-        var pathToImg = "../../Assets/img/girl-" + Model.UserDto.Id + "-400.jpg";
+        var pathToImg = "../../Assets/img/girl-" + Model.UserProfileDto.Id + "-400.jpg";
     }
 
     .profile-picture, .profile-img {
@@ -21,7 +21,7 @@
         <div class="profile">
             <div class="profile-picture"></div>
             <blockquote>
-                <h4>@Model.UserDto.NickName</h4>
+                <h4>@Model.UserProfileDto.NickName</h4>
                 <footer>I wish i was a little bit taller, wish i was a baller...</footer>
             </blockquote>
             <div class="friends">
@@ -33,14 +33,14 @@
     <div class="col-md-6 posts-column">
         <div class="add-post">
             @{
-                if (User.Identity.IsAuthenticated && Model.UserDto.NickName.Equals(User.Identity.Name))
+                if (User.Identity.IsAuthenticated && Model.UserProfileDto.NickName.Equals(User.Identity.Name))
                 {
                     using (Html.BeginForm("AddPost", "Users", FormMethod.Post))
                     {
                         <div class="search-btn">
-                            @Html.EditorFor(model => model.NewPostText, new { htmlAttributes = new { @class = "form-control", placeholder = "What's on your mind, " + Model.UserDto.NickName + "?"}})
-                            @Html.HiddenFor(model => model.UserDto.NickName)
-                            @Html.HiddenFor(model => model.UserDto.Id)
+                            @Html.EditorFor(model => model.NewPostText, new { htmlAttributes = new { @class = "form-control", placeholder = "What's on your mind, " + Model.UserProfileDto.NickName + "?"}})
+                            @Html.HiddenFor(model => model.UserProfileDto.NickName)
+                            @Html.HiddenFor(model => model.UserProfileDto.Id)
 
                             <button type="submit" class="btn btn-primary">Post</button>
                         </div>
@@ -57,25 +57,63 @@
         <div class="post-container">
             <ul class="posts">
                 @{
-                    if (User.Identity.IsAuthenticated && Model.FriendsIds.Contains(Model.UserDto.Id))
-                    {
-
-                    }
                     foreach (var post in Model.PostDtos)
                     {
-                        if(!post.StayAnonymous || Model.UserDto.NickName.Equals(User.Identity.Name) || User.Identity.IsAuthenticated && Model.FriendsIds.Contains(Model.UserDto.Id))
+                        if(!post.StayAnonymous || Model.UserProfileDto.NickName.Equals(User.Identity.Name) || User.Identity.IsAuthenticated && Model.FriendsIds.Contains(Model.UserProfileDto.Id))
                         {
                             <li class="post">
                                 <div class="profile-picture"></div>
                                 <div class="content">
                                     <div>
-                                        <h4>@Model.UserDto.NickName</h4>
+                                        <h4>@Model.UserProfileDto.NickName</h4>
                                         <small>@post.PostedAt</small>
                                     </div>
                                     <p class="message">
                                         @post.Text
                                     </p>
                                     <div class="images"></div>
+                                    @{ var comments = post.Comments?.ToList();}
+                                    @if (comments != null)
+                                    {
+                                        <ul class="comments">
+                                            @foreach (var comment in comments)
+                                            {
+                                                <li class="comment">
+                                                    @{var pathToImgComment = "../../Assets/img/girl-" + comment.UserId + "-400.jpg";} 
+
+                                                    <div class="profile-picture" style="background-image: url('@pathToImgComment')"></div>
+                                                    <div class="content">
+                                                        <div>
+                                                            @{ var nameComment = Model.Users.FirstOrDefault(x => x.Id == comment.UserId)?.NickName;}
+                                                            <h4>@nameComment</h4>
+                                                            <small>@comment.PostedAt</small>
+                                                        </div>
+                                                        <p class="message">
+                                                            @comment.Text
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+
+                                        if (User.Identity.IsAuthenticated)
+                                         {
+                                             <div class="send-comment">
+                                                 @using (Html.BeginForm("AddComment", "Users", FormMethod.Post))
+                                                 {
+                                                     <div class="search-btn">
+                                                         @Html.EditorFor(model => model.CommentText, new {htmlAttributes = new {@class = "form-control", placeholder = "Write a commment, " + Model.AuthenticatedUser.NickName}})
+                                                         @Html.HiddenFor(model => model.AuthenticatedUser.Id)
+                                                         @Html.HiddenFor(model => model.UserProfileDto.Id)
+                                                         @Html.HiddenFor(model=> model.UserProfileDto.NickName)
+                                                         @Html.HiddenFor(model => model.PostId, new {@Value = post.Id})
+
+                                                         <button type="submit" class="btn btn-primary">Post</button>
+                                                     </div>
+                                                 }
+                                             </div>
+                                         }
+                                    }
                                 </div>
                             </li>   
                         }

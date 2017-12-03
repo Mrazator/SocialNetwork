@@ -14,7 +14,7 @@ namespace SocialNetworkBL.Services.Comments
 {
     public class CommentService : CrudQueryServiceBase<Comment, CommentDto, CommentFilterDto>, ICommentService
     {
-        protected CommentService(IMapper mapper, IRepository<Comment> repository,
+        public CommentService(IMapper mapper, IRepository<Comment> repository,
             QueryObjectBase<CommentDto, Comment, CommentFilterDto, IQuery<Comment>> query)
             : base(mapper, repository, query)
         {

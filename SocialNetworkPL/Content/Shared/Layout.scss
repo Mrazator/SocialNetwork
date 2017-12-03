@@ -45,6 +45,7 @@ input, button {
     .sea {
         @include sponsor-img();
         background: url("../../Assets/img/sea-400.jpg") no-repeat center;
+        height: 200px;
     }
 
     .city {
@@ -68,11 +69,12 @@ input, button {
 
         .post {
             display: flex;
+            padding-bottom: 15px;
 
             &:not(:last-child) {
                 border-bottom: 1px lightgray solid;
                 margin-bottom: 25px;
-                padding-bottom: 15px;
+                padding-bottom: 40px;
             }
 
             .profile-picture {
@@ -101,6 +103,43 @@ input, button {
         }
     }
 }
+
+//send comment
+
+.send-comment {
+    margin-top: 15px;
+
+    form {
+        width: 100%;
+    }
+}
+
+
+//comments
+
+.comments {
+    padding-left: 0 !important;
+    padding-top: 15px !important;
+
+    .comment {
+        display: flex;
+        border-top: 1px solid lightgrey;
+        padding-top: 15px;
+    }
+}
+
+
+//search button
+
+.search-btn {
+    display: flex;
+    justify-content: space-between;
+
+    .form-control {
+        border-right: none;
+    }
+}
+
 
 //profile picture
 

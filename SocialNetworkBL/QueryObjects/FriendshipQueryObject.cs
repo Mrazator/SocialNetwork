@@ -10,8 +10,7 @@ using SocialNetworkBL.QueryObjects.Common;
 
 namespace SocialNetworkBL.QueryObjects
 {
-    public class
-        FriendshipQueryObject : QueryObjectBase<FriendshipDto, Friendship, FriendshipFilterDto, IQuery<Friendship>>
+    public class FriendshipQueryObject : QueryObjectBase<FriendshipDto, Friendship, FriendshipFilterDto, IQuery<Friendship>>
     {
         public FriendshipQueryObject(IMapper mapper, IQuery<Friendship> query) : base(mapper, query)
         {

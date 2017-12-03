@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SocialNetworkBL.DataTransferObjects.Common;
 
 namespace SocialNetworkBL.DataTransferObjects
@@ -14,5 +15,7 @@ namespace SocialNetworkBL.DataTransferObjects
         public int? UserId { get; set; }
 
         public int? GroupId { get; set; }
+
+        public HashSet<CommentDto> Comments { get; set; }
     }
 }
