@@ -107,7 +107,6 @@ input, button {
 //send comment
 
 .send-comment {
-    margin-top: 15px;
 
     form {
         width: 100%;
@@ -124,7 +123,7 @@ input, button {
     .comment {
         display: flex;
         border-top: 1px solid lightgrey;
-        padding-top: 15px;
+        padding: 15px 0;
     }
 }
 

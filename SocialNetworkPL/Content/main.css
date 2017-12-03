@@ -67,10 +67,8 @@ input, button {
           justify-content: space-between;
           align-items: baseline; }
 
-.send-comment {
-  margin-top: 15px; }
-  .send-comment form {
-    width: 100%; }
+.send-comment form {
+  width: 100%; }
 
 .comments {
   padding-left: 0 !important;
@@ -78,7 +76,7 @@ input, button {
   .comments .comment {
     display: flex;
     border-top: 1px solid lightgrey;
-    padding-top: 15px; }
+    padding: 15px 0; }
 
 .search-btn {
   display: flex;

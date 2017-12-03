@@ -102,7 +102,7 @@
                                                  @using (Html.BeginForm("AddComment", "Users", FormMethod.Post))
                                                  {
                                                      <div class="search-btn">
-                                                         @Html.EditorFor(model => model.CommentText, new {htmlAttributes = new {@class = "form-control", placeholder = "Write a commment, " + Model.AuthenticatedUser.NickName}})
+                                                         @Html.EditorFor(model => model.CommentText, new {htmlAttributes = new {@class = "form-control", placeholder = "Write a comment, " + Model.AuthenticatedUser.NickName}})
                                                          @Html.HiddenFor(model => model.AuthenticatedUser.Id)
                                                          @Html.HiddenFor(model => model.UserProfileDto.Id)
                                                          @Html.HiddenFor(model=> model.UserProfileDto.NickName)
