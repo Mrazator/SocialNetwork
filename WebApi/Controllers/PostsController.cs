@@ -22,8 +22,8 @@ namespace WebApi.Controllers
             if (userDto == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            if (userDto.PostVisibilityPreference != Visibility.Visible)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+            //if (userDto.PostVisibilityPreference != Visibility.Visible)
+            //    throw new HttpResponseException(HttpStatusCode.NotFound);
 
             var posts = await PostFacade.GetPostsByUserIdAsync(userId);
             return posts;

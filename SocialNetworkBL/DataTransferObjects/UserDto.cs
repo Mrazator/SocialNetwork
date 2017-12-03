@@ -13,7 +13,9 @@ namespace SocialNetworkBL.DataTransferObjects
 
         public string PasswordSalt { get; set; }
 
-        public Visibility PostVisibilityPreference { get; set; } = Visibility.Visible;
+        //public Visibility PostVisibilityPreference { get; set; } = Visibility.Visible;
+        public string ProfileDescription { get; set; }
+
         public virtual HashSet<FriendshipDto> RequestedFriendships { get; set; }
         public virtual HashSet<FriendshipDto> AcceptedFriendships { get; set; }
     }

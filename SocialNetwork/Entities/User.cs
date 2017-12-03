@@ -28,7 +28,8 @@ namespace SocialNetwork.Entities
         #region Settings
 
         //true if anyone can see user posts
-        public Visibility PostVisibilityPreference { get; set; } = Visibility.Visible;
+        //public Visibility PostVisibilityPreference { get; set; } = Visibility.Visible;
+        public string ProfileDescription { get; set; } = "Your profile description, you can change this in Settings tab";
 
         #endregion
 

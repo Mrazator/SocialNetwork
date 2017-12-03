@@ -80,6 +80,23 @@ namespace SocialNetworkPL.Controllers
             });
         }
 
+        public async Task<ActionResult> UserSettings(string nickName = "")
+        {
+            var user = await UserFacade.GetUserByNickNameAsync(nickName);
+
+            return View("UserSettings", user);
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public async Task<ActionResult> SaveSettings(string profileDescription = "", string nickName = "")
+        {
+            var user = await UserFacade.GetUserByNickNameAsync(nickName);
+            user.ProfileDescription = profileDescription;
+            await UserFacade.UpdateAsync(user);
+
+            return RedirectToAction("UserSettings", nickName);
+        }
+
         // GET: Users/Create
         public ActionResult Create()
         {

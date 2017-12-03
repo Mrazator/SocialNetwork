@@ -5,7 +5,7 @@ using SocialNetwork.Enums;
 
 namespace SocialNetwork.Initializers
 {
-    public class MyInitializer : CreateDatabaseIfNotExists<EntityFrameworkDbContext>
+    public class MyInitializer : DropCreateDatabaseAlways<EntityFrameworkDbContext>
     {
         protected override void Seed(EntityFrameworkDbContext context)
         {
@@ -23,7 +23,7 @@ namespace SocialNetwork.Initializers
                 NickName = "Bara",
                 PasswordSalt = "hFrDVp5UB9eMycpU+4wSEA==",
                 PasswordHash = "ZXnjeNKhDTSH6Rc6q4++tVoQVHo=",
-                PostVisibilityPreference = Visibility.NotVisible
+                //PostVisibilityPreference = Visibility.NotVisible
             };
 
             context.Users.Add(user1);
@@ -53,7 +53,7 @@ namespace SocialNetwork.Initializers
                 NickName = "Aneta",
                 PasswordSalt = "hFrDVp5UB9eMycpU+4wSEA==",
                 PasswordHash = "ZXnjeNKhDTSH6Rc6q4++tVoQVHo=",
-                PostVisibilityPreference = Visibility.NotVisible
+                //PostVisibilityPreference = Visibility.NotVisible
             };
 
             context.Users.Add(user3);
