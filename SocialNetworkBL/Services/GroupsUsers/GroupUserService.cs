@@ -26,12 +26,10 @@ namespace SocialNetworkBL.Services.GroupsUsers
             return queryResult.Items.SingleOrDefault();
         }
 
-        public async Task<int> AddUserToGroupAsync(AddUserToGroupDto userToGroupDto, bool isAdmin)
+        public async Task<int> AddUserToGroupAsync(AddUserToGroupDto userToGroupDto, bool isAdmin = false)
         {
             if (await GetIfGroupUserExistsAsync(userToGroupDto.GroupId, userToGroupDto.UserId))
-            {
                 throw new ArgumentException();
-            }
 
             var groupUser = Mapper.Map<GroupUser>(userToGroupDto);
 

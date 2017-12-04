@@ -19,8 +19,8 @@ namespace SocialNetworkBL.QueryObjects
         {
             var simplePredicate = string.IsNullOrEmpty(filter.GroupName) &&
                                   !string.IsNullOrEmpty(filter.SubName)
-                ? new SimplePredicate(nameof(User.NickName), ValueComparingOperator.StringContains, filter.SubName)
-                : new SimplePredicate(nameof(User.NickName), ValueComparingOperator.Equal, filter.GroupName);
+                ? new SimplePredicate(nameof(Group.Name), ValueComparingOperator.StringContains, filter.SubName)
+                : new SimplePredicate(nameof(Group.Name), ValueComparingOperator.Equal, filter.GroupName);
 
             return string.IsNullOrEmpty(filter.GroupName) && string.IsNullOrEmpty(filter.SubName)
                 ? query

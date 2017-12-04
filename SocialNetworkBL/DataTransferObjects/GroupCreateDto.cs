@@ -15,5 +15,7 @@ namespace SocialNetworkBL.DataTransferObjects
         public string Name { get; set; }
 
         public bool AllowAnonymousPosts { get; set; } = false;
+
+        public bool IsPrivate { get; set; }
     }
 }

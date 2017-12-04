@@ -16,8 +16,10 @@ namespace SocialNetwork.Entities
         #region Settings
 
         //true if some user can post anonymous posts to this group
-
         public bool AllowAnonymousPosts { get; set; } = false;
+
+        //only for invitations
+        public bool IsPrivate { get; set; }
 
         #endregion
 

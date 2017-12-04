@@ -11,6 +11,7 @@ namespace WebApi.Controllers
     {
         public GroupFacade GroupFacade { get; set; }
 
+        [Route("api/Group/GetBySubname")]
         public async Task<IEnumerable<GroupDto>> GetBySubname(string subname)
         {
             if (string.IsNullOrWhiteSpace(subname))
@@ -18,6 +19,12 @@ namespace WebApi.Controllers
             var groups = await GroupFacade.GetGroupsContainingSubNameAsync(subname);
 
             return groups;
+        }
+
+        [Route("api/Group/CreatePost")]
+        public void CreatePost(PostDto post, int groupId)
+        {
+            GroupFacade.PostInGroup(post, groupId);
         }
 
         // GET: api/Groups/2
