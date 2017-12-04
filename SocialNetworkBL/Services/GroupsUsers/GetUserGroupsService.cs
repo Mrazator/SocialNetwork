@@ -10,19 +10,19 @@ using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects.Common;
 using SocialNetworkBL.Services.Common;
 
-namespace SocialNetworkBL.Services.UserGroups
+namespace SocialNetworkBL.Services.GroupsUsers
 {
-    public class UserGroupService : CrudQueryServiceBase<GroupUser, UserGroupDto, UserGroupFilterDto>, IUserGroupService
+    public class GetUserGroupsService : CrudQueryServiceBase<GroupUser, GetUserGroupsDto, GetUserGroupsFilterDto>, IGetUserGroupsService
     {
-        public UserGroupService(IMapper mapper, IRepository<GroupUser> repository,
-            QueryObjectBase<UserGroupDto, GroupUser, UserGroupFilterDto, IQuery<GroupUser>> query)
+        public GetUserGroupsService(IMapper mapper, IRepository<GroupUser> repository,
+            QueryObjectBase<GetUserGroupsDto, GroupUser, GetUserGroupsFilterDto, IQuery<GroupUser>> query)
             : base(mapper, repository, query)
         {
         }
 
         public async Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId)
         {
-            var queryResult = await Query.ExecuteQuery(new UserGroupFilterDto {UserId = userId});
+            var queryResult = await Query.ExecuteQuery(new GetUserGroupsFilterDto {UserId = userId});
             return queryResult?.Items.Select(userGroup => userGroup.GroupDto).ToList();
         }
     }

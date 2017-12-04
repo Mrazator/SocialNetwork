@@ -1,13 +1,8 @@
 ﻿using SocialNetworkBL.DataTransferObjects.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialNetworkBL.DataTransferObjects
 {
-    public class GroupUserDto : DtoBase
+    public class GetGroupUsersDto : DtoBase
     {
         public bool IsAdmin { get; set; } = false;
 
@@ -15,6 +10,6 @@ namespace SocialNetworkBL.DataTransferObjects
 
         public int GroupId { get; set; }
 
-        public int UserId { get; set; }
+        public UserDto UserDto { get; set; }
     }
 }

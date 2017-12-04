@@ -6,21 +6,20 @@ using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
-using SocialNetworkBL.Services.GroupUsers;
-using SocialNetworkBL.Services.UserGroups;
+using SocialNetworkBL.Services.GroupsUsers;
 
 namespace SocialNetworkBL.Facades
 {
-    public class GroupUserFacade : FacadeBase<GroupUser, GroupUserDto, GroupUserFilterDto>
+    public class GroupUserFacade : FacadeBase<GroupUser, GetGroupUsersDto, GetGroupUsersFilterDto>
     {
-        private readonly IGroupUserService _groupUserService;
-        private readonly IUserGroupService _userGroupService;
+        private readonly IGetGroupUsersService _groupUserService;
+        private readonly IGetUserGroupsService _userGroupService;
 
         public GroupUserFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
-            CrudQueryServiceBase<GroupUser, GroupUserDto, GroupUserFilterDto> service,
-            IGroupUserService groupUserService,
-            IUserGroupService userGroupService
+            CrudQueryServiceBase<GroupUser, GetGroupUsersDto, GetGroupUsersFilterDto> service,
+            IGetGroupUsersService groupUserService,
+            IGetUserGroupsService userGroupService
         ) : base(unitOfWorkProvider, service)
         {
             _groupUserService = groupUserService;
@@ -42,5 +41,7 @@ namespace SocialNetworkBL.Facades
                 return await _groupUserService.GetUsersByGroupIdAsync(groupId);
             }
         }
+
+
     }
 }

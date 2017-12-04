@@ -9,5 +9,7 @@ namespace SocialNetworkBL.Services.Groups
     public interface IGroupService : IService<GroupDto, GroupFilterDto>
     {
         Task<IList<GroupDto>> GetGroupsContainingSubNameAsync(string subName);
+
+        Task<int> CreateGroupAsync(GroupCreateDto groupDto);
     }
 }

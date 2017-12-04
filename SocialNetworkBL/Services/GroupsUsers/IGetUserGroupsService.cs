@@ -4,9 +4,9 @@ using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Services.Common;
 
-namespace SocialNetworkBL.Services.UserGroups
+namespace SocialNetworkBL.Services.GroupsUsers
 {
-    public interface IUserGroupService : IService<UserGroupDto, UserGroupFilterDto>
+    public interface IGetUserGroupsService : IService<GetUserGroupsDto, GetUserGroupsFilterDto>
     {
         Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId);
     }

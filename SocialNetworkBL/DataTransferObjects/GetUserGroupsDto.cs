@@ -2,9 +2,11 @@
 
 namespace SocialNetworkBL.DataTransferObjects
 {
-    public class UserGroupDto : DtoBase
+    public class GetUserGroupsDto : DtoBase
     {
         public bool IsAdmin { get; set; } = false;
+
+        public bool IsAccepted { get; set; } = false;
 
         public int UserId { get; set; }
 
