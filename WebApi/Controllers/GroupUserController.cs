@@ -36,7 +36,7 @@ namespace WebApi.Controllers
         }
 
         // GET: api/GroupUsers/2
-        public async Task<GroupUserDto> Get(int id)
+        public async Task<GetGroupUsersDto> Get(int id)
         {
             var groupUser = await GroupUserFacade.GetAsync(id);
 
@@ -46,7 +46,7 @@ namespace WebApi.Controllers
         }
 
         // POST: api/GroupUsers
-        public async Task<string> Post(GroupUserDto entity)
+        public async Task<string> Post(GetGroupUsersDto entity)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -59,7 +59,7 @@ namespace WebApi.Controllers
         }
 
         // PUT: api/GroupUsers/5
-        public async Task<string> Put(int id, GroupUserDto entity)
+        public async Task<string> Put(int id, GetGroupUsersDto entity)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);

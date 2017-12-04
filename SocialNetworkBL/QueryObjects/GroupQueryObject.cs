@@ -17,10 +17,12 @@ namespace SocialNetworkBL.QueryObjects
 
         protected override IQuery<Group> ApplyWhereClause(IQuery<Group> query, GroupFilterDto filter)
         {
-            var simplePredicate =
-                new SimplePredicate(nameof(Group.Name), ValueComparingOperator.StringContains, filter.SubName);
+            var simplePredicate = string.IsNullOrEmpty(filter.GroupName) &&
+                                  !string.IsNullOrEmpty(filter.SubName)
+                ? new SimplePredicate(nameof(User.NickName), ValueComparingOperator.StringContains, filter.SubName)
+                : new SimplePredicate(nameof(User.NickName), ValueComparingOperator.Equal, filter.GroupName);
 
-            return filter.SubName.Equals("")
+            return string.IsNullOrEmpty(filter.GroupName) && string.IsNullOrEmpty(filter.SubName)
                 ? query
                 : query.Where(simplePredicate);
         }

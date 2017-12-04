@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace SocialNetworkBL.DataTransferObjects
 {
-    public class GroupUserDto : DtoBase
+    public class AddUserToGroupDto : DtoBase
     {
         public bool IsAdmin { get; set; } = false;
 
-        public bool IsAccepted { get; set; }
+        public int UserId { get; set; }
 
         public int GroupId { get; set; }
 
-        public int UserId { get; set; }
+        public bool IsAccepted { get; set; }
     }
 }

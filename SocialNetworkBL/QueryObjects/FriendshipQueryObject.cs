@@ -12,9 +12,7 @@ namespace SocialNetworkBL.QueryObjects
 {
     public class FriendshipQueryObject : QueryObjectBase<FriendshipDto, Friendship, FriendshipFilterDto, IQuery<Friendship>>
     {
-        public FriendshipQueryObject(IMapper mapper, IQuery<Friendship> query) : base(mapper, query)
-        {
-        }
+        public FriendshipQueryObject(IMapper mapper, IQuery<Friendship> query) : base(mapper, query) { }
 
         protected override IQuery<Friendship> ApplyWhereClause(IQuery<Friendship> query, FriendshipFilterDto filter)
         {

@@ -9,13 +9,13 @@ using SocialNetworkBL.QueryObjects.Common;
 
 namespace SocialNetworkBL.QueryObjects
 {
-    public class UserGroupQueryObject : QueryObjectBase<UserGroupDto, GroupUser, UserGroupFilterDto, IQuery<GroupUser>>
+    public class GetUserGroupsQueryObject : QueryObjectBase<GetUserGroupsDto, GroupUser, GetUserGroupsFilterDto, IQuery<GroupUser>>
     {
-        public UserGroupQueryObject(IMapper mapper, IQuery<GroupUser> query) : base(mapper, query)
+        public GetUserGroupsQueryObject(IMapper mapper, IQuery<GroupUser> query) : base(mapper, query)
         {
         }
 
-        protected override IQuery<GroupUser> ApplyWhereClause(IQuery<GroupUser> query, UserGroupFilterDto filter)
+        protected override IQuery<GroupUser> ApplyWhereClause(IQuery<GroupUser> query, GetUserGroupsFilterDto filter)
         {
             var simplePredicate =
                 new SimplePredicate(nameof(GroupUser.GroupId), ValueComparingOperator.Equal, filter.UserId);
