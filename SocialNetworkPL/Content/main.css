@@ -88,7 +88,8 @@ input, button {
   position: absolute;
   background-position: center;
   background-size: cover;
-  border-radius: 50%; }
+  border-radius: 50%;
+  background-color: lightcoral; }
 
 .my-navbar {
   background-color: white !important;
