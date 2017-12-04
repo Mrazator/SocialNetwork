@@ -63,8 +63,8 @@
         {
             foreach (var post in Model.Posts)
             {
-                var friendsAccepted = Model.AuthenticatedUser.AcceptedFriendships.Where(x => x.IsAccepted && x.User1Id == post.UserId);
-                var friendsRequested = Model.AuthenticatedUser.RequestedFriendships.Where(x =>x.IsAccepted && x.User2Id == post.UserId);
+                var friendsAccepted = Model.AuthenticatedUser.AcceptedFriendships?.Where(x => x.IsAccepted && x.User1Id == post.UserId);
+                var friendsRequested = Model.AuthenticatedUser.RequestedFriendships?.Where(x =>x.IsAccepted && x.User2Id == post.UserId);
                 if (!post.StayAnonymous || !friendsAccepted.IsNullOrEmpty() || !friendsRequested.IsNullOrEmpty() || post.UserId == Model.AuthenticatedUser.Id)
                 {
                     <div class="post-container">
