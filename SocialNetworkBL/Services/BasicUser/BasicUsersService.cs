@@ -5,6 +5,7 @@ using AutoMapper;
 using Infrastructure;
 using Infrastructure.Query;
 using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects.Common;
 using SocialNetworkBL.Services.Common;
@@ -13,17 +14,22 @@ namespace SocialNetworkBL.Services.BasicUser
 {
     public class BasicUsersService : CrudQueryServiceBase<SocialNetwork.Entities.User, BasicUserDto, UserFilterDto>, IBasicUsersService
     {
+        private readonly IRepository<SocialNetwork.Entities.User> _repository;
+        private readonly QueryObjectBase<BasicUserDto, SocialNetwork.Entities.User, UserFilterDto, IQuery<SocialNetwork.Entities.User>> _query;
+
 
         public BasicUsersService(IMapper mapper,
-            QueryObjectBase<BasicUserDto, SocialNetwork.Entities.User, UserFilterDto, IQuery<SocialNetwork.Entities.User>> userProfileUsersQueryObject,
-            IRepository<SocialNetwork.Entities.User> postRepository)
-            : base(mapper, postRepository, userProfileUsersQueryObject)
+            IRepository<SocialNetwork.Entities.User> repository,
+            QueryObjectBase<BasicUserDto, SocialNetwork.Entities.User, UserFilterDto, IQuery<SocialNetwork.Entities.User>> query)
+            : base(mapper, repository, query)
         {
+            _repository = repository;
+            _query = query;
         }
 
         public async Task<BasicUserDto> GetUsersByNickName(string nickName)
         {
-            var query = await Query.ExecuteQuery(new UserFilterDto()
+            var query = await _query.ExecuteQuery(new UserFilterDto()
             {
                 NickName = nickName
             });
@@ -33,7 +39,7 @@ namespace SocialNetworkBL.Services.BasicUser
 
         public async Task<IEnumerable<BasicUserDto>> GetUsersContainingSubNameAsync(string subName)
         {
-            var queryResult = await Query.ExecuteQuery(new UserFilterDto { SubName = subName });
+            var queryResult = await _query.ExecuteQuery(new UserFilterDto { SubName = subName });
             return queryResult?.Items;
         }
     }

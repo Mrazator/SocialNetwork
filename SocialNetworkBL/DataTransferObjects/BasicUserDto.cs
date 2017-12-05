@@ -1,4 +1,5 @@
-﻿using SocialNetworkBL.DataTransferObjects.Common;
+﻿using System.Collections.Generic;
+using SocialNetworkBL.DataTransferObjects.Common;
 
 namespace SocialNetworkBL.DataTransferObjects
 {
@@ -6,5 +7,8 @@ namespace SocialNetworkBL.DataTransferObjects
     {
         public string NickName { get; set; }
         public string Description { get; set; }
+
+        //not mapped
+        public IEnumerable<FriendshipDto> Friends { get; set; }
     }
 }

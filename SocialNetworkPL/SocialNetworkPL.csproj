@@ -58,6 +58,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -229,7 +235,8 @@
     <Compile Include="App_Start\Windsor\WindsorControllerFactory.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
+    <Compile Include="Controllers\UsersManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -269,7 +276,7 @@
     <Content Include="Content\Home\PostDetailView.scss" />
     <Content Include="Content\Shared\Layout.scss" />
     <Content Include="Content\Users\FriendManagement.scss" />
-    <Content Include="Content\Users\UserProfile.scss" />
+    <Content Include="Content\UserProfile\UserProfile.scss" />
     <Content Include="Content\main.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
@@ -302,17 +309,17 @@
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
-    <Content Include="Views\Users\FriendManagementView.cshtml" />
+    <Content Include="Views\UsersManager\FriendManagementView.cshtml" />
     <Content Include="Views\Home\DeletePost.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\DeleteUser.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\UserProfile.cshtml" />
+    <Content Include="Views\UsersManager\Create.cshtml" />
+    <Content Include="Views\UsersManager\Edit.cshtml" />
+    <Content Include="Views\UsersManager\DeleteUser.cshtml" />
+    <Content Include="Views\UsersManager\Delete.cshtml" />
+    <Content Include="Views\UserProfile\UserProfile.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Users\AddPost.cshtml" />
-    <Content Include="Views\Users\UserSettings.cshtml" />
+    <Content Include="Views\UsersManager\AddPost.cshtml" />
+    <Content Include="Views\UserProfile\UserSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

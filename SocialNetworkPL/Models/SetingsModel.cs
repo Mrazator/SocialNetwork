@@ -8,6 +8,6 @@ namespace SocialNetworkPL.Models
     public class SetingsModel
     {
         public string NickName { get; set; }
-        public string ProfileDescription { get; set; }
+        public string Description { get; set; }
     }
 }

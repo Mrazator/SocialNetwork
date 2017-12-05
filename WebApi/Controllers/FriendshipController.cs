@@ -19,7 +19,7 @@ namespace WebApi.Controllers
             if (userDto == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            var friends = await FriendshipGenericFacade.GetFriendsIdsByUserIdAsync(userId);
+            var friends = await FriendshipGenericFacade.GetFriendsByUserIdAsync(userId);
 
             return friends;
         }

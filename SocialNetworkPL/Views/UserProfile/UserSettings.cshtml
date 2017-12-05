@@ -1,11 +1,11 @@
 ﻿@model SocialNetworkPL.Models.SetingsModel
 
 <div class="UserSettings">
-    @using (Html.BeginForm("SaveSettings", "Users", FormMethod.Post))
+    @using (Html.BeginForm("SaveSettings", "UserProfile", FormMethod.Post))
     {
         <div class="form-group">
 
-            @Html.EditorFor(x => x.ProfileDescription, new
+            @Html.EditorFor(x => x.Description, new
             { htmlAttributes =
                 new
                 {

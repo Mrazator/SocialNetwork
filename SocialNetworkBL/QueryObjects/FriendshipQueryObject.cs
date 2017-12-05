@@ -26,7 +26,7 @@ namespace SocialNetworkBL.QueryObjects
             {
                 wherePredicate,
                 new SimplePredicate(nameof(Friendship.IsAccepted), ValueComparingOperator.Equal, filter.IsAccepted)
-            }, LogicalOperator.AND);
+            });
 
             return filter.UserId.Equals(null)
                 ? query

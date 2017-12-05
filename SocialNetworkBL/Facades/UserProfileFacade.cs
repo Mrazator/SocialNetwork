@@ -45,7 +45,7 @@ namespace SocialNetworkBL.Facades
             using (UnitOfWorkProvider.Create())
             {
                 var user = await _userProfileUserService.GetUserProfileUserByIdAsync(postFilter.UserId);
-                user.Friends = (await _friendshipService.GetFriendsByUserIdAsync(user.Id)).ToList();
+                user.Friends = (await _friendshipService.GetFriendsByUserIdAsync(user.Id, false)).ToList();
                 user.Posts = await GetPostsByFilters(postFilter, commentFilter);
 
                 return user;
@@ -92,6 +92,16 @@ namespace SocialNetworkBL.Facades
                 var postId = _userProfilePostService.Create(post);
                 await uow.Commit();
                 return postId;
+            }
+        }
+
+        public async Task<int> AddComment(CommentDto comment)
+        {
+            using (var uow = UnitOfWorkProvider.Create())
+            {
+                var commentId = _commentService.Create(comment);
+                await uow.Commit();
+                return commentId;
             }
         }
     }

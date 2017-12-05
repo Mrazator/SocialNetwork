@@ -7,7 +7,7 @@ Webová aplikácia bude umoòova:
 	done - na tieto statusy ostatnım uívate¾om reagova príspevkami
 	udelam - zasiela súkromné správy inım uívate¾om (nemusí to by formou real-time chatu) //mozna by bylo dobre realtime
 	udelam - pre kadı úèet uívate¾ovi nejaké nastavenia
-	- je potreba nastavit do User.Identity UserId
+	- je potreba nastavit do User.Identity UserId!!
 	- zkusit vse vice genericke - napr v query objektech se opakuji ApplyWhereClause
 
 	Misko - Priorita 1 - zvladnes udelat? se stylama pak pomuzu, jde o funkcnost - V prípade práce vo dvojici je moné aplikáciu rozšíri o umonenie uívate¾ovi vytvori vlastnú skupinu (verejnú alebo na pozvánky), ktorej sa stane adminom a môe ju spravova (maza príspevky, vyhadzova ¾udí zo skupiny, …), prípadne vytváranie udalostí, na ktoré sa môu ¾udia prihlási. //inspirace DemoEshop a SocialNetwork
@@ -33,5 +33,5 @@ Az bude vse vyresene:
 
 
 Zajima me:
-	Je treba pro kazde Dto vytvorit query objekty, servisy a namapovat to? Nejde to udelat nejak genericky? + je treba mit pro kazde Dto CRUD operace?
+	Je treba pro kazde Dto vytvorit query objekty, servisy a namapovat to? Nejde to udelat nejak genericky?
 		
