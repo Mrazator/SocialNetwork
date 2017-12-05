@@ -11,7 +11,7 @@ namespace SocialNetworkPL.Controllers
 {
     public class AccountController : Controller
     {
-        public UserFacade UserFacade { get; set; }
+        public UserGenericFacade UserGenericFacade { get; set; }
 
         public ActionResult Register()
         {
@@ -23,7 +23,7 @@ namespace SocialNetworkPL.Controllers
         {
             try
             {
-                await UserFacade.RegisterUser(userCreateDto);
+                await UserGenericFacade.RegisterUser(userCreateDto);
 
                 var authTicket = new FormsAuthenticationTicket(1, userCreateDto.NickName, DateTime.Now,
                     DateTime.Now.AddMinutes(30), false, "");
@@ -54,7 +54,7 @@ namespace SocialNetworkPL.Controllers
                 return View();
             }
 
-            var success = await UserFacade.Login(model.NickName, model.Password);
+            var success = await UserGenericFacade.Login(model.NickName, model.Password);
             if (success)
             {
                 //FormsAuthentication.SetAuthCookie(model.Username, false);
@@ -79,7 +79,7 @@ namespace SocialNetworkPL.Controllers
 
         public async Task<ActionResult> Logout()
         {
-            await UserFacade.GetUserByNickNameAsync(User.Identity.Name);
+            await UserGenericFacade.GetUserByNickNameAsync(User.Identity.Name);
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }

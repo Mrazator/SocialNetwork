@@ -10,11 +10,11 @@ using SocialNetworkBL.Services.Friendships;
 
 namespace SocialNetworkBL.Facades
 {
-    public class FriendshipFacade : FacadeBase<Friendship, FriendshipDto, FriendshipFilterDto>
+    public class FriendshipGenericFacade : GenericFacadeBase<Friendship, FriendshipDto, FriendshipFilterDto>
     {
         private readonly IFriendshipService _friendshipService;
 
-        public FriendshipFacade(
+        public FriendshipGenericFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<Friendship, FriendshipDto, FriendshipFilterDto> service,
             IFriendshipService friendshipService
@@ -23,11 +23,11 @@ namespace SocialNetworkBL.Facades
             _friendshipService = friendshipService;
         }
 
-        public async Task<IList<int>> GetFriendsIdsByUserIdAsync(int userId)
+        public async Task<IEnumerable<BasicUserDto>> GetFriendsIdsByUserIdAsync(int userId)
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await _friendshipService.GetFriendsIdsByUserIdAsync(userId);
+                return await _friendshipService.GetFriendsByUserIdAsync(userId);
             }
         }
     }

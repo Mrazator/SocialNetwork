@@ -20,17 +20,25 @@ namespace SocialNetworkBL.Config
                 Component.For(typeof(QueryObjectBase<,,,>))
                     .ImplementedBy(typeof(IQueryObjectBase))
                     .LifestyleTransient(),
+
                 Classes.FromThisAssembly()
                     .BasedOn(typeof(QueryObjectBase<,,,>))
                     .WithServiceBase()
                     .LifestyleTransient(),
+
                 Classes.FromThisAssembly()
                     .BasedOn<ServiceBase>()
                     .WithServiceDefaultInterfaces()
                     .LifestyleTransient(),
+
                 Classes.FromThisAssembly()
-                    .BasedOn(typeof(FacadeBase<,,>))
+                    .BasedOn<FacadeBase>()
                     .LifestyleTransient(),
+
+                Classes.FromThisAssembly()
+                    .BasedOn(typeof(GenericFacadeBase<,,>))
+                    .LifestyleTransient(),
+
                 Component.For<IMapper>()
                     .Instance(new Mapper(new MapperConfiguration(MappingConfig.ConfigureMapping)))
                     .LifestyleSingleton()

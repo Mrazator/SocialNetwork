@@ -22,12 +22,11 @@ namespace SocialNetworkBL.Services.Friendships
         {
         }
 
-        public async Task<IList<int>> GetFriendsIdsByUserIdAsync(int userId)
+        public async Task<IEnumerable<BasicUserDto>> GetFriendsByUserIdAsync(int userId)
         {
-            var queryResult = await Query.ExecuteQuery(new FriendshipFilterDto { UserId = userId });
+            var queryResult = await Query.ExecuteQuery(new FriendshipFilterDto { UserId = userId, IsAccepted = true});
             return queryResult?.Items
-                .Where(x => x.IsAccepted)
-                .Select(friendship => friendship.User1Id == userId ? friendship.User2Id : friendship.User1Id).ToList();
+                .Select(friendship => friendship.User1Id == userId ? friendship.User2 : friendship.User1);
         }
     }
 }

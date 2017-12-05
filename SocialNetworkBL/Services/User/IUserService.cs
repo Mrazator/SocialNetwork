@@ -4,7 +4,7 @@ using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Services.Common;
 
-namespace SocialNetworkBL.Services.Users
+namespace SocialNetworkBL.Services.User
 {
     public interface IUserService : IService<UserDto, UserFilterDto>
     {

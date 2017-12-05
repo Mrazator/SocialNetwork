@@ -13,18 +13,18 @@ namespace SocialNetworkPL.Controllers
 {
     public class HomeController : Controller
     {
-        public PostFacade PostFacade { get; set; }
-        public UserFacade UserFacade { get; set; }
-        public CommentFacade CommentFacade { get; set; }
+        public PostGenericFacade PostGenericFacade { get; set; }
+        public UserGenericFacade UserGenericFacade { get; set; }
+        public CommentGenericFacade CommentGenericFacade { get; set; }
 
         // GET: Posts
         public async Task<ActionResult> Index(int page = 1)
         {
             var filter = new PostFilterDto();
 
-            var result = await PostFacade.GetPostsAsync(filter);
-            var user = await UserFacade.GetUserByNickNameAsync(User.Identity.Name);
-            var users = await UserFacade.GetAllItemsAsync();
+            var result = await PostGenericFacade.GetPostsAsync(filter);
+            var user = await UserGenericFacade.GetUserByNickNameAsync(User.Identity.Name);
+            var users = await UserGenericFacade.GetAllItemsAsync();
             var model = InitializeProductListViewModel(result, user, users.Items);
 
             return View("Index", model);
@@ -44,7 +44,7 @@ namespace SocialNetworkPL.Controllers
         // GET: Posts/UserProfile/5
         public async Task<ActionResult> Details(int id)
         {
-            var model = await PostFacade.GetAsync(id);
+            var model = await PostGenericFacade.GetAsync(id);
             return View("PostDetailView", model);
         }
 
@@ -60,7 +60,7 @@ namespace SocialNetworkPL.Controllers
         {
             try
             {
-                await PostFacade.CreateAsync(post);
+                await PostGenericFacade.CreateAsync(post);
 
 
                 return RedirectToAction("Index");
@@ -83,7 +83,7 @@ namespace SocialNetworkPL.Controllers
         {
             try
             {
-                await PostFacade.UpdateAsync(post);
+                await PostGenericFacade.UpdateAsync(post);
 
                 return RedirectToAction("Index");
             }
@@ -105,7 +105,7 @@ namespace SocialNetworkPL.Controllers
         {
             try
             {
-                await PostFacade.DeleteAsync(id);
+                await PostGenericFacade.DeleteAsync(id);
                 return RedirectToAction("Index");
             }
             catch
@@ -128,7 +128,7 @@ namespace SocialNetworkPL.Controllers
                     PostId = model.PostId
                 };
 
-                await CommentFacade.CreateAsync(newComment);
+                await CommentGenericFacade.CreateAsync(newComment);
                 return RedirectToAction("Index");
             }
             catch

@@ -14,5 +14,7 @@ namespace SocialNetworkBL.DataTransferObjects
         public int PostId { get; set; }
 
         public int UserId { get; set; }
+
+        public string NickName { get; set; }
     }
 }

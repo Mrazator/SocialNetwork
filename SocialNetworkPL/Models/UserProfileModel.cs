@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.UserProfileDtos;
 
 namespace SocialNetworkPL.Models
 {
     public class UserProfileModel
     {
-        public UserDto AuthenticatedUser{ get; set; }
-        public UserDto UserProfileDto { get; set; }
+        public BasicUserDto AuthenticatedUser { get; set; }
+
         public string NewPostText { get; set; }
-        public string CommentText { get; set; }
-        public bool StayAnonymous { get; set; }
+        public bool PostStayAnonymous { get; set; }
+        public string NewCommentText { get; set; }
         public int PostId { get; set; }
-        public IList<int> FriendsIds { get; set; }
-        public IList<PostDto> PostDtos { get; set; }
-        public IEnumerable<UserDto> Users { get; set; }
+
+        //new
+        public UserProfileUserDto UserProfileUser { get; set; }
 
     }
 }

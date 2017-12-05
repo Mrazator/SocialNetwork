@@ -9,25 +9,25 @@ namespace WebApi.Controllers
 {
     public class FriendshipController : ApiController
     {
-        public FriendshipFacade FriendshipFacade { get; set; }
-        public UserFacade UserFacade { get; set; }
+        public FriendshipGenericFacade FriendshipGenericFacade { get; set; }
+        public UserGenericFacade UserGenericFacade { get; set; }
 
-        public async Task<IEnumerable<int>> GetUserFriendIds(int userId)
+        public async Task<IEnumerable<BasicUserDto>> GetUserFriends(int userId)
         {
-            var userDto = await UserFacade.GetAsync(userId);
+            var userDto = await UserGenericFacade.GetAsync(userId);
 
             if (userDto == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            var friendsIds = await FriendshipFacade.GetFriendsIdsByUserIdAsync(userId);
+            var friends = await FriendshipGenericFacade.GetFriendsIdsByUserIdAsync(userId);
 
-            return friendsIds;
+            return friends;
         }
 
         // GET: api/Friendships/2
         public async Task<FriendshipDto> Get(int id)
         {
-            var post = await FriendshipFacade.GetAsync(id);
+            var post = await FriendshipGenericFacade.GetAsync(id);
 
             if (post == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -39,7 +39,7 @@ namespace WebApi.Controllers
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            var postId = await FriendshipFacade.CreateAsync(entity);
+            var postId = await FriendshipGenericFacade.CreateAsync(entity);
 
             if (postId.Equals(0))
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -53,14 +53,14 @@ namespace WebApi.Controllers
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            await FriendshipFacade.UpdateAsync(entity);
+            await FriendshipGenericFacade.UpdateAsync(entity);
             return $"Updated Friendship with id: {id}";
         }
 
         // DELETE: api/Friendships/5
         public async Task<string> Delete(int id)
         {
-            var success = await FriendshipFacade.DeleteAsync(id);
+            var success = await FriendshipGenericFacade.DeleteAsync(id);
             if (!success)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             return $"Deleted Friendship with id: {id}";

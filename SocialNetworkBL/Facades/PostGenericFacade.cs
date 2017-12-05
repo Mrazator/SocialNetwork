@@ -11,11 +11,11 @@ using SocialNetworkBL.Services.Posts;
 
 namespace SocialNetworkBL.Facades
 {
-    public class PostFacade : FacadeBase<Post, PostDto, PostFilterDto>
+    public class PostGenericFacade : GenericFacadeBase<Post, PostDto, PostFilterDto>
     {
         private readonly IPostService _postService;
 
-        public PostFacade(
+        public PostGenericFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<Post, PostDto, PostFilterDto> service,
             IPostService postService)

@@ -9,7 +9,7 @@ namespace WebApi.Controllers
 {
     public class UsersController : ApiController
     {
-        public UserFacade UserFacade { get; set; }
+        public UserGenericFacade UserGenericFacade { get; set; }
 
         // GET: api/Users/GetBySubname?subname=Marcel
         [Route("api/Users/GetBySubname")]
@@ -17,7 +17,7 @@ namespace WebApi.Controllers
         {
             if (string.IsNullOrWhiteSpace(subname))
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            var users = await UserFacade.GetUsersContainingSubNameAsync(subname);
+            var users = await UserGenericFacade.GetUsersContainingSubNameAsync(subname);
 
             if (users == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -36,14 +36,14 @@ namespace WebApi.Controllers
         [Route("api/Userss")]
         public async Task<IEnumerable<UserDto>> GetAll()
         {
-            var users = await UserFacade.GetAllItemsAsync();
+            var users = await UserGenericFacade.GetAllItemsAsync();
             return users.Items;
         }
 
         // GET: api/Users/2
         public async Task<UserDto> Get(int id)
         {
-            var user = await UserFacade.GetAsync(id);
+            var user = await UserGenericFacade.GetAsync(id);
 
             if (user == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -55,7 +55,7 @@ namespace WebApi.Controllers
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            var userId = await UserFacade.CreateAsync(entity);
+            var userId = await UserGenericFacade.CreateAsync(entity);
 
             if (userId.Equals(0))
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -69,14 +69,14 @@ namespace WebApi.Controllers
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            await UserFacade.UpdateAsync(entity);
+            await UserGenericFacade.UpdateAsync(entity);
             return $"Updated user with id: {id}";
         }
 
         // DELETE: api/Users/5
         public async Task<string> Delete(int id)
         {
-            var success = await UserFacade.DeleteAsync(id);
+            var success = await UserGenericFacade.DeleteAsync(id);
             if (!success)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             return $"Deleted user with id: {id}";

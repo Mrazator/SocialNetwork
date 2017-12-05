@@ -29,6 +29,7 @@ namespace SocialNetworkBL.QueryObjects.Common
             var query = ApplyWhereClause(Query, filter);
             if (!string.IsNullOrWhiteSpace(filter.SortCriteria))
                 query = query.SortBy(filter.SortCriteria, filter.SortAscending);
+
             if (filter.RequestedPageNumber.HasValue)
                 query = query.Page(filter.RequestedPageNumber.Value, filter.PageSize);
             var queryResult = await query.ExecuteAsync();

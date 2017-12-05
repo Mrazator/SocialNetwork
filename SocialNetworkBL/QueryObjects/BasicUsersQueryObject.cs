@@ -1,0 +1,30 @@
+﻿using AutoMapper;
+using Infrastructure.Query;
+using Infrastructure.Query.Predicates;
+using Infrastructure.Query.Predicates.Operators;
+using SocialNetwork.Entities;
+using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.Filters;
+using SocialNetworkBL.QueryObjects.Common;
+
+namespace SocialNetworkBL.QueryObjects
+{
+    public class BasicUsersQueryObject : QueryObjectBase<BasicUserDto, User, UserFilterDto, IQuery<User>>
+    {
+        public BasicUsersQueryObject(IMapper mapper, IQuery<User> query) : base(mapper, query)
+        {
+        }
+
+        protected override IQuery<User> ApplyWhereClause(IQuery<User> query, UserFilterDto filter)
+        {
+            var simplePredicate = string.IsNullOrEmpty(filter.NickName) &&
+                                  !string.IsNullOrEmpty(filter.SubName)
+                ? new SimplePredicate(nameof(User.NickName), ValueComparingOperator.StringContains, filter.SubName)
+                : new SimplePredicate(nameof(User.NickName), ValueComparingOperator.Equal, filter.NickName);
+
+            return string.IsNullOrEmpty(filter.NickName) && string.IsNullOrEmpty(filter.SubName)
+                ? query
+                : query.Where(simplePredicate);
+        }
+    }
+}

@@ -70,7 +70,6 @@
     <Compile Include="DataTransferObjects\Filters\UserFilterDto.cs" />
     <Compile Include="DataTransferObjects\Filters\GetUserGroupsFilterDto.cs" />
     <Compile Include="DataTransferObjects\FriendshipDto.cs" />
-    <Compile Include="DataTransferObjects\FriendshipDtoWithNavigationProps.cs" />
     <Compile Include="DataTransferObjects\GroupCreateDto.cs" />
     <Compile Include="DataTransferObjects\GroupDto.cs" />
     <Compile Include="DataTransferObjects\GetGroupUsersDto.cs" />
@@ -79,20 +78,23 @@
     <Compile Include="DataTransferObjects\PostDto.cs" />
     <Compile Include="DataTransferObjects\Common\QueryResultDto.cs" />
     <Compile Include="DataTransferObjects\UserCreateDto.cs" />
-    <Compile Include="DataTransferObjects\UserDetailDto\FriendshipDetailDto.cs" />
-    <Compile Include="DataTransferObjects\UserDetailDto\UserDetailDto.cs" />
-    <Compile Include="DataTransferObjects\UserDetailDto\UserDetailFriendshipDto.cs" />
+    <Compile Include="DataTransferObjects\UserProfileDtos\UserProfileUserDto.cs" />
+    <Compile Include="DataTransferObjects\UserProfileDtos\UserProfileFriendshipDto.cs" />
     <Compile Include="DataTransferObjects\UserDto.cs" />
     <Compile Include="DataTransferObjects\GetUserGroupsDto.cs" />
-    <Compile Include="Facades\CommentFacade.cs" />
+    <Compile Include="DataTransferObjects\UserProfileDtos\UserProfilePostDto.cs" />
+    <Compile Include="DataTransferObjects\BasicUserDto.cs" />
+    <Compile Include="Facades\CommentGenericFacade.cs" />
     <Compile Include="Facades\Common\FacadeBase.cs" />
-    <Compile Include="Facades\FriendshipFacade.cs" />
-    <Compile Include="Facades\GroupFacade.cs" />
-    <Compile Include="Facades\GroupUserFacade.cs" />
-    <Compile Include="Facades\MessageFacade.cs" />
-    <Compile Include="Facades\PostFacade.cs" />
-    <Compile Include="Facades\UserDetailFacade.cs" />
-    <Compile Include="Facades\UserFacade.cs" />
+    <Compile Include="Facades\Common\GenericFacadeBase.cs" />
+    <Compile Include="Facades\FriendshipGenericFacade.cs" />
+    <Compile Include="Facades\GroupGenericFacade.cs" />
+    <Compile Include="Facades\GroupUserGenericFacade.cs" />
+    <Compile Include="Facades\MessageGenericFacade.cs" />
+    <Compile Include="Facades\PostGenericFacade.cs" />
+    <Compile Include="Facades\BasicUserFacade.cs" />
+    <Compile Include="Facades\UserProfileFacade.cs" />
+    <Compile Include="Facades\UserGenericFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryObjects\CommentQueryObject.cs" />
     <Compile Include="QueryObjects\Common\IQueryObjectBase.cs" />
@@ -103,7 +105,10 @@
     <Compile Include="QueryObjects\GroupUserQueryObject.cs" />
     <Compile Include="QueryObjects\MessageQueryObject.cs" />
     <Compile Include="QueryObjects\PostQueryObject.cs" />
-    <Compile Include="QueryObjects\UserDetailQueryObject.cs" />
+    <Compile Include="QueryObjects\BasicUsersQueryObject.cs" />
+    <Compile Include="QueryObjects\UserProfileQueryObjects\UserProfileFriendshipDto.cs" />
+    <Compile Include="QueryObjects\UserProfileQueryObjects\UserProfilePostQueryObject.cs" />
+    <Compile Include="QueryObjects\UserProfileQueryObjects\UserProfileUserQueryObject.cs" />
     <Compile Include="QueryObjects\GetUserGroupsQueryObject.cs" />
     <Compile Include="QueryObjects\UserQueryObject.cs" />
     <Compile Include="Services\Comments\CommentService.cs" />
@@ -123,11 +128,16 @@
     <Compile Include="Services\Messages\MessageService.cs" />
     <Compile Include="Services\Posts\IPostService.cs" />
     <Compile Include="Services\Posts\PostService.cs" />
-    <Compile Include="Services\UserDetail\UserDetailService.cs" />
     <Compile Include="Services\GroupsUsers\IGetUserGroupsService.cs" />
     <Compile Include="Services\GroupsUsers\GetUserGroupsService.cs" />
-    <Compile Include="Services\Users\IUserService.cs" />
-    <Compile Include="Services\Users\UserService.cs" />
+    <Compile Include="Services\UserProfile\IUserProfilePostService.cs" />
+    <Compile Include="Services\UserProfile\IUserProfileUserService.cs" />
+    <Compile Include="Services\UserProfile\UserProfilePostService.cs" />
+    <Compile Include="Services\UserProfile\UserProfileUserService.cs" />
+    <Compile Include="Services\BasicUser\IBasicUsersService.cs" />
+    <Compile Include="Services\BasicUser\BasicUsersService.cs" />
+    <Compile Include="Services\User\IUserService.cs" />
+    <Compile Include="Services\User\UserService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

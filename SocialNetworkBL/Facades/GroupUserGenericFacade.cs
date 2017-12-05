@@ -10,12 +10,12 @@ using SocialNetworkBL.Services.GroupsUsers;
 
 namespace SocialNetworkBL.Facades
 {
-    public class GroupUserFacade : FacadeBase<GroupUser, GetGroupUsersDto, GetGroupUsersFilterDto>
+    public class GroupUserGenericFacade : GenericFacadeBase<GroupUser, GetGroupUsersDto, GetGroupUsersFilterDto>
     {
         private readonly IGetGroupUsersService _groupUserService;
         private readonly IGetUserGroupsService _userGroupService;
 
-        public GroupUserFacade(
+        public GroupUserGenericFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<GroupUser, GetGroupUsersDto, GetGroupUsersFilterDto> service,
             IGetGroupUsersService groupUserService,

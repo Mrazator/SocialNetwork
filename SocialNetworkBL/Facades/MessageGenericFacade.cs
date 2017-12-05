@@ -10,11 +10,11 @@ using SocialNetworkBL.Services.Messages;
 
 namespace SocialNetworkBL.Facades
 {
-    public class MessageFacade : FacadeBase<Message, MessageDto, MessageFilterDto>
+    public class MessageGenericFacade : GenericFacadeBase<Message, MessageDto, MessageFilterDto>
     {
         private readonly IMessageService _messageService;
 
-        public MessageFacade(
+        public MessageGenericFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<Message, MessageDto, MessageFilterDto> service,
             IMessageService messageService)

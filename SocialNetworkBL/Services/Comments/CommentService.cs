@@ -6,6 +6,7 @@ using Infrastructure;
 using Infrastructure.Query;
 using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects.Common;
 using SocialNetworkBL.Services.Common;
@@ -36,6 +37,11 @@ namespace SocialNetworkBL.Services.Comments
                 SortAscending = true
             });
             return queryResult?.Items.ToList();
+        }
+
+        public async Task<QueryResultDto<CommentDto, CommentFilterDto>> GetCommentsByFilter(CommentFilterDto filter)
+        {
+            return await Query.ExecuteQuery(filter);
         }
     }
 }

@@ -10,14 +10,14 @@ namespace WebApi.Controllers
 {
     public class PostsController : ApiController
     {
-        public PostFacade PostFacade { get; set; }
-        public UserFacade UserFacade { get; set; }
-        public GroupFacade GroupFacade { get; set; }
+        public PostGenericFacade PostGenericFacade { get; set; }
+        public UserGenericFacade UserGenericFacade { get; set; }
+        public GroupGenericFacade GroupGenericFacade { get; set; }
 
         // GET: api/Posts/GetByUserId?userId=666
         public async Task<IEnumerable<PostDto>> GetByUserId(int userId)
         {
-            var userDto = await UserFacade.GetAsync(userId);
+            var userDto = await UserGenericFacade.GetAsync(userId);
 
             if (userDto == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -25,26 +25,26 @@ namespace WebApi.Controllers
             //if (userDto.PostVisibilityPreference != Visibility.Visible)
             //    throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            var posts = await PostFacade.GetPostsByUserIdAsync(userId);
+            var posts = await PostGenericFacade.GetPostsByUserIdAsync(userId);
             return posts;
         }
 
         // GET: api/Posts/GetByGroupId?groupId=666
         public async Task<IEnumerable<PostDto>> GetByGroupId(int groupId)
         {
-            var groupDto = await GroupFacade.GetAsync(groupId);
+            var groupDto = await GroupGenericFacade.GetAsync(groupId);
 
             if (groupDto == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            var posts = await PostFacade.GetPostsByGroupIdAsync(groupId);
+            var posts = await PostGenericFacade.GetPostsByGroupIdAsync(groupId);
             return posts;
         }
 
         // GET: api/Posts/2
         public async Task<PostDto> Get(int id)
         {
-            var post = await PostFacade.GetAsync(id);
+            var post = await PostGenericFacade.GetAsync(id);
 
             if (post == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -56,7 +56,7 @@ namespace WebApi.Controllers
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            var postId = await PostFacade.CreateAsync(entity);
+            var postId = await PostGenericFacade.CreateAsync(entity);
 
             if (postId.Equals(0))
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -70,14 +70,14 @@ namespace WebApi.Controllers
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            await PostFacade.UpdateAsync(entity);
+            await PostGenericFacade.UpdateAsync(entity);
             return $"Updated post with id: {id}";
         }
 
         // DELETE: api/Posts/5
         public async Task<string> Delete(int id)
         {
-            var success = await PostFacade.DeleteAsync(id);
+            var success = await PostGenericFacade.DeleteAsync(id);
             if (!success)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             return $"Deleted post with id: {id}";

@@ -5,12 +5,12 @@
         /// <summary>
         ///     Number of page (indexed from 1) which was requested
         /// </summary>
-        public int? RequestedPageNumber { get; set; }
+        public int? RequestedPageNumber { get; set; } = 1;
 
         /// <summary>
         ///     Size of the page
         /// </summary>
-        public int PageSize { get; set; }
+        public int PageSize { get; set; } = 5;
 
         /// <summary>
         ///     Name of the property for sorting query results

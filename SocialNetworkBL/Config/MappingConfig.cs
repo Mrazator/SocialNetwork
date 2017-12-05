@@ -4,7 +4,7 @@ using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
-using SocialNetworkBL.DataTransferObjects.UserDetailDto;
+using SocialNetworkBL.DataTransferObjects.UserProfileDtos;
 
 namespace SocialNetworkBL.Config
 {
@@ -15,22 +15,34 @@ namespace SocialNetworkBL.Config
             config.CreateMap<Friendship, FriendshipDto>().ReverseMap();
             config.CreateMap<QueryResult<Friendship>, QueryResultDto<FriendshipDto, FriendshipFilterDto>>();
 
-            config.CreateMap<Friendship, FriendshipDtoWithNavigationProps>().ReverseMap();
-            config.CreateMap<QueryResult<Friendship>, QueryResultDto<FriendshipDtoWithNavigationProps, FriendshipFilterDto>>();
+            config.CreateMap<User, UserProfileUserDto>()
+                .ForMember(x => x.Posts, opt => opt.Ignore())
+                .ForMember(x => x.Friends, opt => opt.Ignore())
+                .ReverseMap();
+            config.CreateMap<QueryResult<User>, QueryResultDto<UserProfileUserDto, UserFilterDto>>();
 
-            config.CreateMap<Friendship, FriendshipDetailDto>().ReverseMap();
-            config.CreateMap<QueryResult<Friendship>, QueryResultDto<FriendshipDetailDto, FriendshipFilterDto>>();
+            config.CreateMap<Post, UserProfilePostDto>()
+                .ForMember(x => x.Comments, opt => opt.Ignore())
+                ;
+            config.CreateMap<UserProfilePostDto, Post>();
+            config.CreateMap<QueryResult<Post>, QueryResultDto<UserProfilePostDto, PostFilterDto>>();
+
+            config.CreateMap<User, BasicUserDto>().ReverseMap();
+            config.CreateMap<QueryResult<User>, QueryResultDto<BasicUserDto, UserFilterDto>>();
+
 
             config.CreateMap<User, UserDto>().ReverseMap();
             config.CreateMap<QueryResult<User>, QueryResultDto<UserDto, UserFilterDto>>();
 
             config.CreateMap<User, UserCreateDto>().ReverseMap();
 
-            config.CreateMap<User, UserDetailDto>().ReverseMap();
-            config.CreateMap<QueryResult<User>, QueryResultDto<UserDetailDto, UserFilterDto>>();
+            config.CreateMap<User, UserProfileUserDto>()
+                .ForMember(x => x.Posts, opt => opt.Ignore())
+                .ReverseMap();
+            config.CreateMap<QueryResult<User>, QueryResultDto<UserProfileUserDto, UserFilterDto>>();
 
-            config.CreateMap<User, UserDetailFriendshipDto>().ReverseMap();
-            config.CreateMap<QueryResult<User>, QueryResultDto<UserDetailFriendshipDto, UserFilterDto>>();
+            //config.CreateMap<User, UserProfileFriendshipDto>().ReverseMap();
+            //config.CreateMap<QueryResult<User>, QueryResultDto<UserProfileFriendshipDto, UserFilterDto>>();
 
             config.CreateMap<Message, MessageDto>().ReverseMap();
             config.CreateMap<QueryResult<Message>, QueryResultDto<MessageDto, MessageFilterDto>>();
@@ -38,7 +50,7 @@ namespace SocialNetworkBL.Config
             config.CreateMap<Post, PostDto>().ReverseMap();
             config.CreateMap<QueryResult<Post>, QueryResultDto<PostDto, PostFilterDto>>();
 
-            config.CreateMap<Comment, CommentDto>().ReverseMap();
+            config.CreateMap<Comment, CommentDto>().ForMember(x => x.NickName, opt => opt.Ignore()).ReverseMap();
             config.CreateMap<QueryResult<Comment>, QueryResultDto<CommentDto, CommentFilterDto>>();
 
             config.CreateMap<Group, GroupDto>().ReverseMap();

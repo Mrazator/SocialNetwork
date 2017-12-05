@@ -9,14 +9,14 @@ namespace WebApi.Controllers
 {
     public class GroupController : ApiController
     {
-        public GroupFacade GroupFacade { get; set; }
+        public GroupGenericFacade GroupGenericFacade { get; set; }
 
         [Route("api/Group/GetBySubname")]
         public async Task<IEnumerable<GroupDto>> GetBySubname(string subname)
         {
             if (string.IsNullOrWhiteSpace(subname))
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            var groups = await GroupFacade.GetGroupsContainingSubNameAsync(subname);
+            var groups = await GroupGenericFacade.GetGroupsContainingSubNameAsync(subname);
 
             return groups;
         }
@@ -24,13 +24,13 @@ namespace WebApi.Controllers
         [Route("api/Group/CreatePost")]
         public void CreatePost(PostDto post, int groupId)
         {
-            GroupFacade.PostInGroup(post, groupId);
+            GroupGenericFacade.PostInGroup(post, groupId);
         }
 
         // GET: api/Groups/2
         public async Task<GroupDto> Get(int id)
         {
-            var group = await GroupFacade.GetAsync(id);
+            var group = await GroupGenericFacade.GetAsync(id);
 
             if (group == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -42,7 +42,7 @@ namespace WebApi.Controllers
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            var groupId = await GroupFacade.CreateAsync(entity);
+            var groupId = await GroupGenericFacade.CreateAsync(entity);
 
             if (groupId.Equals(0))
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -56,14 +56,14 @@ namespace WebApi.Controllers
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            await GroupFacade.UpdateAsync(entity);
+            await GroupGenericFacade.UpdateAsync(entity);
             return $"Updated Group with id: {id}";
         }
 
         // DELETE: api/Groups/5
         public async Task<string> Delete(int id)
         {
-            var success = await GroupFacade.DeleteAsync(id);
+            var success = await GroupGenericFacade.DeleteAsync(id);
             if (!success)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             return $"Deleted Group with id: {id}";

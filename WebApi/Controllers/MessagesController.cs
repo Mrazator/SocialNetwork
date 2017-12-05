@@ -9,20 +9,20 @@ namespace WebApi.Controllers
 {
     public class MessagesController : ApiController
     {
-        public MessageFacade MessageFacade { get; set; }
-        public FriendshipFacade FriendshipFacade { get; set; }
+        public MessageGenericFacade MessageGenericFacade { get; set; }
+        public FriendshipGenericFacade FriendshipGenericFacade { get; set; }
 
         [Route("api/Messages/GetChat")]
         public async Task<IEnumerable<MessageDto>> GetChat(int friendshipId)
         {
-            var chat = await MessageFacade.GetMessagesByFriendshipIdAsync(friendshipId);
+            var chat = await MessageGenericFacade.GetMessagesByFriendshipIdAsync(friendshipId);
             return chat;
         }
 
         // GET: api/Messages/2
         public async Task<MessageDto> Get(int id)
         {
-            var post = await MessageFacade.GetAsync(id);
+            var post = await MessageGenericFacade.GetAsync(id);
 
             if (post == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -34,7 +34,7 @@ namespace WebApi.Controllers
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            var postId = await MessageFacade.CreateAsync(entity);
+            var postId = await MessageGenericFacade.CreateAsync(entity);
 
             if (postId.Equals(0))
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -48,14 +48,14 @@ namespace WebApi.Controllers
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            await MessageFacade.UpdateAsync(entity);
+            await MessageGenericFacade.UpdateAsync(entity);
             return $"Updated Message with id: {id}";
         }
 
         // DELETE: api/Messages/5
         public async Task<string> Delete(int id)
         {
-            var success = await MessageFacade.DeleteAsync(id);
+            var success = await MessageGenericFacade.DeleteAsync(id);
             if (!success)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             return $"Deleted Message with id: {id}";

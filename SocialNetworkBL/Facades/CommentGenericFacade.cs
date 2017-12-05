@@ -10,11 +10,11 @@ using SocialNetworkBL.Services.Common;
 
 namespace SocialNetworkBL.Facades
 {
-    public class CommentFacade : FacadeBase<Comment, CommentDto, CommentFilterDto>
+    public class CommentGenericFacade : GenericFacadeBase<Comment, CommentDto, CommentFilterDto>
     {
         private readonly ICommentService _commentService;
 
-        public CommentFacade(
+        public CommentGenericFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<Comment, CommentDto, CommentFilterDto> service,
             ICommentService commentService)

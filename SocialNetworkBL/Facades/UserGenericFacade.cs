@@ -6,15 +6,15 @@ using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
-using SocialNetworkBL.Services.Users;
+using SocialNetworkBL.Services.User;
 
 namespace SocialNetworkBL.Facades
 {
-    public class UserFacade : FacadeBase<User, UserDto, UserFilterDto>
+    public class UserGenericFacade : GenericFacadeBase<User, UserDto, UserFilterDto>
     {
         private readonly IUserService _userService;
 
-        public UserFacade(
+        public UserGenericFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<User, UserDto, UserFilterDto> service,
             IUserService userService

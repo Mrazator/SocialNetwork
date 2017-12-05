@@ -15,7 +15,7 @@ namespace BL.Tests.FacadeTests
     [TestFixture]
     public class PostFacadeTests
     {
-        private static PostFacade CreateUserFacade(QueryResultDto<PostDto, PostFilterDto> expectedQueryResult)
+        private static PostGenericFacade CreateUserFacade(QueryResultDto<PostDto, PostFilterDto> expectedQueryResult)
         {
             var mockManager = new FacadeMockManager();
             var uowMock = FacadeMockManager.ConfigureUowMock();
@@ -29,7 +29,7 @@ namespace BL.Tests.FacadeTests
             var crudService =
                 new CrudQueryServiceBase<Post, PostDto, PostFilterDto>(mapper,
                     repositoryMock.Object, queryMock.Object);
-            var postFacade = new PostFacade(uowMock.Object, crudService, postService);
+            var postFacade = new PostGenericFacade(uowMock.Object, crudService, postService);
             return postFacade;
         }
 
