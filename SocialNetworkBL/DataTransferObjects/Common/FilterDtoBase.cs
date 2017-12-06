@@ -10,7 +10,7 @@
         /// <summary>
         ///     Size of the page
         /// </summary>
-        public int PageSize { get; set; } = 5;
+        public int PageSize { get; set; } = 50;
 
         /// <summary>
         ///     Name of the property for sorting query results

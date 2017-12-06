@@ -12,26 +12,31 @@ using SocialNetworkPL.Models;
 
 namespace SocialNetworkPL.Controllers
 {
+    //tento controller je cely prepsany
+    //tak aby vyzuival nove vytvorenou UserProfileFacade, nove Dtocka, QueryObjekty, Servisy...
     public class UserProfileController : Controller
     {
-        public const int PageSize = 3;
+        //zatim se zobrazuje jen 250 prvnich postu a 50 prvnich komentaru
+        public const int Posts = 250;
+        public const int Comments = 50;
+
         private const string PostFilterSessionKey = "postFilter";
         private const string CommentFilterSessionKey = "commentFilter";
 
         public UserProfileFacade UserProfileFacade { get; set; }
         public BasicUserFacade BasicUserFacade { get; set; }
 
-        //pripraveno na pagination - to vsak udelam pomoci dotvvm
+        //pouze pripraveno na pagination, cele to vsak chci zkusit prepsat do dotVVM, ale neni moc casu :)
         public async Task<ActionResult> Index(string nickName = "", int postPage = 1, int commentPage = 1)
         {
             //delete this after Identity.UserId is set
             var user = await BasicUserFacade.GetUserByNickNameAsync(nickName);
 
-            var postFilter = Session[PostFilterSessionKey] as PostFilterDto ?? new PostFilterDto() { PageSize = PageSize };
+            var postFilter = Session[PostFilterSessionKey] as PostFilterDto ?? new PostFilterDto() { PageSize = Posts};
             postFilter.RequestedPageNumber = postPage;
             postFilter.UserId = user.Id;
 
-            var commentFilter = Session[CommentFilterSessionKey] as CommentFilterDto ?? new CommentFilterDto() { PageSize = PageSize };
+            var commentFilter = Session[CommentFilterSessionKey] as CommentFilterDto ?? new CommentFilterDto() { PageSize = Comments };
             commentFilter.RequestedPageNumber = commentPage;
 
             var userDto = await UserProfileFacade.GetUserProfile(postFilter, commentFilter);

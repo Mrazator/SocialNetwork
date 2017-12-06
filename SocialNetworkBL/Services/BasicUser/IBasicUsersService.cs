@@ -10,8 +10,8 @@ namespace SocialNetworkBL.Services.BasicUser
 {
     public interface IBasicUsersService : IService<BasicUserDto, UserFilterDto>
     {
-        Task<BasicUserDto> GetUsersByNickName(string nickName);
-        Task<IEnumerable<BasicUserDto>> GetUsersContainingSubNameAsync(string subName);
+        Task<BasicUserDto> GetUserByNickName(string nickName);
+        Task<IEnumerable<BasicUserDto>> GetUsersContainingSubNameAsync(UserFilterDto filter);
         Task<QueryResultDto<BasicUserDto, UserFilterDto>> GetUsersQueryContainingSubNameAsync(string subName);
 
     }

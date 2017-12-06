@@ -27,7 +27,7 @@ namespace SocialNetworkBL.Services.BasicUser
             _query = query;
         }
 
-        public async Task<BasicUserDto> GetUsersByNickName(string nickName)
+        public async Task<BasicUserDto> GetUserByNickName(string nickName)
         {
             var query = await _query.ExecuteQuery(new UserFilterDto()
             {
@@ -37,9 +37,9 @@ namespace SocialNetworkBL.Services.BasicUser
             return query?.Items?.SingleOrDefault();
         }
 
-        public async Task<IEnumerable<BasicUserDto>> GetUsersContainingSubNameAsync(string subName)
+        public async Task<IEnumerable<BasicUserDto>> GetUsersContainingSubNameAsync(UserFilterDto filter)
         {
-            var queryResult = await _query.ExecuteQuery(new UserFilterDto { SubName = subName });
+            var queryResult = await _query.ExecuteQuery(filter);
             return queryResult?.Items;
         }
 

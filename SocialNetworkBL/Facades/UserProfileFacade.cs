@@ -46,28 +46,37 @@ namespace SocialNetworkBL.Facades
             {
                 var user = await _userProfileUserService.GetUserProfileUserByIdAsync(postFilter.UserId);
                 user.Friends = (await _friendshipService.GetFriendsByUserIdAsync(user.Id, true)).ToList();
-                user.Posts = await GetPostsByFilters(postFilter, commentFilter);
+                user.Posts = await GetPostsWithUsersNicknamesAndCommentsByFilters(postFilter, commentFilter);
 
                 return user;
             }
         }
 
-        //Get posts by filter, when is commentFilter not null then load comments
-        public async Task<QueryResultDto<UserProfilePostDto, PostFilterDto>> GetPostsByFilters(PostFilterDto postFilter, CommentFilterDto commentFilter)
+        //Get posts by filter, when is commentFilter not null then load also comments
+        public async Task<QueryResultDto<UserProfilePostDto, PostFilterDto>> GetPostsWithUsersNicknamesAndCommentsByFilters(PostFilterDto postFilter, CommentFilterDto commentFilter)
         {
-            postFilter.SortCriteria = nameof(Post.PostedAt);
-            var posts = await _userProfilePostService.GetPostsByFilterAsync(postFilter);
-
-            if (commentFilter != null)
+            using (UnitOfWorkProvider.Create())
             {
-                foreach (var post in posts.Items)
-                {
-                    commentFilter.PostId = post.Id;
-                    post.Comments = await GetCommentsByFilter(commentFilter);
-                }
-            }
+                postFilter.SortCriteria = nameof(Post.PostedAt);
+                var posts = await _userProfilePostService.GetPostsByFilterAsync(postFilter);
 
-            return posts;
+                if (commentFilter != null)
+                {
+                    foreach (var post in posts.Items)
+                    {
+                        if (postFilter.UserId == null && post.UserId != null)
+                        {
+                            //Add Nicknames
+                            post.NickName = (await _basicUsersService.GetAsync((int) post.UserId)).NickName;
+                        }
+
+                        commentFilter.PostId = post.Id;
+                        post.Comments = await GetCommentsByFilter(commentFilter);
+                    }
+                }
+
+                return posts;
+            }
         }
 
         private async Task<QueryResultDto<CommentDto, CommentFilterDto>> GetCommentsByFilter(CommentFilterDto commentFilter)

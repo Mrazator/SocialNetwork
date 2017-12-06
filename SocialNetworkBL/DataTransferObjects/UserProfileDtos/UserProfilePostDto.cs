@@ -17,6 +17,7 @@ namespace SocialNetworkBL.DataTransferObjects.UserProfileDtos
         public int? GroupId { get; set; }
 
         //ignored - managing by myself in facade
+        public string NickName { get; set; }
         public QueryResultDto<CommentDto, CommentFilterDto> Comments { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using Infrastructure;
 using Infrastructure.UnitOfWork;
 using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.BasicUser;
 using SocialNetworkBL.Services.Friendships;
@@ -41,15 +42,15 @@ namespace SocialNetworkBL.Facades
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await _basicUsersService.GetUsersByNickName(nickName);
+                return await _basicUsersService.GetUserByNickName(nickName);
             }
         }
 
-        public async Task<IEnumerable<BasicUserDto>> GetUsersBySubnameAsync(string subname)
+        public async Task<IEnumerable<BasicUserDto>> GetUsersBySubnameAsync(UserFilterDto filter)
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await _basicUsersService.GetUsersContainingSubNameAsync(subname);
+                return await _basicUsersService.GetUsersContainingSubNameAsync(filter);
             }
         }
         public async Task<BasicUserDto> GetBasicUserWithFriends(int userId)

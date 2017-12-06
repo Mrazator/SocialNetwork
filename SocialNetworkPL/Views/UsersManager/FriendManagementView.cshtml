@@ -34,18 +34,18 @@
                             </th>
 
                             <td>
-                                @if (Model.User.Friends != null && !Model.User.Friends.Where(x => !x.IsAccepted && x.User2Id == user.Id).IsNullOrEmpty())
+                                @if (!Model.User.Friends.Where(x => !x.IsAccepted && x.User2Id == user.Id).IsNullOrEmpty())
                                 {
                                     <input type="submit" value="Waiting for confirmation" class="btn btn-default" />
                                 }
-                                else if (Model.User.Friends != null && !Model.User.Friends.Where(x => !x.IsAccepted && x.User1Id == user.Id).IsNullOrEmpty())
+                                else if (!Model.User.Friends.Where(x => !x.IsAccepted && x.User1Id == user.Id).IsNullOrEmpty())
                                 {
                                     using (Html.BeginForm("AcceptFriend", "UsersManager", new { friendId = user.Id }, FormMethod.Post, null))
                                     {
                                         <input type="submit" value="Accept friendship" class="btn btn-success" />
                                     }
                                 }
-                                else if (Model.User.Friends != null && !Model.User.Friends.Where(x => x.IsAccepted && (x.User1Id == user.Id || x.User2Id == user.Id)).IsNullOrEmpty())
+                                else if (!Model.User.Friends.Where(x => x.IsAccepted && (x.User1Id == user.Id || x.User2Id == user.Id)).IsNullOrEmpty())
                                 {
                                     //remove friend in the future
                                     <input type="submit" value="Already friends" class="btn btn-default" />

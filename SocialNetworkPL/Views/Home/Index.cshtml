@@ -9,7 +9,7 @@
     @{
         if (!User.Identity.IsAuthenticated)
         {
-            foreach (var post in Model.Posts)
+            foreach (var post in Model.Posts.Items)
             {
                 if (!post.StayAnonymous)
                 {
@@ -20,15 +20,14 @@
                                 <div class="profile-picture" style="background-image: url('@pathToImg')"></div>
                                 <div class="content">
                                     <div>
-                                        @{ var nick = Model.Users.FirstOrDefault(x => x.Id == post.UserId)?.NickName;}
-                                        <h4>@nick</h4>
+                                        <h4>@post.NickName</h4>
                                         <small>@post.PostedAt</small>
                                     </div>
                                     <p class="message">
                                         @post.Text
                                     </p>
                                     <div class="images"></div>
-                                    @{ var comments = post.Comments?.ToList();}
+                                    @{ var comments = post.Comments?.Items?.ToList();}
                                     @if (comments != null)
                                     {
                                         <ul class="comments">
@@ -40,8 +39,7 @@
                                                     <div class="profile-picture" style="background-image: url('@pathToImgComment')"></div>
                                                     <div class="content">
                                                         <div>
-                                                            @{ var nameComment = Model.Users.FirstOrDefault(x => x.Id == comment.UserId)?.NickName;}
-                                                            <h4>@nameComment</h4>
+                                                            <h4>@comment.NickName</h4>
                                                             <small>@comment.PostedAt</small>
                                                         </div>
                                                         <p class="message">
@@ -61,11 +59,10 @@
         }
         else
         {
-            foreach (var post in Model.Posts)
+            foreach (var post in Model.Posts.Items)
             {
-                var friendsAccepted = Model.AuthenticatedUser.AcceptedFriendships?.Where(x => x.IsAccepted && x.User1Id == post.UserId);
-                var friendsRequested = Model.AuthenticatedUser.RequestedFriendships?.Where(x =>x.IsAccepted && x.User2Id == post.UserId);
-                if (!post.StayAnonymous || !friendsAccepted.IsNullOrEmpty() || !friendsRequested.IsNullOrEmpty() || post.UserId == Model.AuthenticatedUser.Id)
+                var friends = Model.AuthenticatedUser.Friends?.Where(x => x.IsAccepted && (x.User1Id == post.UserId || x.User2Id == post.UserId));
+                if (!post.StayAnonymous || !friends.IsNullOrEmpty() || post.UserId == Model.AuthenticatedUser.Id)
                 {
                     <div class="post-container">
                         <ul class="posts">
@@ -75,15 +72,14 @@
                                 <div class="profile-picture" style="background-image: url('@pathToImg')"></div>
                                 <div class="content">
                                     <div>
-                                        @{ var name = Model.Users.FirstOrDefault(x => x.Id == post.UserId)?.NickName;}
-                                        <h4>@name</h4>
+                                        <h4>@post.NickName</h4>
                                         <small>@post.PostedAt</small>
                                     </div>
                                     <p class="message">
                                         @post.Text
                                     </p>
                                     <div class="images"></div>
-                                    @{ var comments = post.Comments?.ToList();}
+                                    @{ var comments = post.Comments?.Items?.ToList();}
                                     @if (comments != null)
                                     {
                                         <ul class="comments">
@@ -95,8 +91,7 @@
                                                 <div class="profile-picture" style="background-image: url('@pathToImgComment')"></div>
                                                 <div class="content">
                                                     <div>
-                                                        @{ var nameComment = Model.Users.FirstOrDefault(x => x.Id == comment.UserId)?.NickName;}
-                                                        <h4>@nameComment</h4>
+                                                        <h4>@comment.NickName</h4>
                                                         <small>@comment.PostedAt</small>
                                                     </div>
                                                     <p class="message">
@@ -111,7 +106,7 @@
                                         @using (Html.BeginForm("AddComment", "Home", FormMethod.Post))
                                         {
                                         <div class="search-btn">
-                                            @Html.EditorFor(model => model.CommentText, new { htmlAttributes = new { @class = "form-control", placeholder = "Write a comment, " + Model.AuthenticatedUser.NickName}})
+                                            @Html.EditorFor(model => model.NewCommentText, new { htmlAttributes = new { @class = "form-control", placeholder = "Write a comment, " + Model.AuthenticatedUser.NickName}})
                                             @Html.HiddenFor(model => model.AuthenticatedUser.Id)
                                             @Html.HiddenFor(model => model.PostId, new { @Value = post.Id})
 

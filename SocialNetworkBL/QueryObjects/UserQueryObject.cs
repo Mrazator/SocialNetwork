@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿    using AutoMapper;
 using Infrastructure.Query;
 using Infrastructure.Query.Predicates;
 using Infrastructure.Query.Predicates.Operators;

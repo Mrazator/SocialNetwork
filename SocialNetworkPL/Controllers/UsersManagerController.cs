@@ -15,22 +15,28 @@ namespace SocialNetworkPL.Controllers
 {
     public class UsersManagerController : Controller
     {
-        //pouze dve fasady, prijde mi zbytecne delat pro tohle specialni fasadu - tak jak je to u UserProfileControlleru
+        //pouze dve fasady, prijde mi zbytecnedelat pro tohle specialni fasadu,
+        //kdyz mam takhle hezke genericke fasady, ktere muzu vyuzit
+        //kdybych to vsak delal znova, tak uz radsi pro konzistenci specialni fasadu vytvorim
         public FriendshipGenericFacade FriendshipGenericFacade { get; set; }
         public BasicUserFacade BasicUserFacade { get; set; }
+        public UserGenericFacade UserGenericFacade { get; set; }
+
+        //Vypise se pouze prvnich 100 hledani
+        private const int UsersCount = 100;
 
         public async Task<ActionResult> Index([FromUri] string subname)
         {
             var filter = new UserFilterDto { SubName = subname };
 
-            var users = await BasicUserFacade.GetUsersBySubnameAsync(filter.SubName);
             var user = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
+            var users = await BasicUserFacade.GetUsersBySubnameAsync(filter);
             var basicUserWithFriends = await BasicUserFacade.GetBasicUserWithFriends(user.Id);
 
             return View("FriendManagementView", new FindUsersModel
             {
                 Filter = filter,
-                Users = new HashSet<BasicUserDto>(users),
+                Users = users,
                 User = basicUserWithFriends
             });
         }

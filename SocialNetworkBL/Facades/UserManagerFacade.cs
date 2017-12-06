@@ -39,7 +39,7 @@
 //        {
 //            using (UnitOfWorkProvider.Create())
 //            {
-//                return await _basicUsersService.GetUsersByNickName(nickName);
+//                return await _basicUsersService.GetUserByNickName(nickName);
 //            }
 //        }
 
