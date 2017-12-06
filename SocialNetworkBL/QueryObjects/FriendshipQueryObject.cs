@@ -22,15 +22,19 @@ namespace SocialNetworkBL.QueryObjects
                 new SimplePredicate(nameof(Friendship.User2Id), ValueComparingOperator.Equal, filter.UserId)
             }, LogicalOperator.OR);
 
-            var compositePredicate = new CompositePredicate(new List<IPredicate>()
-            {
-                wherePredicate,
-                new SimplePredicate(nameof(Friendship.IsAccepted), ValueComparingOperator.Equal, filter.IsAccepted)
-            });
+            if(filter.IsAccepted != null) { 
+                var compositePredicate = new CompositePredicate(new List<IPredicate>()
+                {
+                    wherePredicate,
+                    new SimplePredicate(nameof(Friendship.IsAccepted), ValueComparingOperator.Equal, filter.IsAccepted)
+                });
+
+                wherePredicate = compositePredicate;
+            }
 
             return filter.UserId.Equals(null)
                 ? query
-                : query.Where(compositePredicate);
+                : query.Where(wherePredicate);
         }
     }
 }

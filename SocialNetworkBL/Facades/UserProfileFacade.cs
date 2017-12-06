@@ -45,7 +45,7 @@ namespace SocialNetworkBL.Facades
             using (UnitOfWorkProvider.Create())
             {
                 var user = await _userProfileUserService.GetUserProfileUserByIdAsync(postFilter.UserId);
-                user.Friends = (await _friendshipService.GetFriendsByUserIdAsync(user.Id, false)).ToList();
+                user.Friends = (await _friendshipService.GetFriendsByUserIdAsync(user.Id, true)).ToList();
                 user.Posts = await GetPostsByFilters(postFilter, commentFilter);
 
                 return user;

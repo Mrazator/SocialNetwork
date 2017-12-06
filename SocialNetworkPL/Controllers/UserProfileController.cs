@@ -25,7 +25,7 @@ namespace SocialNetworkPL.Controllers
         public async Task<ActionResult> Index(string nickName = "", int postPage = 1, int commentPage = 1)
         {
             //delete this after Identity.UserId is set
-            var user = await BasicUserFacade.GetUsersByNickNameAsync(nickName);
+            var user = await BasicUserFacade.GetUserByNickNameAsync(nickName);
 
             var postFilter = Session[PostFilterSessionKey] as PostFilterDto ?? new PostFilterDto() { PageSize = PageSize };
             postFilter.RequestedPageNumber = postPage;
@@ -35,7 +35,7 @@ namespace SocialNetworkPL.Controllers
             commentFilter.RequestedPageNumber = commentPage;
 
             var userDto = await UserProfileFacade.GetUserProfile(postFilter, commentFilter);
-            var authUser = await BasicUserFacade.GetUsersByNickNameAsync(User.Identity.Name);
+            var authUser = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
 
 
             return View("UserProfile", new UserProfileModel
@@ -92,7 +92,7 @@ namespace SocialNetworkPL.Controllers
 
         public async Task<ActionResult> UserSettings(string nickName = "")
         {
-            var user = await BasicUserFacade.GetUsersByNickNameAsync(nickName);
+            var user = await BasicUserFacade.GetUserByNickNameAsync(nickName);
 
             return View("UserSettings", new SetingsModel
             {
@@ -104,7 +104,7 @@ namespace SocialNetworkPL.Controllers
         [HttpPost]
         public async Task<ActionResult> SaveSettings(SetingsModel model)
         {
-            var user = await BasicUserFacade.GetUsersByNickNameAsync(model.NickName);
+            var user = await BasicUserFacade.GetUserByNickNameAsync(model.NickName);
             user.Description = model.Description;
             await BasicUserFacade.UpdateAsync(user);
 

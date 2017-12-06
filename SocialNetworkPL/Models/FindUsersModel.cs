@@ -8,6 +8,6 @@ namespace SocialNetworkPL.Models
     {
         public BasicUserDto User { get; set; }
         public UserFilterDto Filter { get; set; }
-        public IEnumerable<BasicUserDto> Users { get; set; }
+        public IEnumerable<BasicUserDto> Users { get; set;  }
     }
 }

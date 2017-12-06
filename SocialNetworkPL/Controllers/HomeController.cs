@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
@@ -16,29 +17,29 @@ namespace SocialNetworkPL.Controllers
         public PostGenericFacade PostGenericFacade { get; set; }
         public UserGenericFacade UserGenericFacade { get; set; }
         public CommentGenericFacade CommentGenericFacade { get; set; }
+        public BasicUserFacade BasicUserFacade { get; set; }
 
         // GET: Posts
         public async Task<ActionResult> Index(int page = 1)
         {
-            var filter = new PostFilterDto();
+            var filter = new PostFilterDto()
+            {
+                PageSize = 10,
+                SortAscending = true,
+                SortCriteria = nameof(Post.PostedAt)
+            };
 
             var result = await PostGenericFacade.GetPostsAsync(filter);
             var user = await UserGenericFacade.GetUserByNickNameAsync(User.Identity.Name);
             var users = await UserGenericFacade.GetAllItemsAsync();
-            var model = InitializeProductListViewModel(result, user, users.Items);
 
-            return View("Index", model);
-        }
-
-        private PostListModel InitializeProductListViewModel(QueryResultDto<PostDto, PostFilterDto> result, UserDto user, IEnumerable<UserDto> users)
-        {
-            return new PostListModel
+            return View("Index", new PostListModel()
             {
-                Posts = result.Items.OrderByDescending(x => x.PostedAt),
-                Filter = result.Filter,
+                Filter =  filter,
                 AuthenticatedUser = user,
-                Users = users
-            };
+                Posts = result.Items,
+                Users = users.Items
+            });
         }
 
         // GET: Posts/UserProfile/5

@@ -8,13 +8,14 @@ using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.DataTransferObjects.UserProfileDtos;
 using SocialNetworkBL.Facades;
+using SocialNetworkBL.Services.Friendships;
 using SocialNetworkPL.Models;
 
 namespace SocialNetworkPL.Controllers
 {
     public class UsersManagerController : Controller
     {
-        //public UserGenericFacade UserGenericFacade { get; set; }
+        //pouze dve fasady, prijde mi zbytecne delat pro tohle specialni fasadu - tak jak je to u UserProfileControlleru
         public FriendshipGenericFacade FriendshipGenericFacade { get; set; }
         public BasicUserFacade BasicUserFacade { get; set; }
 
@@ -23,28 +24,21 @@ namespace SocialNetworkPL.Controllers
             var filter = new UserFilterDto { SubName = subname };
 
             var users = await BasicUserFacade.GetUsersBySubnameAsync(filter.SubName);
-            var user = await BasicUserFacade.GetUsersByNickNameAsync(User.Identity.Name);
+            var user = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
+            var basicUserWithFriends = await BasicUserFacade.GetBasicUserWithFriends(user.Id);
 
-            var model = InitializeProductListViewModel(filter, users, user);
-
-            return View("FriendManagementView", model);
-        }
-
-        private FindUsersModel InitializeProductListViewModel(UserFilterDto filter, IEnumerable<BasicUserDto> users,
-            BasicUserDto user)
-        {
-            return new FindUsersModel
+            return View("FriendManagementView", new FindUsersModel
             {
                 Filter = filter,
                 Users = new HashSet<BasicUserDto>(users),
-                User = user
-            };
+                User = basicUserWithFriends
+            });
         }
 
         [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> AddFriend(int id)
         {
-            var user = await BasicUserFacade.GetUsersByNickNameAsync(User.Identity.Name);
+            var user = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
 
             var friendship = new FriendshipDto
             {
@@ -60,9 +54,9 @@ namespace SocialNetworkPL.Controllers
         [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> AcceptFriend(int friendId)
         {
-            var user = await BasicUserFacade.GetUsersByNickNameAsync(User.Identity.Name);
+            var user = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
             var authUser = await BasicUserFacade.GetBasicUserWithFriends(user.Id);
-            var friendship = authUser.Friends.SingleOrDefault(x => x.User1Id == user.Id || x.User2Id == user.Id);
+            var friendship = authUser.Friends.SingleOrDefault(x => x.User1Id == friendId || x.User2Id == friendId);
 
             if (friendship != null)
             {

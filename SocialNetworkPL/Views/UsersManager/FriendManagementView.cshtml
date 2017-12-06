@@ -1,5 +1,4 @@
 ﻿@using Castle.Core.Internal
-@using SocialNetworkBL.DataTransferObjects
 @model SocialNetworkPL.Models.FindUsersModel
 
 @if (User.Identity.IsAuthenticated)
@@ -10,11 +9,11 @@
             <div class="form-group">
 
                 @Html.TextBox("subname", null, new
-                {
-                    @class = "form-control",
-                    id = "search-subname",
-                    placeholder = "Enter nickname"
-                })
+           {
+               @class = "form-control",
+               id = "search-subname",
+               placeholder = "Enter nickname"
+           })
 
             </div>
 
@@ -23,53 +22,32 @@
 
         <table class="table">
             <tbody>
-            @{
-                var requestedFriendsYetNotAcceptedIds = Model.User.Friends
-                    ?.Where(x => !x.IsAccepted)
-                    .Select(x => x.User2Id)
-                    .ToList();
-
-                var friendsWaitingForMyAcceptance = Model.User.Friends
-                    ?.Where(x => !x.IsAccepted)
-                    .ToList();
-
-                var friends = Model.User.Friends;
-                   
-            }
-
-            @foreach (var user in Model.Users)
-            {
-                if (user.NickName != Model.User.NickName)
+                @foreach (var user in Model.Users)
                 {
-                    <tr>
-                        <th scope="row">
-                            @{ var pathToImg = "../../Assets/img/girl-" + user.Id + "-400.jpg";} 
-                            <div class="profile-picture" style="background-image: url(@pathToImg)"></div>
-                            @Html.ActionLink(user.NickName, "Index", "UserProfile",new {nickName = user.NickName}, null)
-                        </th>
+                    if (user.NickName != Model.User.NickName)
+                    {
+                        <tr>
+                            <th scope="row">
+                                @{ var pathToImg = "../../Assets/img/girl-" + user.Id + "-400.jpg";}
+                                <div class="profile-picture" style="background-image: url(@pathToImg)"></div>
+                                @Html.ActionLink(user.NickName, "Index", "UserProfile", new { nickName = user.NickName }, null)
+                            </th>
 
-                        <td>
-                            @if (requestedFriendsYetNotAcceptedIds != null  && requestedFriendsYetNotAcceptedIds.Contains(user.Id))
-                            {
-                                <input type="submit" value="Waiting for confirmation" class="btn btn-default" />
-                            }
-                            else if (friendsWaitingForMyAcceptance != null && !friendsWaitingForMyAcceptance.Where(x => x.User1Id == user.Id).IsNullOrEmpty())
-                            {
-                                var friendship = friendsWaitingForMyAcceptance
-                                    .Select(x => x.User1Id == user.Id)
-                                    .FirstOrDefault();
-
-                                using (Html.BeginForm("AcceptFriend", "UsersManager", new { friendId = user.Id }, FormMethod.Post, null))
+                            <td>
+                                @if (Model.User.Friends != null && !Model.User.Friends.Where(x => !x.IsAccepted && x.User2Id == user.Id).IsNullOrEmpty())
                                 {
-                                    <input type="submit" value="Accept friendship" class="btn btn-success" />
+                                    <input type="submit" value="Waiting for confirmation" class="btn btn-default" />
                                 }
-                            }
-                            else
-                            {
-                                var friendshipDtos = friends as IList<FriendshipDto> ?? friends.ToList();
-                                if  ( friends != null && !friendshipDtos.Where(x => x.User1Id == user.Id || x.User2Id == user.Id).IsNullOrEmpty())
+                                else if (Model.User.Friends != null && !Model.User.Friends.Where(x => !x.IsAccepted && x.User1Id == user.Id).IsNullOrEmpty())
                                 {
-                                    //remove friend for the future
+                                    using (Html.BeginForm("AcceptFriend", "UsersManager", new { friendId = user.Id }, FormMethod.Post, null))
+                                    {
+                                        <input type="submit" value="Accept friendship" class="btn btn-success" />
+                                    }
+                                }
+                                else if (Model.User.Friends != null && !Model.User.Friends.Where(x => x.IsAccepted && (x.User1Id == user.Id || x.User2Id == user.Id)).IsNullOrEmpty())
+                                {
+                                    //remove friend in the future
                                     <input type="submit" value="Already friends" class="btn btn-default" />
                                 }
                                 else
@@ -79,11 +57,11 @@
                                         <input type="submit" value="Add friend" class="btn btn-primary" />
                                     }
                                 }
-                            }
-                        </td>
-                    </tr>
-                }
-            }
+
+                            </td>
+                        </tr>
+                                        }
+                                    }
             </tbody>
         </table>
     </div>
@@ -94,4 +72,4 @@
         </blockquote>
     </div>
     <div class="clearfix"></div>
-                                }
+                                    }

@@ -93,6 +93,7 @@
     <Compile Include="Facades\MessageGenericFacade.cs" />
     <Compile Include="Facades\PostGenericFacade.cs" />
     <Compile Include="Facades\BasicUserFacade.cs" />
+    <Compile Include="Facades\UserManagerFacade.cs" />
     <Compile Include="Facades\UserProfileFacade.cs" />
     <Compile Include="Facades\UserGenericFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

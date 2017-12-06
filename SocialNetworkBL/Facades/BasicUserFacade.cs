@@ -37,7 +37,7 @@ namespace SocialNetworkBL.Facades
             }
         } 
 
-        public async Task<BasicUserDto> GetUsersByNickNameAsync(string nickName)
+        public async Task<BasicUserDto> GetUserByNickNameAsync(string nickName)
         {
             using (UnitOfWorkProvider.Create())
             {
@@ -52,8 +52,7 @@ namespace SocialNetworkBL.Facades
                 return await _basicUsersService.GetUsersContainingSubNameAsync(subname);
             }
         }
-
-        public async Task<BasicUserDto> GetBasicUserWithFriends(int userId, bool isAccepted = false)
+        public async Task<BasicUserDto> GetBasicUserWithFriends(int userId)
         {
             using (UnitOfWorkProvider.Create())
             {

@@ -23,15 +23,15 @@ namespace SocialNetworkBL.Facades
             _friendshipService = friendshipService;
         }
 
-        public async Task<IEnumerable<BasicUserDto>> GetFriendsByUserIdAsync(int userId, bool isAccepted = false)
+        public async Task<IEnumerable<BasicUserDto>> GetFriendsByUserIdAsync(int userId, bool? isAccepted = null)
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await _friendshipService.GetFriendsByUserIdAsync(userId ,isAccepted);
+                return await _friendshipService.GetFriendsByUserIdAsync(userId, isAccepted);
             }
         }
 
-        public async Task<IEnumerable<FriendshipDto>> GetFriendshipsByUserIdAsync(int userId, bool isAccepted = false)
+        public async Task<IEnumerable<FriendshipDto>> GetFriendshipsByUserIdAsync(int userId, bool? isAccepted = false)
         {
             using (UnitOfWorkProvider.Create())
             {

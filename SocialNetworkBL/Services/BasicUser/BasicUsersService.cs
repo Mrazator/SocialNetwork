@@ -42,5 +42,10 @@ namespace SocialNetworkBL.Services.BasicUser
             var queryResult = await _query.ExecuteQuery(new UserFilterDto { SubName = subName });
             return queryResult?.Items;
         }
+
+        public async Task<QueryResultDto<BasicUserDto, UserFilterDto>> GetUsersQueryContainingSubNameAsync(string subName)
+        {
+            return await Query.ExecuteQuery(new UserFilterDto() {SubName = subName});
+        }
     }
 }
