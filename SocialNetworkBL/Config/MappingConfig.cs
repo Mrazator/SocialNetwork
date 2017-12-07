@@ -29,6 +29,7 @@ namespace SocialNetworkBL.Config
 
             config.CreateMap<User, BasicUserDto>()
                 .ForMember(x => x.Friends, opt => opt.Ignore())
+                .ForMember(x => x.Groups, opt => opt.Ignore())
                 .ReverseMap();
             config.CreateMap<QueryResult<User>, QueryResultDto<BasicUserDto, UserFilterDto>>();
 

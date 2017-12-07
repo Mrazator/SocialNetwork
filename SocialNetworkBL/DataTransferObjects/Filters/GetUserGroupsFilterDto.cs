@@ -4,8 +4,8 @@ namespace SocialNetworkBL.DataTransferObjects.Filters
 {
     public class GetUserGroupsFilterDto : FilterDtoBase
     {
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
 
-        public bool IsAccepted { get; set; }
+        public bool? IsAccepted { get; set; } = null;
     }
 }

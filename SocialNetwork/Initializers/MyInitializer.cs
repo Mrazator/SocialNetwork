@@ -111,7 +111,9 @@ namespace SocialNetwork.Initializers
             {
                 Group = group,
                 User = user2,
-                IsAdmin = true
+                IsAdmin = true,
+                IsAccepted = true
+      
             };
 
             context.GroupUsers.Add(groupUser);
@@ -119,7 +121,8 @@ namespace SocialNetwork.Initializers
             var groupUser2 = new GroupUser
             {
                 Group = group,
-                User = user1
+                User = user1,
+                IsAccepted = true
             };
 
             context.GroupUsers.Add(groupUser2);

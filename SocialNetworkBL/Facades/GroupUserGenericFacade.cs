@@ -7,6 +7,7 @@ using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.GroupsUsers;
+using SocialNetworkBL.Services.Groups;
 
 namespace SocialNetworkBL.Facades
 {
@@ -19,18 +20,19 @@ namespace SocialNetworkBL.Facades
             IUnitOfWorkProvider unitOfWorkProvider,
             CrudQueryServiceBase<GroupUser, GetGroupUsersDto, GetGroupUsersFilterDto> service,
             IGetGroupUsersService groupUserService,
-            IGetUserGroupsService userGroupService
+            IGetUserGroupsService userGroupService,
+            IGroupService groupService
         ) : base(unitOfWorkProvider, service)
         {
             _groupUserService = groupUserService;
             _userGroupService = userGroupService;
         }
 
-        public async Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId)
+        public async Task<IList<GetUserGroupsDto>> GetGroupsByUserIdAsync(int userId)
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await _userGroupService.GetGroupsByUserIdAsync(userId);
+                return await _userGroupService.GetGroupsByUserIdAsync(userId, null);
             }
         }
 

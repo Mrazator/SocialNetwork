@@ -30,6 +30,7 @@ namespace SocialNetworkPL.Controllers
             var filter = new UserFilterDto { SubName = subname };
 
             var user = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
+            //var users2 = await UserGenericFacade.GetUsersContainingSubNameAsync(subname);
             var users = await BasicUserFacade.GetUsersBySubnameAsync(filter);
             var basicUserWithFriends = await BasicUserFacade.GetBasicUserWithFriends(user.Id);
 

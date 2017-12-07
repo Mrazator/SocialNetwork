@@ -11,6 +11,7 @@ using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.BasicUser;
 using SocialNetworkBL.Services.Friendships;
+using SocialNetworkBL.Services.GroupsUsers;
 
 namespace SocialNetworkBL.Facades
 {
@@ -18,15 +19,20 @@ namespace SocialNetworkBL.Facades
     {
         private readonly IBasicUsersService _basicUsersService;
         private readonly IFriendshipService _friendshipService;
+        private readonly IGetUserGroupsService _getUserGroupsService;
+
+
 
         public BasicUserFacade(
             IUnitOfWorkProvider unitOfWorkProvider,
             IBasicUsersService basicUsersService,
-            IFriendshipService friendshipService
+            IFriendshipService friendshipService,
+            IGetUserGroupsService getUserGroupsService
             ) : base(unitOfWorkProvider)
         {
             _basicUsersService = basicUsersService;
             _friendshipService = friendshipService;
+            _getUserGroupsService = getUserGroupsService;
         }
 
         public async Task UpdateAsync(BasicUserDto model)
@@ -65,6 +71,23 @@ namespace SocialNetworkBL.Facades
                 friendshipDtos.AddRange(friendshipsNotYet);
 
                 user.Friends = friendshipDtos;
+
+                return user;
+            }
+        }
+
+        public async Task<BasicUserDto> GetBasicUserWithGroups(int userId)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                var groups = await _getUserGroupsService.GetGroupsByUserIdAsync(userId, true);
+                var groupsInvitedInto = await _getUserGroupsService.GetGroupsByUserIdAsync(userId, false);
+                var user = await _basicUsersService.GetAsync(userId);
+
+                var groupDtos = groups.ToList();
+                groupDtos.AddRange(groupsInvitedInto);
+
+                user.Groups = groupDtos;
 
                 return user;
             }

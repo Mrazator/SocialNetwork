@@ -6,6 +6,7 @@ using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects.Common;
+using System.Collections.Generic;
 
 namespace SocialNetworkBL.QueryObjects
 {
@@ -17,12 +18,26 @@ namespace SocialNetworkBL.QueryObjects
 
         protected override IQuery<GroupUser> ApplyWhereClause(IQuery<GroupUser> query, GetUserGroupsFilterDto filter)
         {
-            var simplePredicate =
-                new SimplePredicate(nameof(GroupUser.GroupId), ValueComparingOperator.Equal, filter.UserId);
+            //var simplePredicate =
+            //    new SimplePredicate(nameof(GroupUser.GroupId), ValueComparingOperator.Equal, filter.UserId);
+
+            //return filter.UserId.Equals(null)
+            //    ? query
+            //    : query.Where(simplePredicate);
+
+            var compositePredicate = new CompositePredicate(new List<IPredicate>
+            {
+                new SimplePredicate(nameof(GroupUser.UserId), ValueComparingOperator.Equal, filter.UserId)
+            });
+
+            if (filter.IsAccepted != null)
+            {
+                compositePredicate.Predicates.Add(new SimplePredicate(nameof(GroupUser.IsAccepted), ValueComparingOperator.Equal, filter.IsAccepted));
+            }
 
             return filter.UserId.Equals(null)
                 ? query
-                : query.Where(simplePredicate);
+                : query.Where(compositePredicate);
         }
     }
 }

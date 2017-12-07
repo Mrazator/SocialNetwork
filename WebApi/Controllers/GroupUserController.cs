@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.Facades;
+using System.Linq;
 
 namespace WebApi.Controllers
 {
@@ -20,8 +21,8 @@ namespace WebApi.Controllers
             if (user == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            var groups = await GroupUserGenericFacade.GetGroupsByUserIdAsync(userId);
-            return groups;
+            var groupUsers = await GroupUserGenericFacade.GetGroupsByUserIdAsync(userId);
+            return groupUsers.Select(groupUser => groupUser.Group);
         }
 
         [Route("api/GroupUser/GetGroupUsers")]

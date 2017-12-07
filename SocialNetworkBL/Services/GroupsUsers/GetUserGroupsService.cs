@@ -20,10 +20,10 @@ namespace SocialNetworkBL.Services.GroupsUsers
         {
         }
 
-        public async Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId)
+        public async Task<IList<GetUserGroupsDto>> GetGroupsByUserIdAsync(int userId, bool? isAccepted)
         {
-            var queryResult = await Query.ExecuteQuery(new GetUserGroupsFilterDto {UserId = userId});
-            return queryResult?.Items.Select(userGroup => userGroup.GroupDto).ToList();
+            var queryResult = await Query.ExecuteQuery(new GetUserGroupsFilterDto {UserId = userId, IsAccepted = isAccepted});
+            return queryResult?.Items.ToList();
         }
     }
 }

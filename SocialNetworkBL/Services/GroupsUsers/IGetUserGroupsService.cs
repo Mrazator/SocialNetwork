@@ -8,6 +8,6 @@ namespace SocialNetworkBL.Services.GroupsUsers
 {
     public interface IGetUserGroupsService : IService<GetUserGroupsDto, GetUserGroupsFilterDto>
     {
-        Task<IList<GroupDto>> GetGroupsByUserIdAsync(int userId);
+        Task<IList<GetUserGroupsDto>> GetGroupsByUserIdAsync(int userId, bool? isAccepted);
     }
 }

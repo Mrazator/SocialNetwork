@@ -40,6 +40,8 @@ namespace SocialNetworkBL.Services.GroupsUsers
             return groupUser.Id;
         }
 
+
+
         private async Task<bool> GetIfGroupUserExistsAsync(int groupId, int userId)
         {
             var queryResult = await Query.ExecuteQuery(new GroupUserFilterDto { GroupId = groupId, UserId = userId });

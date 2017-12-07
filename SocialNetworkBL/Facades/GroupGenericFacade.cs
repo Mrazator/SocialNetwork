@@ -42,14 +42,6 @@ namespace SocialNetworkBL.Facades
             }
         }
 
-        public async Task<IList<UserDto>> GetUsersByGroupIdAsync(int groupId)
-        {
-            using (UnitOfWorkProvider.Create())
-            {
-                return await _getGroupUsersService.GetUsersByGroupIdAsync(groupId);
-            }
-        }
-
         public async Task<int> CreateGroup(GroupCreateDto groupDto, AddUserToGroupDto userToGroup)
         {
             using (UnitOfWorkProvider.Create())
@@ -61,6 +53,15 @@ namespace SocialNetworkBL.Facades
             }
         }
 
+        public async Task<IList<UserDto>> GetUsersByGroupIdAsync(int groupId)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                return await _getGroupUsersService.GetUsersByGroupIdAsync(groupId);
+            }
+        }
+        
+
         public async Task<int> AddUserAsync(AddUserToGroupDto userToGroup)
         {
             using (UnitOfWorkProvider.Create())
@@ -68,6 +69,7 @@ namespace SocialNetworkBL.Facades
                 return await _groupUserService.AddUserToGroupAsync(userToGroup, false);
             }
         }
+
 
         public async Task<IList<PostDto>> GetGroupPostsAsync(int groupId)
         {
@@ -85,5 +87,29 @@ namespace SocialNetworkBL.Facades
                 return _postService.Create(post);
             }
         }
+
+        #region AdminMethods
+
+        public async void RemoveUserFromGroup(int groupId, int userId)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                var groupUser = await _groupUserService.GetGroupUserAsync(groupId, userId);
+                _groupUserService.Delete(groupUser.Id);
+            }
+        }
+
+        public async Task MakeUserAdminAsync(int groupId, int userId)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                var groupUser = await _groupUserService.GetGroupUserAsync(groupId, userId);
+                groupUser.IsAdmin = true;
+                await _groupUserService.Update(groupUser);
+            }
+        }
+
+        #endregion
+
     }
 }

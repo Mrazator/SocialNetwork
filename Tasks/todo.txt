@@ -6,7 +6,7 @@ Webová aplikácia bude umoòova:
 	done - uívate¾ovi uverejòova svoje statusy, ktoré bude môc uvidie kadı alebo iba jeho priatelia (pod¾a jeho preferencií)
 	done - na tieto statusy ostatnım uívate¾om reagova príspevkami
 	udelam - zasiela súkromné správy inım uívate¾om (nemusí to by formou real-time chatu) //mozna by bylo dobre realtime
-	udelam - pre kadı úèet uívate¾ovi nejaké nastavenia
+	done - pre kadı úèet uívate¾ovi nejaké nastavenia
 	- je potreba nastavit do User.Identity UserId!!
 	- zkusit vse vice genericke - napr v query objektech se opakuji ApplyWhereClause
 

@@ -10,5 +10,6 @@ namespace SocialNetworkBL.DataTransferObjects
 
         //not mapped
         public IEnumerable<FriendshipDto> Friends { get; set; }
+        public IEnumerable<GetUserGroupsDto> Groups { get; set; }
     }
 }

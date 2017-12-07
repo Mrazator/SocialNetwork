@@ -234,12 +234,14 @@
     <Compile Include="App_Start\Windsor\PresentationLayerInstaller.cs" />
     <Compile Include="App_Start\Windsor\WindsorControllerFactory.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GroupsManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\UsersManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\FindGroupsModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PostListModel.cs" />
     <Compile Include="Models\SetingsModel.cs" />
@@ -320,6 +322,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\UsersManager\AddPost.cshtml" />
     <Content Include="Views\UserProfile\UserSettings.cshtml" />
+    <Content Include="Views\GroupsManager\GroupManagementView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
