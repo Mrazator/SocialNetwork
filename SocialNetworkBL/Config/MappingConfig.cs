@@ -71,8 +71,6 @@ namespace SocialNetworkBL.Config
 
             config.CreateMap<GroupUser, AddUserToGroupDto>().ReverseMap();
 
-            #region GroupProfileDtos
-
             config.CreateMap<Group, GroupProfileDto>()
                 .ForMember(x => x.GroupUsers, opt => opt.Ignore())
                 .ForMember(x => x.Posts, opt => opt.Ignore())
@@ -90,7 +88,6 @@ namespace SocialNetworkBL.Config
                 .ReverseMap();
             config.CreateMap<QueryResult<User>, QueryResultDto<GroupProfileUserDto, UserFilterDto>>();
 
-            #endregion
         }
     }
 }

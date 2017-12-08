@@ -42,23 +42,25 @@ namespace SocialNetworkBL.Facades
 
         public async Task<GroupProfileDto> GetGroupProfileAsync(int id)
         {
-            var groupProfile = await _groupProfileService.GetGroupProfileAsync(id);
-
-            groupProfile.Posts = await GetGroupPostsAsync(id);
-
-            foreach (var post in groupProfile.Posts)
+            using (UnitOfWorkProvider.Create())
             {
-                if (!post.StayAnonymous)
+                var groupProfile = await _groupProfileService.GetGroupProfileAsync(id);
+
+                groupProfile.Posts = await GetGroupPostsAsync(id);
+
+                foreach (var post in groupProfile.Posts)
                 {
-                    post.User = await _groupProfileUserService.GetAsync((int) post.UserId);
-                    post.Comments = await _commentService.GetCommentsByPostIdAsync(post.Id);
+                    if (!post.StayAnonymous)
+                    {
+                        post.User = await _groupProfileUserService.GetAsync((int)post.UserId);
+                        post.Comments = await _commentService.GetCommentsByPostIdAsync(post.Id);
+                    }
                 }
+
+                groupProfile.GroupUsers = await _getGroupUsersService.GetGroupUsersAsync(id);
+
+                return groupProfile;
             }
-
-            groupProfile.GroupUsers = await _getGroupUsersService.GetGroupUsersAsync(id);
-
-            return groupProfile;
-            
         }
 
         public async Task<IList<GroupProfilePostDto>> GetGroupPostsAsync(int groupId)

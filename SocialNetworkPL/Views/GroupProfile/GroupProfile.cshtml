@@ -63,7 +63,7 @@
     @if (!Model.GroupProfile.IsPrivate
      || Model.GroupProfile.GroupUsers.Select(user => user.NickName).Contains(User.Identity.Name))
     {
-        @foreach (var post in Model.GroupProfile.Posts)
+        foreach (var post in Model.GroupProfile.Posts)
         {
             
                 <li class="post">
@@ -108,7 +108,7 @@
                                      }
                                 </ul>
 
-                                                if (User.Identity.IsAuthenticated)
+                                                if (User.Identity.IsAuthenticated && Model.GroupProfile.GroupUsers.Select(user => user.NickName).Contains(User.Identity.Name))
                                                 {
                                                     <div class="send-comment">
                                                         @using (Html.BeginForm("AddComment", "GroupProfile", FormMethod.Post))
@@ -131,7 +131,6 @@
                                                             </div>
                                                         }
                                                     </div>
-                                                    }
                                                 }
                             }
                         }

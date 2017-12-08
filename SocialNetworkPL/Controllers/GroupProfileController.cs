@@ -34,6 +34,8 @@ namespace SocialNetworkPL.Controllers
         {
             try
             {
+                var authUser = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
+
                 var post = new GroupProfilePostDto() 
                 {
                     PostedAt = DateTime.Now.ToUniversalTime(),
@@ -43,7 +45,7 @@ namespace SocialNetworkPL.Controllers
                 };
                 if (!post.StayAnonymous)
                 {
-                    post.UserId = model.AuthenticatedUser.Id;
+                    post.UserId = authUser.Id;
                 }
                 await GroupProfileFacade.PostInGroup(post);
 

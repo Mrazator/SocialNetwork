@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetworkBL.Services.GroupProfile
 {
-    public interface IGroupProfileService : IService<GroupProfileDto, GroupFilterDto>
+    public interface IGroupProfileService
     {
         Task<GroupProfileDto> GetGroupProfileAsync(int id);
 

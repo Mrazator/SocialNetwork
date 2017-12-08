@@ -14,15 +14,23 @@ using SocialNetworkBL.QueryObjects.Common;
 
 namespace SocialNetworkBL.Services.GroupProfile
 {
-    public class GroupProfileService : CrudQueryServiceBase<Group, GroupProfileDto, GroupFilterDto>, IGroupProfileService
+    public class GroupProfileService : ServiceBase, IGroupProfileService
     {
-        public GroupProfileService(IMapper mapper, IRepository<Group> repository,
-                                    QueryObjectBase<GroupProfileDto, Group, GroupFilterDto, IQuery<Group>> query) : 
-                                    base(mapper, repository, query) {  }
+        private readonly QueryObjectBase<GroupProfileDto, Group, GroupFilterDto, IQuery<Group>> _groupProfileQueryObject;
+        private readonly IRepository<Group> _repository;
+
+        public GroupProfileService(IMapper mapper,
+                                    QueryObjectBase<GroupProfileDto, Group, GroupFilterDto, IQuery<Group>> queryObject,
+                                    IRepository<Group> repository) : 
+                                    base(mapper)
+        {
+            _groupProfileQueryObject = queryObject;
+            _repository = repository;
+        }
 
         public async Task<GroupProfileDto> GetGroupProfileAsync(int id)
         {
-            var group = await Repository.GetAsync(id);
+            var group = await _repository.GetAsync(id);
             return group != null ? Mapper.Map<GroupProfileDto>(group) : null;
         }
     }

@@ -25,7 +25,6 @@ namespace SocialNetworkBL.Facades
         private readonly IBasicUsersService _basicUsersService;
         private readonly IFriendshipService _friendshipService;
 
-
         public UserProfileFacade(IUnitOfWorkProvider unitOfWorkProvider,
             IUserProfileUserService userProfileUserService,
             IUserProfilePostService userProfilePostService,

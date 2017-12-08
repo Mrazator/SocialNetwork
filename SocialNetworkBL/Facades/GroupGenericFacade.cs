@@ -42,11 +42,18 @@ namespace SocialNetworkBL.Facades
             }
         }
 
-        public async Task<int> CreateGroup(GroupCreateDto groupDto, AddUserToGroupDto userToGroup)
+        public async Task<int> CreateGroup(GroupCreateDto groupDto, int userId)
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
                 var groupId = await _groupService.CreateGroupAsync(groupDto);
+
+                var userToGroup = new AddUserToGroupDto()
+                {
+                    GroupId = groupId,
+                    UserId = userId,
+                    IsAccepted = true
+                };
                 userToGroup.GroupId = groupId;
                 await _groupUserService.AddUserToGroupAsync(userToGroup, true);
                 await uow.Commit();

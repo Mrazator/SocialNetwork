@@ -38,11 +38,11 @@ namespace SocialNetworkPL.Controllers
         [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> BecomeMember(int groupId)
         {
-            var user = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
+            var authUser = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
 
             var addUserToGroupDto = new AddUserToGroupDto
             {
-                UserId = user.Id,
+                UserId = authUser.Id,
                 GroupId = groupId,
                 IsAccepted = true
             };
@@ -50,5 +50,16 @@ namespace SocialNetworkPL.Controllers
             await GroupGenericFacade.AddUserAsync(addUserToGroupDto);
             return RedirectToAction("Index");
         }
+
+        //[System.Web.Mvc.HttpPost]
+        //public async Task<ActionResult> CreateGroup(GroupCreateDto group)
+        //{
+        //    try
+        //    {
+        //        var authUser = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
+
+        //        await GroupGenericFacade.CreateGroup(group, authUser.Id);
+        //    }
+        //}
     }
 }

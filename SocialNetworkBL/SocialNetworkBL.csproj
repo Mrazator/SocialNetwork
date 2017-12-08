@@ -105,6 +105,9 @@
     <Compile Include="QueryObjects\Common\IQueryObjectBase.cs" />
     <Compile Include="QueryObjects\Common\QueryObjectBase.cs" />
     <Compile Include="QueryObjects\FriendshipQueryObject.cs" />
+    <Compile Include="QueryObjects\GroupProfileQueryObjects\GroupProfilePostQueryObject.cs" />
+    <Compile Include="QueryObjects\GroupProfileQueryObjects\GroupProfileQueryObject.cs" />
+    <Compile Include="QueryObjects\GroupProfileQueryObjects\GroupProfileUserQueryObject.cs" />
     <Compile Include="QueryObjects\GroupQueryObject.cs" />
     <Compile Include="QueryObjects\GetGroupUsersQueryObject.cs" />
     <Compile Include="QueryObjects\GroupUserQueryObject.cs" />
