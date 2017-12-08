@@ -37,6 +37,8 @@ namespace SocialNetworkBL.Services.GroupsUsers
 
             Repository.Create(groupUser);
 
+
+
             return groupUser.Id;
         }
 

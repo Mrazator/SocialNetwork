@@ -28,7 +28,7 @@
                         <th scope="row">
                             @{ var pathToImg = "";}
                             <div class="profile-picture" style="background-image: url(@pathToImg)"></div>
-                            @Html.ActionLink(group.Name, "Index", "GroupProfile", new { name = group.Name }, null)
+                            @Html.ActionLink(group.Name, "Index", "GroupProfile", new { groupId = group.Id }, null)
                         </th>
 
                         <td>

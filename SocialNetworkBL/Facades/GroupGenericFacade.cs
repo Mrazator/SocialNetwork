@@ -44,72 +44,24 @@ namespace SocialNetworkBL.Facades
 
         public async Task<int> CreateGroup(GroupCreateDto groupDto, AddUserToGroupDto userToGroup)
         {
-            using (UnitOfWorkProvider.Create())
+            using (var uow = UnitOfWorkProvider.Create())
             {
                 var groupId = await _groupService.CreateGroupAsync(groupDto);
                 userToGroup.GroupId = groupId;
                 await _groupUserService.AddUserToGroupAsync(userToGroup, true);
+                await uow.Commit();
                 return groupId;
             }
         }
-
-        public async Task<IList<UserDto>> GetUsersByGroupIdAsync(int groupId)
-        {
-            using (UnitOfWorkProvider.Create())
-            {
-                return await _getGroupUsersService.GetUsersByGroupIdAsync(groupId);
-            }
-        }
         
-
         public async Task<int> AddUserAsync(AddUserToGroupDto userToGroup)
         {
-            using (UnitOfWorkProvider.Create())
+            using (var uow = UnitOfWorkProvider.Create())
             {
-                return await _groupUserService.AddUserToGroupAsync(userToGroup, false);
+                var groupId = await _groupUserService.AddUserToGroupAsync(userToGroup, false);
+                await uow.Commit();
+                return groupId;
             }
         }
-
-
-        public async Task<IList<PostDto>> GetGroupPostsAsync(int groupId)
-        {
-            using (UnitOfWorkProvider.Create())
-            {
-                return await _postService.GetPostsByGroupIdAsync(groupId);
-            }
-        }
-
-        public int PostInGroup(PostDto post, int groupId)
-        {
-            post.GroupId = groupId;
-            using (UnitOfWorkProvider.Create())
-            {
-                return _postService.Create(post);
-            }
-        }
-
-        #region AdminMethods
-
-        public async void RemoveUserFromGroup(int groupId, int userId)
-        {
-            using (UnitOfWorkProvider.Create())
-            {
-                var groupUser = await _groupUserService.GetGroupUserAsync(groupId, userId);
-                _groupUserService.Delete(groupUser.Id);
-            }
-        }
-
-        public async Task MakeUserAdminAsync(int groupId, int userId)
-        {
-            using (UnitOfWorkProvider.Create())
-            {
-                var groupUser = await _groupUserService.GetGroupUserAsync(groupId, userId);
-                groupUser.IsAdmin = true;
-                await _groupUserService.Update(groupUser);
-            }
-        }
-
-        #endregion
-
     }
 }

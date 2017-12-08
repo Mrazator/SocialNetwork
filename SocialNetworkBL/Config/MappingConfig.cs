@@ -4,6 +4,7 @@ using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
+using SocialNetworkBL.DataTransferObjects.GroupProfileDtos;
 using SocialNetworkBL.DataTransferObjects.UserProfileDtos;
 
 namespace SocialNetworkBL.Config
@@ -69,6 +70,27 @@ namespace SocialNetworkBL.Config
             config.CreateMap<QueryResult<GroupUser>, QueryResultDto<GetUserGroupsDto, GetUserGroupsFilterDto>>();
 
             config.CreateMap<GroupUser, AddUserToGroupDto>().ReverseMap();
+
+            #region GroupProfileDtos
+
+            config.CreateMap<Group, GroupProfileDto>()
+                .ForMember(x => x.GroupUsers, opt => opt.Ignore())
+                .ForMember(x => x.Posts, opt => opt.Ignore())
+                .ReverseMap();
+            config.CreateMap<QueryResult<Group>, QueryResultDto<GroupProfileDto, GroupFilterDto>>();
+
+            config.CreateMap<Post, GroupProfilePostDto>()
+                .ForMember(x => x.Comments, opt => opt.Ignore())
+                .ForMember(x => x.User, opt => opt.Ignore())
+                .ReverseMap();
+            config.CreateMap<QueryResult<Post>, QueryResultDto<GroupProfilePostDto, PostFilterDto>>();
+
+            config.CreateMap<User, GroupProfileUserDto>()
+                .ForMember(x => x.IsAdmin, opt => opt.Ignore())
+                .ReverseMap();
+            config.CreateMap<QueryResult<User>, QueryResultDto<GroupProfileUserDto, UserFilterDto>>();
+
+            #endregion
         }
     }
 }

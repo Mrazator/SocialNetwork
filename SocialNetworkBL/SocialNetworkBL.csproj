@@ -73,6 +73,9 @@
     <Compile Include="DataTransferObjects\GroupCreateDto.cs" />
     <Compile Include="DataTransferObjects\GroupDto.cs" />
     <Compile Include="DataTransferObjects\GetGroupUsersDto.cs" />
+    <Compile Include="DataTransferObjects\GroupProfileDtos\GroupProfileDto.cs" />
+    <Compile Include="DataTransferObjects\GroupProfileDtos\GroupProfilePostDto.cs" />
+    <Compile Include="DataTransferObjects\GroupProfileDtos\GroupProfileUserDto.cs" />
     <Compile Include="DataTransferObjects\GroupUserDto.cs" />
     <Compile Include="DataTransferObjects\MessageDto.cs" />
     <Compile Include="DataTransferObjects\PostDto.cs" />
@@ -89,6 +92,7 @@
     <Compile Include="Facades\Common\GenericFacadeBase.cs" />
     <Compile Include="Facades\FriendshipGenericFacade.cs" />
     <Compile Include="Facades\GroupGenericFacade.cs" />
+    <Compile Include="Facades\GroupProfileFacade.cs" />
     <Compile Include="Facades\GroupUserGenericFacade.cs" />
     <Compile Include="Facades\MessageGenericFacade.cs" />
     <Compile Include="Facades\PostGenericFacade.cs" />
@@ -119,6 +123,12 @@
     <Compile Include="Services\Common\ServiceBase.cs" />
     <Compile Include="Services\Friendships\FriendshipService.cs" />
     <Compile Include="Services\Friendships\IFriendshipService.cs" />
+    <Compile Include="Services\GroupProfile\GroupProfilePostsService.cs" />
+    <Compile Include="Services\GroupProfile\GroupProfileService.cs" />
+    <Compile Include="Services\GroupProfile\GroupProfileUserService.cs" />
+    <Compile Include="Services\GroupProfile\IGroupProfilePostsService.cs" />
+    <Compile Include="Services\GroupProfile\IGroupProfileService.cs" />
+    <Compile Include="Services\GroupProfile\IGroupProfileUserService.cs" />
     <Compile Include="Services\GroupsUsers\GroupUserService.cs" />
     <Compile Include="Services\GroupsUsers\IGroupUserService.cs" />
     <Compile Include="Services\Groups\GroupService.cs" />

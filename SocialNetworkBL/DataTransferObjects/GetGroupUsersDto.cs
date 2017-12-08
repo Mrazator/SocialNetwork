@@ -1,4 +1,5 @@
 ﻿using SocialNetworkBL.DataTransferObjects.Common;
+using SocialNetworkBL.DataTransferObjects.GroupProfileDtos;
 
 namespace SocialNetworkBL.DataTransferObjects
 {
@@ -10,6 +11,6 @@ namespace SocialNetworkBL.DataTransferObjects
 
         public int GroupId { get; set; }
 
-        public UserDto UserDto { get; set; }
+        public GroupProfileUserDto User { get; set; }
     }
 }

@@ -4,12 +4,14 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.Facades;
+using SocialNetworkBL.DataTransferObjects.GroupProfileDtos;
 
 namespace WebApi.Controllers
 {
     public class GroupController : ApiController
     {
         public GroupGenericFacade GroupGenericFacade { get; set; }
+        public GroupProfileFacade GroupProfileFacade { get; set; }
 
         [Route("api/Group/GetBySubname")]
         public async Task<IEnumerable<GroupDto>> GetBySubname(string subname)
@@ -22,9 +24,9 @@ namespace WebApi.Controllers
         }
 
         [Route("api/Group/CreatePost")]
-        public void CreatePost(PostDto post, int groupId)
+        public async Task CreatePost(GroupProfilePostDto post)
         {
-            GroupGenericFacade.PostInGroup(post, groupId);
+            await GroupProfileFacade.PostInGroup(post);
         }
 
         // GET: api/Groups/2

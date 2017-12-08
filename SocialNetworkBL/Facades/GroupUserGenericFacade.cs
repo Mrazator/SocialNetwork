@@ -8,6 +8,7 @@ using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.GroupsUsers;
 using SocialNetworkBL.Services.Groups;
+using SocialNetworkBL.DataTransferObjects.GroupProfileDtos;
 
 namespace SocialNetworkBL.Facades
 {
@@ -36,11 +37,11 @@ namespace SocialNetworkBL.Facades
             }
         }
 
-        public async Task<IList<UserDto>> GetUsersByGroupIdAsync(int groupId)
+        public async Task<IList<GroupProfileUserDto>> GetUsersByGroupIdAsync(int groupId)
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await _groupUserService.GetUsersByGroupIdAsync(groupId);
+                return await _groupUserService.GetGroupUsersAsync(groupId);
             }
         }
 

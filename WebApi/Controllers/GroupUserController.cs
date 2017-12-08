@@ -5,6 +5,7 @@ using System.Web.Http;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.Facades;
 using System.Linq;
+using SocialNetworkBL.DataTransferObjects.GroupProfileDtos;
 
 namespace WebApi.Controllers
 {
@@ -26,7 +27,7 @@ namespace WebApi.Controllers
         }
 
         [Route("api/GroupUser/GetGroupUsers")]
-        public async Task<IEnumerable<UserDto>> GetGroupUsers(int groupId)
+        public async Task<IEnumerable<GroupProfileUserDto>> GetGroupUsers(int groupId)
         {
             var group = await GroupGenericFacade.GetAsync(groupId);
             if (group == null)

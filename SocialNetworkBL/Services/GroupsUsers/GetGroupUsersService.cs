@@ -7,6 +7,7 @@ using Infrastructure.Query;
 using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
+using SocialNetworkBL.DataTransferObjects.GroupProfileDtos;
 using SocialNetworkBL.QueryObjects.Common;
 using SocialNetworkBL.Services.Common;
 
@@ -20,10 +21,16 @@ namespace SocialNetworkBL.Services.GroupsUsers
         {
         }
 
-        public async Task<IList<UserDto>> GetUsersByGroupIdAsync(int groupId)
+        public async Task<IList<GroupProfileUserDto>> GetGroupUsersAsync(int groupId)
         {
-            var queryResult = await Query.ExecuteQuery(new GetGroupUsersFilterDto {GroupId = groupId});
-            return queryResult?.Items.Select(groupUser => groupUser.UserDto).ToList();
+            var queryResult = await Query.ExecuteQuery(new GetGroupUsersFilterDto { GroupId = groupId });
+
+            foreach (var item in queryResult.Items)
+            {
+                item.User.IsAdmin = item.IsAdmin;
+            }
+
+            return queryResult?.Items.Select(groupUser => groupUser.User).ToList();
         }
     }
 }

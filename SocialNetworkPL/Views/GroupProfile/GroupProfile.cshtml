@@ -1,0 +1,155 @@
+﻿@model SocialNetworkPL.Models.GroupProfileModel
+
+<style type="text/css">
+    @{
+        var pathToImg = "";
+    }
+
+    .profile-picture, .profile-img {
+        background-image: url(@pathToImg);
+    }
+</style>
+
+<div class="row GroupProfile">
+    <div class="col-md-3 detail">
+        <div class="img"></div>
+        <div class="profile">
+            <div class="profile-picture"></div>
+            <blockquote>
+                <h4>@Model.GroupProfile.Name</h4>
+                <footer>Tu raz bude daky popis Mozno</footer>
+            </blockquote>
+            <div class="users">
+                <span>Users</span>
+                <h6>@Model.GroupProfile.GroupUsers.Count</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 posts-column">
+        <div class="add-post">
+            @{
+                if (User.Identity.IsAuthenticated && Model.GroupProfile.GroupUsers.Select(user => user.NickName).Contains(User.Identity.Name))
+                {
+                    using (Html.BeginForm("PostInGroup", "GroupProfile", FormMethod.Post))
+                    {
+                        <div class="search-btn">
+                            @Html.EditorFor(model => model.NewPostText, new
+                       {
+                           htmlAttributes = new
+                           {
+                               @class = "form-control",
+                               placeholder = "What's on your mind, " + User.Identity.Name + "?"
+                           }
+                       })
+                            @Html.HiddenFor(model => model.GroupProfile.Name)
+                            @Html.HiddenFor(model => model.GroupProfile.Id)
+
+                            <button type="submit" class="btn btn-primary">Post</button>
+                        </div>
+                        if (Model.GroupProfile.AllowAnonymousPosts)
+                        {
+                            <div class="checkbox-under-search-btn ">
+                                @Html.EditorFor(x => x.PostStayAnonymous)
+                                @Html.LabelFor(x => x.PostStayAnonymous, "post anonymous", new { @class = "label-checkbox" })
+                            </div>
+                        }
+                    }
+                }
+            }
+        </div>
+
+        <div class="post-container">
+            <ul class="posts">
+    @if (!Model.GroupProfile.IsPrivate
+     || Model.GroupProfile.GroupUsers.Select(user => user.NickName).Contains(User.Identity.Name))
+    {
+        @foreach (var post in Model.GroupProfile.Posts)
+        {
+            
+                <li class="post">
+                    <div class="profile-picture"></div>
+                    <div class="content">
+                        <div>
+                            @if (post.StayAnonymous)
+                            {
+                                <h4>Anonymous User</h4>
+                            }
+                            else
+                            {
+                                <h4>@post.User.NickName</h4>                             //Miesto <h4> by sa zisiel link na UserProfile
+                            }
+                            <small>@post.PostedAt</small>
+                        </div>
+                        <p class="message">
+                            @post.Text
+                        </p>
+                        <div class="images"></div>
+                        @{
+                            var comments = post.Comments;
+                            if (comments != null)
+                            {
+                                <ul class="comments">
+                                    @foreach (var comment in comments)
+                                    {
+                                        <li class="comment">
+                                            @{ var pathToImgComment = "../../Assets/img/girl-" + comment.UserId + "-400.jpg"; }
+
+                                            <div class="profile-picture" style="background-image: url('@pathToImgComment')"></div>
+                                            <div class="content">
+                                                <div>
+                                                    <h4>@comment.NickName</h4>
+                                                    <small>@comment.PostedAt</small>
+                                                </div>
+                                                <p class="message">
+                                                    @comment.Text
+                                                </p>
+                                            </div>
+                                        </li>
+                                     }
+                                </ul>
+
+                                                if (User.Identity.IsAuthenticated)
+                                                {
+                                                    <div class="send-comment">
+                                                        @using (Html.BeginForm("AddComment", "GroupProfile", FormMethod.Post))
+                                                        {
+                                                            <div class="search-btn">
+                                                                @Html.EditorFor(model => model.NewCommentText, new
+                                                           {
+                                                               htmlAttributes = new
+                                                               {
+                                                                   @class = "form-control",
+                                                                   placeholder = "Write a comment, " + Model.AuthenticatedUser.NickName
+                                                               }
+                                                           })
+                                                                @Html.HiddenFor(model => model.AuthenticatedUser.Id)
+                                                                @Html.HiddenFor(model => model.GroupProfile.Id)
+                                                                @Html.HiddenFor(model => model.GroupProfile.Name)
+                                                                @Html.HiddenFor(model => model.PostId, new { @Value = post.Id })
+
+                                                                <button type="submit" class="btn btn-primary">Post</button>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                    }
+                                                }
+                            }
+                        }
+
+                    </div>
+                </li>
+        }
+     }
+        </ul>
+        </div>
+    </div>
+    <div class="col-md-3 sidebar">
+        <div class="sea"></div>
+        <blockquote>
+            <footer>
+                Existuje mnoho variant s pasážemi Lorem Ipsum, nicméně valná většina trpí neduhy v
+                podobě snahy o vtipný text či použití naprosto náhodných slov, což nevypadá zrovna uvěřitelně.
+            </footer>
+        </blockquote>
+    </div>
+</div>
