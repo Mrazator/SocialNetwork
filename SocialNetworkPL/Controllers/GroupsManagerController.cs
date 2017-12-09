@@ -51,15 +51,13 @@ namespace SocialNetworkPL.Controllers
             return RedirectToAction("Index");
         }
 
-        //[System.Web.Mvc.HttpPost]
-        //public async Task<ActionResult> CreateGroup(GroupCreateDto group)
-        //{
-        //    try
-        //    {
-        //        var authUser = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
+        [System.Web.Mvc.HttpPost]
+        public async Task<ActionResult> CreateGroup(GroupCreateDto group)
+        {
 
-        //        await GroupGenericFacade.CreateGroup(group, authUser.Id);
-        //    }
-        //}
+            var authUser = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
+            await GroupGenericFacade.CreateGroup(group, authUser.Id);
+            return RedirectToAction("Index", "GroupProfile", new { groupId = group.Id });
+        }
     }
 }

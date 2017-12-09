@@ -326,6 +326,7 @@
     <Content Include="Views\UserProfile\UserSettings.cshtml" />
     <Content Include="Views\GroupsManager\GroupManagementView.cshtml" />
     <Content Include="Views\GroupProfile\GroupProfile.cshtml" />
+    <Content Include="Views\GroupsManager\CreateGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

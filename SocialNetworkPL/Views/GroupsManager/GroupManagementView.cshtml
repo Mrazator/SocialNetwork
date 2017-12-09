@@ -4,6 +4,10 @@
 @if (User.Identity.IsAuthenticated)
 {
     <div class="GroupManagement col-md-7">
+        @Html.ActionLink("Create Group", "CreateGroup", "GroupsManager", FormMethod.Post)
+    </div>
+    
+    <div class="GroupManagement col-md-7">
         @using (Html.BeginForm("Index", "GroupsManager", FormMethod.Get, new { @class = "form-search" }))
         {
             <div class="form-group">
