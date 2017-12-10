@@ -5,6 +5,7 @@ using AutoMapper;
 using Infrastructure;
 using Infrastructure.Query;
 using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects.Common;
 using SocialNetworkBL.Services.Common;
@@ -20,10 +21,10 @@ namespace SocialNetworkBL.Services.Messages
         {
         }
 
-        public async Task<IList<MessageDto>> GetMessagesByFriendshipIdAsync(int friendshipId)
+        public async Task<QueryResultDto<MessageDto, MessageFilterDto>> GetMessagesByFriendshipIdAsync(int friendshipId)
         {
             var queryResult = await Query.ExecuteQuery(new MessageFilterDto {FriendshipId = friendshipId});
-            return queryResult?.Items.ToList();
+            return queryResult;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Infrastructure.UnitOfWork;
 using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.Common;
@@ -23,7 +24,7 @@ namespace SocialNetworkBL.Facades
             _messageService = messageService;
         }
 
-        public async Task<IList<MessageDto>> GetMessagesByFriendshipIdAsync(int friendshipId)
+        public async Task<QueryResultDto<MessageDto, MessageFilterDto>> GetMessagesByFriendshipIdAsync(int friendshipId)
         {
             using (UnitOfWorkProvider.Create())
             {

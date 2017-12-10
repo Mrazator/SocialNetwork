@@ -1,10 +1,11 @@
-﻿using SocialNetworkBL.DataTransferObjects.Common;
+﻿using System;
+using SocialNetworkBL.DataTransferObjects.Common;
 
 namespace SocialNetworkBL.DataTransferObjects
 {
     public class MessageDto : DtoBase
     {
-        //public DateTime SentAt { get; set; }
+        public DateTime SentAt { get; set; }
 
         public string Text { get; set; }
 

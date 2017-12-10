@@ -234,6 +234,7 @@
     <Compile Include="App_Start\Windsor\PresentationLayerInstaller.cs" />
     <Compile Include="App_Start\Windsor\WindsorControllerFactory.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\GroupProfileController.cs" />
     <Compile Include="Controllers\GroupsManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChatModel.cs" />
     <Compile Include="Models\FindGroupsModel.cs" />
     <Compile Include="Models\GroupProfileModel.cs" />
     <Compile Include="Models\InviteUsersToGroupModel.cs" />
@@ -339,6 +341,7 @@
     <Content Include="Views\GroupsManager\CreateGroup.cshtml" />
     <Content Include="Views\InviteUsersToGroup\InviteUsersToGroupView.cshtml" />
     <Content Include="Views\GroupProfile\GroupUsers.cshtml" />
+    <Content Include="Views\Chat\Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

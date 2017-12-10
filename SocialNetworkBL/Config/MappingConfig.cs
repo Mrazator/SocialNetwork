@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Infrastructure.Query;
 using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.ChatDtos;
 using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.DataTransferObjects.GroupProfileDtos;
@@ -91,6 +92,11 @@ namespace SocialNetworkBL.Config
             config.CreateMap<QueryResult<User>, QueryResultDto<GroupProfileUserDto, UserFilterDto>>();
 
             config.CreateMap<Group, GroupCreateDto>().ReverseMap();
+
+            config.CreateMap<Friendship, FriendsWithChatDto>()
+                .ForMember(x => x.Chat, opt => opt.Ignore())
+                .ReverseMap();
+            config.CreateMap<QueryResult<Friendship>, QueryResultDto<FriendsWithChatDto, FriendshipFilterDto>>();
         }
     }
 }

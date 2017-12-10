@@ -46,11 +46,10 @@ namespace SocialNetworkPL.Controllers
             }
 
             //priprava na pagination
-            //Session[PostFilterSessionKey] = postFilter;
-            //var commentFilter = Session[CommentFilterSessionKey] as CommentFilterDto ?? new CommentFilterDto() { PageSize = Comments, RequestedPageNumber = commentPage};
-            //commentFilter.RequestedPageNumber = commentPage;
+            Session[PostFilterSessionKey] = postFilter;
+            var commentFilter = Session[CommentFilterSessionKey] as CommentFilterDto ?? new CommentFilterDto() { PageSize = Comments};
 
-            var posts = await UserProfileFacade.GetPostsWithUsersNicknamesAndCommentsByFilters(postFilter, null);
+            var posts = await UserProfileFacade.GetPostsWithUsersNicknamesAndCommentsByFilters(postFilter, commentFilter);
 
             BasicUserDto userWithFriends = null;
             if (Request.IsAuthenticated)

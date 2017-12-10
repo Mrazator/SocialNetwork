@@ -1,0 +1,16 @@
+﻿@model SocialNetworkPL.Models.ChatModel
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="Chat">
+        <div class="user-list">
+
+            @*<a class="user" href="@Url.Action("Index", "Chat", new {userId = user.})">
+
+            </a>*@
+        </div>
+        <div class="chat-body">
+
+        </div>
+    </div>
+}
