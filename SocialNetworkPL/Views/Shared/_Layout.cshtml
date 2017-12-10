@@ -25,14 +25,15 @@
                     {
                         <li>@Html.ActionLink("Friend management", "Index", "UsersManager")</li>
                         <li>@Html.ActionLink("Group management", "Index", "GroupsManager")</li>
+                        <li>@Html.ActionLink("Chat", "Index", "ChatManager")</li>
                     }
 
                 </ul>
                 <ul class="nav navbar-nav  navbar-right">
                     @if (Request.IsAuthenticated)
                     {
-                        <li >
-                            @Html.ActionLink(User.Identity.Name, "Index", "UserProfile", new { nickName = User.Identity.Name },null)
+                        <li>
+                            @Html.ActionLink(User.Identity.Name, "Index", "UserProfile", new { nickName = User.Identity.Name }, null)
                         </li>
                         <li>
                             @Html.ActionLink("Settings", "UserSettings", "UserProfile", new { nickName = User.Identity.Name }, null)

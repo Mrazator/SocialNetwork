@@ -59,16 +59,16 @@ namespace SocialNetworkBL.Facades
                 postFilter.SortCriteria = nameof(Post.PostedAt);
                 var posts = await _userProfilePostService.GetPostsByFilterAsync(postFilter);
 
-                if (commentFilter != null)
+                foreach (var post in posts.Items)
                 {
-                    foreach (var post in posts.Items)
+                    if (postFilter.UserId == null && post.UserId != null)
                     {
-                        if (postFilter.UserId == null && post.UserId != null)
-                        {
-                            //Add Nicknames
-                            post.NickName = (await _basicUsersService.GetAsync((int)post.UserId)).NickName;
-                        }
+                        //Add Nicknames
+                        post.NickName = (await _basicUsersService.GetAsync((int)post.UserId)).NickName;
+                    }
 
+                    if (commentFilter != null)
+                    {
                         commentFilter.PostId = post.Id;
                         post.Comments = await GetCommentsByFilter(commentFilter);
                     }

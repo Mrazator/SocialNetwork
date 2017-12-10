@@ -18,11 +18,10 @@ Az bude vse vyresene:
 	5. Zkusit si implementovat realtime chat
 
 Dodelat:	
-	Pagination na posty
-	Vsude mit hyperlinky na usery
-
 	udelam - zasiela súkromné správy inım uívate¾om (nemusí to by formou real-time chatu)
 
+	nickname posty - nezobrazuje se
+	Vsude mit hyperlinky na usery
 	vedle postu by se mohlo ukazovat do jake grupy patri post s linkem
 
 	//kdybych mel moc casu

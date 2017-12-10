@@ -45,8 +45,8 @@ namespace SocialNetworkPL.Controllers
                 };
             }
 
+            //priprava na pagination
             //Session[PostFilterSessionKey] = postFilter;
-
             //var commentFilter = Session[CommentFilterSessionKey] as CommentFilterDto ?? new CommentFilterDto() { PageSize = Comments, RequestedPageNumber = commentPage};
             //commentFilter.RequestedPageNumber = commentPage;
 
