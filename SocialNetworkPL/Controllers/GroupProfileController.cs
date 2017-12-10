@@ -15,6 +15,7 @@ namespace SocialNetworkPL.Controllers
     {
         public GroupProfileFacade GroupProfileFacade { get; set; }
         public BasicUserFacade BasicUserFacade { get; set; }
+        public GroupGenericFacade GroupGenericFacade { get; set; }
 
         // GET: GroupProfile
         public async Task<ActionResult> Index(int groupId)
@@ -78,6 +79,26 @@ namespace SocialNetworkPL.Controllers
             {
                 return RedirectToAction("Index", new { groupId = model.GroupProfile.Id });
             }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeletePost(GroupProfileModel model)
+        {
+            await GroupProfileFacade.DeletePost(model.PostId);
+
+            return RedirectToAction("Index", new {groupId = model.GroupProfile.Id});
+        }
+
+        public async Task<ActionResult> ShowGroupUsers(int groupId)
+        {
+            var users = await GroupProfileFacade.GetGroupProfileUsersByGroupIdAsync(groupId);
+            var group = await GroupGenericFacade.GetAsync(groupId);
+
+            return View("GroupUsers", new ShowGroupUsersModel
+            {
+                Group = group,
+                Users = users
+            });
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Castle.Core.Internal;
 using Infrastructure.UnitOfWork;
 using SocialNetworkBL.Services.GroupProfile;
 using SocialNetworkBL.Services.GroupsUsers;
@@ -91,6 +92,22 @@ namespace SocialNetworkBL.Facades
             }
         }
 
+        public async Task InviteUser(AddUserToGroupDto userToGroup)
+        {
+            using (var uow = UnitOfWorkProvider.Create())
+            {
+                await _groupUserService.AddUserToGroupAsync(userToGroup, false);
+                await uow.Commit();
+            }
+        }
+
+        public async Task<IList<GroupProfileUserDto>> GetGroupProfileUsersByGroupIdAsync(int groupId)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                return await _getGroupUsersService.GetGroupUsersAsync(groupId);
+            }
+        }
         #region AdminMethods
 
         public async void RemoveUserFromGroup(int groupId, int userId)
@@ -109,6 +126,25 @@ namespace SocialNetworkBL.Facades
                 var groupUser = await _groupUserService.GetGroupUserAsync(groupId, userId);
                 groupUser.IsAdmin = true;
                 await _groupUserService.Update(groupUser);
+            }
+        }
+
+        public async Task DeletePost(int postId)
+        {
+            using (var uow = UnitOfWorkProvider.Create())
+            {
+                var comments = await _commentService.GetCommentsByPostIdAsync(postId);
+
+                while (!comments.IsNullOrEmpty())
+                {
+                    var comment = comments.First();
+                    _commentService.Delete(comment.Id);
+                    comments.Remove(comment);
+                }
+
+                _postService.Delete(postId);
+
+                await uow.Commit();
             }
         }
 

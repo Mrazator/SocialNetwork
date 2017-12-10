@@ -52,13 +52,14 @@ namespace SocialNetworkBL.Facades
             }
         }
 
-        public async Task<IEnumerable<BasicUserDto>> GetUsersBySubnameAsync(UserFilterDto filter)
+        public async Task<IEnumerable<BasicUserDto>> GetUsersBySubnameAsync(string subname)
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await _basicUsersService.GetUsersContainingSubNameAsync(filter);
+                return await _basicUsersService.GetUsersContainingSubNameAsync(subname);
             }
         }
+
         public async Task<BasicUserDto> GetBasicUserWithFriends(int userId)
         {
             using (UnitOfWorkProvider.Create())
@@ -90,6 +91,20 @@ namespace SocialNetworkBL.Facades
                 user.Groups = groupDtos;
 
                 return user;
+            }
+        }
+
+        public async Task AssignGroupsToUserAsync(BasicUserDto user)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                var groups = await _getUserGroupsService.GetGroupsByUserIdAsync(user.Id, true);
+                var groupsInvitedInto = await _getUserGroupsService.GetGroupsByUserIdAsync(user.Id, false);
+
+                var groupDtos = groups.ToList();
+                groupDtos.AddRange(groupsInvitedInto);
+
+                user.Groups = groupDtos;
             }
         }
     }

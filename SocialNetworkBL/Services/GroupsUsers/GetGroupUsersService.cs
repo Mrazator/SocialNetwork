@@ -28,6 +28,7 @@ namespace SocialNetworkBL.Services.GroupsUsers
             foreach (var item in queryResult.Items)
             {
                 item.User.IsAdmin = item.IsAdmin;
+                item.User.IsAccepted = item.IsAccepted;
             }
 
             return queryResult?.Items.Select(groupUser => groupUser.User).ToList();

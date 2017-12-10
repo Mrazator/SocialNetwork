@@ -237,6 +237,7 @@
     <Compile Include="Controllers\GroupProfileController.cs" />
     <Compile Include="Controllers\GroupsManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InviteUsersToGroupController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\UsersManagerController.cs" />
     <Compile Include="Global.asax.cs">
@@ -244,9 +245,11 @@
     </Compile>
     <Compile Include="Models\FindGroupsModel.cs" />
     <Compile Include="Models\GroupProfileModel.cs" />
+    <Compile Include="Models\InviteUsersToGroupModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PostListModel.cs" />
     <Compile Include="Models\SetingsModel.cs" />
+    <Compile Include="Models\ShowGroupUsersModel.cs" />
     <Compile Include="Models\UserProfileModel.cs" />
     <Compile Include="Models\FindUsersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -327,6 +330,8 @@
     <Content Include="Views\GroupsManager\GroupManagementView.cshtml" />
     <Content Include="Views\GroupProfile\GroupProfile.cshtml" />
     <Content Include="Views\GroupsManager\CreateGroup.cshtml" />
+    <Content Include="Views\InviteUsersToGroup\InviteUsersToGroupView.cshtml" />
+    <Content Include="Views\GroupProfile\GroupUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

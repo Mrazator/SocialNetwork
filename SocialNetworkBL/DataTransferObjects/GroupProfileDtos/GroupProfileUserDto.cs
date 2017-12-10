@@ -13,5 +13,6 @@ namespace SocialNetworkBL.DataTransferObjects.GroupProfileDtos
 
         //not mapped
         public bool IsAdmin { get; set; }
+        public bool IsAccepted { get; set; }
     }
 }

@@ -16,5 +16,6 @@ namespace SocialNetworkBL.DataTransferObjects.GroupProfileDtos
 
         public IList<GroupProfileUserDto> GroupUsers { get; set; }
         public IList<GroupProfilePostDto> Posts { get; set; }
+
     }
 }

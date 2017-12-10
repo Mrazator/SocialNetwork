@@ -54,6 +54,7 @@ namespace SocialNetworkBL.Facades
                     UserId = userId,
                     IsAccepted = true
                 };
+
                 userToGroup.GroupId = groupId;
                 await _groupUserService.AddUserToGroupAsync(userToGroup, true);
                 await uow.Commit();
@@ -68,6 +69,19 @@ namespace SocialNetworkBL.Facades
                 var groupId = await _groupUserService.AddUserToGroupAsync(userToGroup, false);
                 await uow.Commit();
                 return groupId;
+            }
+        }
+
+        public async Task AcceptInvitation(int userId, int groupId)
+        {
+            using (var uow = UnitOfWorkProvider.Create())
+            {
+                var groupUser = await _groupUserService.GetGroupUserAsync(groupId, userId);
+                groupUser.IsAccepted = true;
+
+                await _groupUserService.Update(groupUser);
+
+                await uow.Commit();
             }
         }
     }

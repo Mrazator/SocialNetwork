@@ -85,9 +85,11 @@ namespace SocialNetworkBL.Config
 
             config.CreateMap<User, GroupProfileUserDto>()
                 .ForMember(x => x.IsAdmin, opt => opt.Ignore())
+                .ForMember(x => x.IsAccepted, opt => opt.Ignore())
                 .ReverseMap();
             config.CreateMap<QueryResult<User>, QueryResultDto<GroupProfileUserDto, UserFilterDto>>();
 
+            config.CreateMap<Group, GroupCreateDto>().ReverseMap();
         }
     }
 }

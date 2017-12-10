@@ -4,34 +4,38 @@ Webová aplikácia bude umoòova:
 	done - autentizáciu uívate¾ov
 	done - registrovanım uívate¾om pridáva inıch uívate¾ov do zoznamu priate¾ov
 	done - uívate¾ovi uverejòova svoje statusy, ktoré bude môc uvidie kadı alebo iba jeho priatelia (pod¾a jeho preferencií)
-	done - na tieto statusy ostatnım uívate¾om reagova príspevkami
-	udelam - zasiela súkromné správy inım uívate¾om (nemusí to by formou real-time chatu) //mozna by bylo dobre realtime
+	done - na tieto statusy ostatnım uívate¾om reagova príspevkam
 	done - pre kadı úèet uívate¾ovi nejaké nastavenia
-	- je potreba nastavit do User.Identity UserId!!
-	- zkusit vse vice genericke - napr v query objektech se opakuji ApplyWhereClause
-
-	Misko - Priorita 1 - zvladnes udelat? se stylama pak pomuzu, jde o funkcnost - V prípade práce vo dvojici je moné aplikáciu rozšíri o umonenie uívate¾ovi vytvori vlastnú skupinu (verejnú alebo na pozvánky), ktorej sa stane adminom a môe ju spravova (maza príspevky, vyhadzova ¾udí zo skupiny, …), prípadne vytváranie udalostí, na ktoré sa môu ¾udia prihlási. //inspirace DemoEshop a SocialNetwork
-	Misko - Priorita 2 - neco si si psal ze na tom delas, jak ses na tom? - cez verejné API získa informácie o konkrétnom uívate¾ovi, taktie pridáva anonymné príspevky do verejnıch skupín, ktoré to majú povolené
 
 Nedolevaky:
-	udelam - Proc nefununguje funkce ListAll? //nic nevraci - u Usera uz vraci, jinde nezkontrolovano - ez
-	udelam - Proc musi byt v PL a WebApi reference na DAL? //bez ni to nefunguje - wut?
-	udelam - Delete: zrusit cascade delete - upravit DAL //diky tomu nefunguje Delete - tohle je nahovno
-	udelam - Put - nefunguje
-	- Save settings - nefunguje update - neco s cascade delete
-	
-
-	Misko - Priorita 3 - inspirace DemoEshop - Zprovoznit strankovani //vsude'
-	Misko - projit controllery v PL a pridat try catch a reakci na nevalidni vstup (if else + try catch) metodam ktere tohle nemaji osetrene
+	done - Save settings - nefunguje update - neco s cascade delete
 
 Az bude vse vyresene:
 	1. WebApi: zkontrolovat controllery
-	2. Zprovoznit stary dobry update panel (aby stranka po pridani prispevku/komentare neskakala nahoru)
+	2. Zprovoznit stary dobry update panel (aby stranka po pridani prispevku/komentare neskakala nahoru) - dotVVM!!! sad that i have no time left :(
 	3. Doladit styly a UX
 	4. Zacit s optimalizaci - Dto pro kazdy usecase, prochazet views a controllery a upravit je na vykon //tohle muze zabrat klidne 50 hodin :D 
 	5. Zkusit si implementovat realtime chat
 
+Dodelat:	
+	Admin v Groupach - Groupy - tlacitko users, vyhazovat lidi ze skupiny
+	Managementy - Ukazat rovnou vsechny usery - pojmenovany header
 
-Zajima me:
-	Je treba pro kazde Dto vytvorit query objekty, servisy a namapovat to? Nejde to udelat nejak genericky?
+	Pagination na posty
+	Vsude mit hyperlinky na usery
+	doladit styly
+
+	udelam - zasiela súkromné správy inım uívate¾om (nemusí to by formou real-time chatu)
+
+	//kdybych mel moc casu
+
+	Refactoring - projit controllery v PL a pridat try catch a reakci na nevalidni vstup (if else + try catch) metodam ktere tohle nemaji osetrene
+	Otestovat - neco si si psal ze na tom delas, jak ses na tom? - cez verejné API získa informácie o konkrétnom uívate¾ovi, taktie pridáva anonymné príspevky do verejnıch skupín, ktoré to majú povolené
+	- je potreba nastavit do User.Identity UserId!!
+	- zkusit vse vice genericke - napr v query objektech se opakuji ApplyWhereClause
+
+	- Proc nefununguje funkce ListAll? //nic nevraci - u Usera uz vraci, jinde nezkontrolovano - ez
+	- Proc musi byt v PL a WebApi reference na DAL? //bez ni to nefunguje - wut?
+	- Delete: zrusit cascade delete - upravit DAL //diky tomu nefunguje Delete - tohle je nahovno
+	- Put - nefunguje
 		
