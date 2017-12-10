@@ -13,7 +13,7 @@
                             @{ var pathToImg = "../../Assets/img/group-" + groupUser.User.Id + "-400.jpg"; }
                             <div class="profile-picture" style="background-image: url(@pathToImg)"></div>
 
-                            @Html.ActionLink(groupUser.User.NickName, "Index", "UserProfile", new { userId = groupUser.User.NickName }, null)
+                            @Html.ActionLink(groupUser.User.NickName, "Index", "UserProfile", new { nickName = groupUser.User.NickName }, null)
                         </th>
 
                         @if (!Model.GroupUsers.Where(x => x.IsAdmin && x.User.NickName.Equals(User.Identity.Name)).IsNullOrEmpty())
