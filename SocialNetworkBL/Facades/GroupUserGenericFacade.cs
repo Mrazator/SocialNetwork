@@ -41,7 +41,7 @@ namespace SocialNetworkBL.Facades
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await _groupUserService.GetGroupUsersAsync(groupId);
+                return await _groupUserService.GetGroupProfileUsersAsync(groupId);
             }
         }
 

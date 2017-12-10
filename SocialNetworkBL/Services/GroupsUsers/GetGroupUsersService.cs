@@ -21,7 +21,7 @@ namespace SocialNetworkBL.Services.GroupsUsers
         {
         }
 
-        public async Task<IList<GroupProfileUserDto>> GetGroupUsersAsync(int groupId)
+        public async Task<IList<GroupProfileUserDto>> GetGroupProfileUsersAsync(int groupId)
         {
             var queryResult = await Query.ExecuteQuery(new GetGroupUsersFilterDto { GroupId = groupId });
 
@@ -32,6 +32,13 @@ namespace SocialNetworkBL.Services.GroupsUsers
             }
 
             return queryResult?.Items.Select(groupUser => groupUser.User).ToList();
+        }
+
+        public async Task<IEnumerable<GetGroupUsersDto>> GetGroupUsersAsync(int groupId)
+        {
+            var queryResult = await Query.ExecuteQuery(new GetGroupUsersFilterDto { GroupId = groupId });
+
+            return queryResult.Items;
         }
     }
 }

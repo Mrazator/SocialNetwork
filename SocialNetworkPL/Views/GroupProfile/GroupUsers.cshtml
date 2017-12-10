@@ -1,14 +1,47 @@
-﻿@model SocialNetworkPL.Models.ShowGroupUsersModel
+﻿@using Castle.Core.Internal
+@model SocialNetworkPL.Models.ShowGroupUsersModel
 
-<!DOCTYPE html>
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="GroupUsers col-md-7">
+        <table class="table">
+            <tbody>
+                @foreach (var groupUser in Model.GroupUsers.Where(x => x.IsAccepted && x.User.NickName != User.Identity.Name))
+                {
+                    <tr>
+                        <th scope="row">
+                            @{ var pathToImg = "../../Assets/img/group-" + groupUser.User.Id + "-400.jpg"; }
+                            <div class="profile-picture" style="background-image: url(@pathToImg)"></div>
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
-</html>
+                            @Html.ActionLink(groupUser.User.NickName, "Index", "UserProfile", new { userId = groupUser.User.NickName }, null)
+                        </th>
+
+                        @if (!Model.GroupUsers.Where(x => x.IsAdmin && x.User.NickName.Equals(User.Identity.Name)).IsNullOrEmpty())
+                        {
+                            <td>
+                                @if (!groupUser.IsAdmin)
+                                {
+                                    @Html.ActionLink("Make admin", "MakeAdmin", new {groupId = Model.Group.Id, userId = groupUser.User.Id}, new {@class = "btn btn-success"})
+                                    @Html.ActionLink("Kick user", "KickUser", new {groupId = Model.Group.Id, userId = groupUser.User.Id}, new {@class = "btn btn-danger"})
+                                }
+                                else
+                                {
+                                    <button class="btn btn-default">Is already admin</button>
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="col-md-4 pull-right sidebar">
+        <div class="axe"></div>
+        <blockquote>
+            <footer>Existuje mnoho variant s pasážemi Lorem Ipsum, nicméně valná většina trpí neduhy v podobě snahy o vtipný text či použití naprosto náhodných slov, což nevypadá zrovna uvěřitelně.</footer>
+        </blockquote>
+    </div>
+
+    <div class="clearfix"></div>
+}

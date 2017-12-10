@@ -9,6 +9,7 @@ namespace SocialNetworkBL.Services.GroupsUsers
 {
     public interface IGetGroupUsersService : IService<GetGroupUsersDto, GetGroupUsersFilterDto>
     {
-        Task<IList<GroupProfileUserDto>> GetGroupUsersAsync(int groupId);
+        Task<IList<GroupProfileUserDto>> GetGroupProfileUsersAsync(int groupId);
+        Task<IEnumerable<GetGroupUsersDto>> GetGroupUsersAsync(int groupId);
     }
 }

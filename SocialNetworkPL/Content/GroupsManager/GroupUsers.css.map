@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "GroupUsers.css",
+	"sources": [
+		"GroupUsers.scss"
+	],
+	"mappings": "AAAA,AAEY,WAFD,CACP,KAAK,CACD,EAAE,CAAC,CAAC,AAAA,YAAY,AAAC,CACb,YAAY,CAAE,IAAK,CACtB",
+	"names": []
+}

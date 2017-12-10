@@ -70,7 +70,7 @@ namespace SocialNetworkBL.Facades
                     }
                 }
 
-                groupProfile.GroupUsers = await _getGroupUsersService.GetGroupUsersAsync(id);
+                groupProfile.GroupUsers = await _getGroupUsersService.GetGroupProfileUsersAsync(id);
 
                 return groupProfile;
             }
@@ -117,27 +117,39 @@ namespace SocialNetworkBL.Facades
         {
             using (UnitOfWorkProvider.Create())
             {
-                return await _getGroupUsersService.GetGroupUsersAsync(groupId);
+                return await _getGroupUsersService.GetGroupProfileUsersAsync(groupId);
             }
         }
-        #region AdminMethods
 
-        public async void RemoveUserFromGroup(int groupId, int userId)
+        public async Task<IEnumerable<GetGroupUsersDto>> GetGroupUsers(int groupId)
         {
             using (UnitOfWorkProvider.Create())
             {
+                return await _getGroupUsersService.GetGroupUsersAsync(groupId);
+            }
+        }
+
+        #region AdminMethods
+
+        public async Task RemoveUserFromGroup(int groupId, int userId)
+        {
+            using (var uow = UnitOfWorkProvider.Create())
+            {
                 var groupUser = await _groupUserService.GetGroupUserAsync(groupId, userId);
                 _groupUserService.Delete(groupUser.Id);
+
+                await uow.Commit();
             }
         }
 
         public async Task MakeUserAdminAsync(int groupId, int userId)
         {
-            using (UnitOfWorkProvider.Create())
+            using (var uow = UnitOfWorkProvider.Create())
             {
                 var groupUser = await _groupUserService.GetGroupUserAsync(groupId, userId);
                 groupUser.IsAdmin = true;
                 await _groupUserService.Update(groupUser);
+                await uow.Commit();
             }
         }
 

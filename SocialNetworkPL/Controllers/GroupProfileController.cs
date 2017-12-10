@@ -91,13 +91,31 @@ namespace SocialNetworkPL.Controllers
 
         public async Task<ActionResult> ShowGroupUsers(int groupId)
         {
-            var users = await GroupProfileFacade.GetGroupProfileUsersByGroupIdAsync(groupId);
+            var groupUsers = await GroupProfileFacade.GetGroupUsers(groupId);
             var group = await GroupGenericFacade.GetAsync(groupId);
 
             return View("GroupUsers", new ShowGroupUsersModel
             {
                 Group = group,
-                Users = users
+                GroupUsers = groupUsers
+            });
+        }
+
+        public async Task<ActionResult> MakeAdmin(int groupid, int userid)
+        {
+            await GroupProfileFacade.MakeUserAdminAsync(groupid, userid);
+            return RedirectToAction("ShowGroupUsers", new
+            {
+                groupId = groupid
+            });
+        }
+
+        public async Task<ActionResult> KickUser(int groupid, int userid)
+        {
+            await GroupProfileFacade.RemoveUserFromGroup(groupid, userid);
+            return RedirectToAction("ShowGroupUsers", new
+            {
+                groupId = groupid
             });
         }
     }

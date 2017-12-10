@@ -295,6 +295,7 @@
     <Content Include="Content\GroupsManager\GroupManagement.scss" />
     <Content Include="Content\GroupsManager\GroupProfile.scss" />
     <Content Include="Content\GroupsManager\CreateGroup.scss" />
+    <Content Include="Content\GroupsManager\GroupUsers.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

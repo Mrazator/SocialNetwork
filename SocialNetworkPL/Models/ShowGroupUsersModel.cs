@@ -10,6 +10,6 @@ namespace SocialNetworkPL.Models
     public class ShowGroupUsersModel
     {
         public GroupDto Group { get; set; }
-        public IEnumerable<GroupProfileUserDto> Users { get; set; }
+        public IEnumerable<GetGroupUsersDto> GroupUsers { get; set; }
     }
 }
