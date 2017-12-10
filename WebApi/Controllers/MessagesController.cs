@@ -16,7 +16,7 @@ namespace WebApi.Controllers
         public async Task<IEnumerable<MessageDto>> GetChat(int friendshipId)
         {
             var chat = await MessageGenericFacade.GetMessagesByFriendshipIdAsync(friendshipId);
-            return chat;
+            return chat.Items;
         }
 
         // GET: api/Messages/2
