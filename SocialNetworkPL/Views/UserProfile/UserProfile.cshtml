@@ -27,35 +27,33 @@
         </div>
     </div>
     <div class="col-md-6 posts-column">
-        <div class="add-post">
-            @{
-                if (User.Identity.IsAuthenticated && Model.UserProfileUser.NickName.Equals(User.Identity.Name))
+        @if (User.Identity.IsAuthenticated && Model.UserProfileUser.NickName.Equals(User.Identity.Name))
+        {
+            <div class="add-post">
+                @using (Html.BeginForm("AddPost", "UserProfile", FormMethod.Post))
                 {
-                    using (Html.BeginForm("AddPost", "UserProfile", FormMethod.Post))
-                    {
-                        <div class="search-btn">
-                            @Html.EditorFor(model => model.NewPostText, new
+                    <div class="search-btn">
+                        @Html.EditorFor(model => model.NewPostText, new
+                        {
+                            htmlAttributes = new
                             {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control",
-                                    placeholder = "What's on your mind, " + Model.UserProfileUser.NickName + "?"
-                                }
-                            })
-                            @Html.HiddenFor(model => model.UserProfileUser.NickName)
-                            @Html.HiddenFor(model => model.UserProfileUser.Id)
+                                @class = "form-control",
+                                placeholder = "What's on your mind, " + Model.UserProfileUser.NickName + "?"
+                            }
+                        })
+                        @Html.HiddenFor(model => model.UserProfileUser.NickName)
+                        @Html.HiddenFor(model => model.UserProfileUser.Id)
 
-                            <button type="submit" class="btn btn-primary">Post</button>
-                        </div>
-                        <div class="checkbox-under-search-btn ">
-                            @Html.EditorFor(x => x.PostIsVisibleOnlyToFriends)
-                            @Html.LabelFor(x => x.PostIsVisibleOnlyToFriends, "post anonymous", new { @class = "label-checkbox" })
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </div>
+                    <div class="checkbox-under-search-btn ">
+                        @Html.EditorFor(x => x.PostIsVisibleOnlyToFriends)
+                        @Html.LabelFor(x => x.PostIsVisibleOnlyToFriends, "post anonymous", new { @class = "label-checkbox" })
 
-                        </div>
-                    }
+                    </div>
                 }
-            }
-        </div>
+            </div>
+        }
 
         <div class="post-container">
             <ul class="posts">
@@ -143,4 +141,5 @@
             </footer>
         </blockquote>
     </div>
+    <div class="clearfix"></div>
 </div>
