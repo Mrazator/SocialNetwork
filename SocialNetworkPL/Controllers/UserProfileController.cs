@@ -32,8 +32,8 @@ namespace SocialNetworkPL.Controllers
             //delete this after Identity.UserId is set
             var user = await BasicUserFacade.GetUserByNickNameAsync(nickName);
 
-            var postFilter = Session[PostFilterSessionKey] as PostFilterDto ?? new PostFilterDto() { PageSize = Posts};
-            postFilter.RequestedPageNumber = postPage;
+            var postFilter = new PostFilterDto() {PageSize = Posts, RequestedPageNumber = postPage};
+            Session[PostFilterSessionKey] = postFilter;
             postFilter.UserId = user.Id;
 
             var commentFilter = Session[CommentFilterSessionKey] as CommentFilterDto ?? new CommentFilterDto() { PageSize = Comments };

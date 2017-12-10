@@ -128,7 +128,7 @@ namespace SocialNetworkDAL.Initializers
 
             var post = new Post
             {
-                PostedAt = DateTime.Now.ToUniversalTime(),
+                PostedAt = new DateTime(2017,12,5).ToUniversalTime(),
                 Text = "My First Post",
                 User = user1
             };
@@ -137,7 +137,7 @@ namespace SocialNetworkDAL.Initializers
 
             var post5 = new Post
             {
-                PostedAt = DateTime.Now.ToUniversalTime(),
+                PostedAt = new DateTime(2017, 12, 6).ToUniversalTime(),
                 Text =
                     "5Navzdory všeobecnému přesvědčení Lorem Ipsum není náhodný text. Jeho původ má kořeny v klasické latinské literatuře z roku 45 před Kristem, což znamená, že je více jak 2000 let staré. Richard McClintock, profesor latiny na univerzitě Hampden-Sydney stát Virginia, který se zabýval téměř neznámými latinskými slovy, odhalil prapůvod slova consectetur z pasáže Lorem Ipsum. Nejstarším dílem, v němž se pasáže Lorem Ipsum používají, je Cicerova kniha z roku 45 před Kristem s názvem (O koncích dobra a zla), konkrétně jde pak o kapitoly 1.10.32 a 1.10.33. Tato kniha byla nejvíce známá v době renesance, jelikož pojednávala o etice. Úvodní řádky Lorem Ipsum, pocházejí z kapitoly 1.10.32 z uvedené knihy.",
                 Group = group,
@@ -148,7 +148,7 @@ namespace SocialNetworkDAL.Initializers
 
             var post2 = new Post
             {
-                PostedAt = DateTime.Now.ToUniversalTime(),
+                PostedAt = new DateTime(2017, 12, 7).ToUniversalTime(),
                 Text =
                     "2Navzdory všeobecnému přesvědčení Lorem Ipsum není náhodný text. Jeho původ má kořeny v klasické latinské literatuře z roku 45 před Kristem, což znamená, že je více jak 2000 let staré. Richard McClintock, profesor latiny na univerzitě Hampden-Sydney stát Virginia, který se zabýval téměř neznámými latinskými slovy, odhalil prapůvod slova consectetur z pasáže Lorem Ipsum. Nejstarším dílem, v němž se pasáže Lorem Ipsum používají, je Cicerova kniha z roku 45 před Kristem s názvem (O koncích dobra a zla), konkrétně jde pak o kapitoly 1.10.32 a 1.10.33. Tato kniha byla nejvíce známá v době renesance, jelikož pojednávala o etice. Úvodní řádky Lorem Ipsum, pocházejí z kapitoly 1.10.32 z uvedené knihy.",
                 Group = group,
@@ -159,7 +159,7 @@ namespace SocialNetworkDAL.Initializers
 
             var post3 = new Post
             {
-                PostedAt = DateTime.Now.ToUniversalTime(),
+                PostedAt = new DateTime(2017, 12, 8).ToUniversalTime(),
                 Text =
                     "3Navzdory všeobecnému přesvědčení Lorem Ipsum není náhodný text. Jeho původ má kořeny v klasické latinské literatuře z roku 45 před Kristem, což znamená, že je více jak 2000 let staré. Richard McClintock, profesor latiny na univerzitě Hampden-Sydney stát Virginia, který se zabýval téměř neznámými latinskými slovy, odhalil prapůvod slova consectetur z pasáže Lorem Ipsum. Nejstarším dílem, v němž se pasáže Lorem Ipsum používají, je Cicerova kniha z roku 45 před Kristem s názvem (O koncích dobra a zla), konkrétně jde pak o kapitoly 1.10.32 a 1.10.33. Tato kniha byla nejvíce známá v době renesance, jelikož pojednávala o etice. Úvodní řádky Lorem Ipsum, pocházejí z kapitoly 1.10.32 z uvedené knihy.",
                 User = user3
@@ -169,7 +169,7 @@ namespace SocialNetworkDAL.Initializers
 
             var post4 = new Post
             {
-                PostedAt = DateTime.Now.ToUniversalTime(),
+                PostedAt = new DateTime(2017, 12, 9).ToUniversalTime(),
                 Text =
                     "4Navzdory všeobecnému přesvědčení Lorem Ipsum není náhodný text. Jeho původ má kořeny v klasické latinské literatuře z roku 45 před Kristem, což znamená, že je více jak 2000 let staré. Richard McClintock, profesor latiny na univerzitě Hampden-Sydney stát Virginia, který se zabýval téměř neznámými latinskými slovy, odhalil prapůvod slova consectetur z pasáže Lorem Ipsum. Nejstarším dílem, v němž se pasáže Lorem Ipsum používají, je Cicerova kniha z roku 45 před Kristem s názvem (O koncích dobra a zla), konkrétně jde pak o kapitoly 1.10.32 a 1.10.33. Tato kniha byla nejvíce známá v době renesance, jelikož pojednávala o etice. Úvodní řádky Lorem Ipsum, pocházejí z kapitoly 1.10.32 z uvedené knihy.",
                 User = user4

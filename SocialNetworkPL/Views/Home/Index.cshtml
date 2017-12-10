@@ -122,6 +122,13 @@
             }
         }
     }
+    <div class="more">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.PostFilter.PageSize);
+            <button type="submit" class="btn btn-primary">More...</button>
+        }
+    </div>
 </div>
 <div class="col-md-4 pull-right sidebar">
     <div class="road"></div>

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Web.Http;
 using System.Web.Mvc;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.DataTransferObjects.UserProfileDtos;
 using SocialNetworkBL.Facades;
+using SocialNetworkDAL.Entities;
 using SocialNetworkPL.Models;
 
 namespace SocialNetworkPL.Controllers
@@ -16,7 +18,7 @@ namespace SocialNetworkPL.Controllers
     public class HomeController : Controller
     {
         //zatim - dalsi commenty a posty se zobrazovat nebudou
-        public const int Posts = 250;
+        public const int Posts = 3;
         public const int Comments = 50;
 
         private const string PostFilterSessionKey = "homePostFilter";
@@ -31,15 +33,24 @@ namespace SocialNetworkPL.Controllers
         public UserProfileFacade UserProfileFacade { get; set; }
 
         // GET: Posts
-        public async Task<ActionResult> Index(int page = 1, int postPage = 1, int commentPage = 1)
+        public async Task<ActionResult> Index(PostFilterDto postFilter)
         {
-            var postFilter = Session[PostFilterSessionKey] as PostFilterDto ?? new PostFilterDto() { PageSize = Posts, RequestedPageNumber = postPage};
-            postFilter.RequestedPageNumber = postPage;
+            //defaultni hodnota pagesize je 50 - zvysuje se po lichych cislech, takze je to v poho (y)
+            if (postFilter.PageSize == 50)
+            {
+                postFilter = new PostFilterDto()
+                {
+                    SortCriteria = nameof(Post.PostedAt),
+                    PageSize = Posts
+                };
+            }
 
-            var commentFilter = Session[CommentFilterSessionKey] as CommentFilterDto ?? new CommentFilterDto() { PageSize = Comments, RequestedPageNumber = commentPage};
-            commentFilter.RequestedPageNumber = commentPage;
+            //Session[PostFilterSessionKey] = postFilter;
 
-            var posts = await UserProfileFacade.GetPostsWithUsersNicknamesAndCommentsByFilters(postFilter, commentFilter);
+            //var commentFilter = Session[CommentFilterSessionKey] as CommentFilterDto ?? new CommentFilterDto() { PageSize = Comments, RequestedPageNumber = commentPage};
+            //commentFilter.RequestedPageNumber = commentPage;
+
+            var posts = await UserProfileFacade.GetPostsWithUsersNicknamesAndCommentsByFilters(postFilter, null);
 
             BasicUserDto userWithFriends = null;
             if (Request.IsAuthenticated)
@@ -51,13 +62,20 @@ namespace SocialNetworkPL.Controllers
             return View("Index", new PostListModel()
             {
                 PostFilter = postFilter,
-                CommentFilter = commentFilter,
                 AuthenticatedUser = userWithFriends,
                 Posts = posts
             });
         }
 
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
+        public ActionResult Index(UserProfileModel model)
+        {
+            model.PostFilter.PageSize += 3;
+
+            return RedirectToAction("Index", model.PostFilter);
+        }
+
+        [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> AddComment(PostListModel model)
         {
             try
@@ -98,7 +116,7 @@ namespace SocialNetworkPL.Controllers
         }
 
         // POST: Posts/Create
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> Create(PostDto post)
         {
             try
@@ -121,7 +139,7 @@ namespace SocialNetworkPL.Controllers
         }
 
         // POST: Posts/Edit/5
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> Edit(int id, PostDto post)
         {
             try
@@ -143,7 +161,7 @@ namespace SocialNetworkPL.Controllers
         }
 
         // POST: Posts/Delete/5
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> DeletePost(int id)
         {
             try
