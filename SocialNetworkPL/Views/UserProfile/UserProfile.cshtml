@@ -48,8 +48,8 @@
                             <button type="submit" class="btn btn-primary">Post</button>
                         </div>
                         <div class="checkbox-under-search-btn ">
-                            @Html.EditorFor(x => x.PostStayAnonymous)
-                            @Html.LabelFor(x => x.PostStayAnonymous, "post anonymous", new { @class = "label-checkbox" })
+                            @Html.EditorFor(x => x.PostIsVisibleOnlyToFriends)
+                            @Html.LabelFor(x => x.PostIsVisibleOnlyToFriends, "post anonymous", new { @class = "label-checkbox" })
 
                         </div>
                     }

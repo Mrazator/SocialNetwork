@@ -2,9 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Infrastructure;
-using SocialNetwork.Enums;
 
-namespace SocialNetwork.Entities
+namespace SocialNetworkDAL.Entities
 {
     public class User : IEntity
     {

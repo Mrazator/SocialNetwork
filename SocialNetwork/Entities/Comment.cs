@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Infrastructure;
-using SocialNetwork.Interfaces;
+using SocialNetworkDAL.Interfaces;
 
-namespace SocialNetwork.Entities
+namespace SocialNetworkDAL.Entities
 {
     public class Comment : IPostable, IEntity
     {

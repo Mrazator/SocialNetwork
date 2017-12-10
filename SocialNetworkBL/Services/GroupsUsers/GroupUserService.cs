@@ -1,5 +1,4 @@
-﻿using SocialNetwork.Entities;
-using SocialNetworkBL.DataTransferObjects;
+﻿using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Services.Common;
 using System;
@@ -11,6 +10,7 @@ using AutoMapper;
 using Infrastructure;
 using Infrastructure.Query;
 using SocialNetworkBL.QueryObjects.Common;
+using SocialNetworkDAL.Entities;
 
 namespace SocialNetworkBL.Services.GroupsUsers
 {

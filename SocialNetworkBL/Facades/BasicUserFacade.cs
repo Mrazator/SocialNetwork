@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Infrastructure;
 using Infrastructure.UnitOfWork;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
+using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.Services.BasicUser;
@@ -57,6 +57,14 @@ namespace SocialNetworkBL.Facades
             using (UnitOfWorkProvider.Create())
             {
                 return await _basicUsersService.GetUsersContainingSubNameAsync(subname);
+            }
+        }
+
+        public async Task<QueryResultDto<BasicUserDto, UserFilterDto>> GetQueryResultUsersByFilter(UserFilterDto filter)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                return await _basicUsersService.GetUsersQueryContainingSubNameAsync(filter);
             }
         }
 

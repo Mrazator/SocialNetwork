@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Enums;
 
@@ -15,8 +14,5 @@ namespace SocialNetworkBL.DataTransferObjects
 
         //public Visibility PostVisibilityPreference { get; set; } = Visibility.Visible;
         public string ProfileDescription { get; set; }
-
-        public virtual HashSet<FriendshipDto> RequestedFriendships { get; set; }
-        public virtual HashSet<FriendshipDto> AcceptedFriendships { get; set; }
     }
 }

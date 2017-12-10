@@ -1,17 +1,7 @@
 ﻿@using Castle.Core.Internal
 @model SocialNetworkPL.Models.GroupProfileModel
 
-<style type="text/css">
-    @{
-        var pathToImg = "";
-    }
-
-    .profile-picture, .profile-img {
-        background-image: url(@pathToImg);
-    }
-</style>
-
-<div class="row GroupProfile">
+<div class="GroupProfile row ">
     <div class="col-md-3 detail">
         <div class="img"></div>
         <div class="profile">
@@ -20,12 +10,12 @@
                 <h4>@Model.GroupProfile.Name</h4>
                 <footer>Tu raz bude daky popis Mozno</footer>
             </blockquote>
-            <a href="@Url.Action("ShowGroupUsers", "GroupProfile", new { groupId = Model.GroupProfile.Id })" class="users">
+            <a href="@Url.Action("ShowGroupUsers", "GroupProfile", new { groupId = Model.GroupProfile.Id })" class="group-users">
                 <span>Users</span>
                 <h6>
                     @Model.GroupProfile.GroupUsers.Count(x => x.IsAccepted)
                 </h6>
-                
+
                 @Html.HiddenFor(model => model.GroupProfile.Id)
             </a>
         </div>
@@ -37,37 +27,35 @@
         </div>
     </div>
     <div class="col-md-6 posts-column">
-        <div class="add-post">
-            @{
-                if (User.Identity.IsAuthenticated && Model.GroupProfile.GroupUsers.Select(user => user.NickName).Contains(User.Identity.Name))
+        @if (User.Identity.IsAuthenticated && Model.GroupProfile.GroupUsers.Select(user => user.NickName).Contains(User.Identity.Name))
+        {
+            <div class="add-post">
+                @using (Html.BeginForm("PostInGroup", "GroupProfile", FormMethod.Post))
                 {
-                    using (Html.BeginForm("PostInGroup", "GroupProfile", FormMethod.Post))
-                    {
-                        <div class="search-btn">
-                            @Html.EditorFor(model => model.NewPostText, new
-                            {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control",
-                                    placeholder = "What's on your mind, " + User.Identity.Name + "?"
-                                }
-                            })
-                            @Html.HiddenFor(model => model.GroupProfile.Name)
-                            @Html.HiddenFor(model => model.GroupProfile.Id)
-
-                            <button type="submit" class="btn btn-primary">Post</button>
-                        </div>
-                        if (Model.GroupProfile.AllowAnonymousPosts)
+                    <div class="search-btn">
+                        @Html.EditorFor(model => model.NewPostText, new
                         {
-                            <div class="checkbox-under-search-btn ">
-                                @Html.EditorFor(x => x.PostStayAnonymous)
-                                @Html.LabelFor(x => x.PostStayAnonymous, "post anonymous", new { @class = "label-checkbox" })
-                            </div>
-                        }
+                            htmlAttributes = new
+                            {
+                                @class = "form-control",
+                                placeholder = "What's on your mind, " + User.Identity.Name + "?"
+                            }
+                        })
+                        @Html.HiddenFor(model => model.GroupProfile.Name)
+                        @Html.HiddenFor(model => model.GroupProfile.Id)
+
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </div>
+                    if (Model.GroupProfile.AllowAnonymousPosts)
+                    {
+                        <div class="checkbox-under-search-btn ">
+                            @Html.EditorFor(x => x.PostStayAnonymous)
+                            @Html.LabelFor(x => x.PostStayAnonymous, "post anonymous", new { @class = "label-checkbox" })
+                        </div>
                     }
                 }
-            }
-        </div>
+            </div>
+        }
 
         <div class="post-container">
             <ul class="posts">
@@ -78,7 +66,10 @@
                     {
 
                         <li class="post">
-                            <div class="profile-picture"></div>
+                            
+                            @{var pathToImg = "../../Assets/img/girl-" + post.UserId + "-400.jpg";}
+
+                            <div class="profile-picture" style="background-image: url('@pathToImg')"></div>
                             <div class="content">
                                 <div>
                                     @if (post.StayAnonymous)
@@ -89,18 +80,18 @@
                                     {
                                         <h4>@post.User.NickName</h4>//Miesto <h4> by sa zisiel link na UserProfile
                                     }
-                                    <small>@post.PostedAt</small>
-                                    @if (!Model.GroupProfile.GroupUsers
-                                        .Where(x => x.IsAdmin && x.NickName == Model.AuthenticatedUser.NickName)
-                                        .IsNullOrEmpty())
-                                    {
-                                        using (Html.BeginForm("DeletePost", "GroupProfile", FormMethod.Post))
+                                    <div class="info-delete">
+                                        <small>@post.PostedAt</small>
+                                        @if (!Model.GroupProfile.GroupUsers.Where(x => x.IsAdmin && x.NickName == Model.AuthenticatedUser.NickName).IsNullOrEmpty())
                                         {
-                                            @Html.HiddenFor(model => model.GroupProfile.Id)
-                                            @Html.HiddenFor(model => model.PostId, new { @Value = post.Id })
-                                            <button type="submit" class="btn btn-primary">Delete</button>
+                                            using (Html.BeginForm("DeletePost", "GroupProfile", FormMethod.Post))
+                                            {
+                                                @Html.HiddenFor(model => model.GroupProfile.Id)
+                                                @Html.HiddenFor(model => model.PostId, new { @Value = post.Id })
+                                                <button type="submit" class="btn btn-xs btn-primary" >Delete</button>
+                                            }
                                         }
-                                    }
+                                    </div>
                                 </div>
                                 <p class="message">
                                     @post.Text
@@ -165,7 +156,7 @@
         </div>
     </div>
     <div class="col-md-3 sidebar">
-        <div class="sea"></div>
+        <div class="clouds"></div>
         <blockquote>
             <footer>
                 Existuje mnoho variant s pasážemi Lorem Ipsum, nicméně valná většina trpí neduhy v

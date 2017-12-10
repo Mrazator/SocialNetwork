@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "FriendManagement.css",
+	"sources": [
+		"FriendManagement.scss"
+	],
+	"mappings": "AAAA,AAGQ,iBAHS,CAEb,KAAK,CACD,gBAAgB,AAAC,CACb,QAAQ,CAAE,QAAS,CACnB,KAAK,CAAE,IAAK,CACZ,MAAM,CAAE,IAAK,CACb,YAAY,CAAE,IAAK,CACtB",
+	"names": []
+}

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Infrastructure;
 using Infrastructure.Query;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.DataTransferObjects.UserProfileDtos;
 using SocialNetworkBL.QueryObjects.Common;
 using SocialNetworkBL.Services.Common;
+using SocialNetworkDAL.Entities;
 
 namespace SocialNetworkBL.Services.UserProfile
 {

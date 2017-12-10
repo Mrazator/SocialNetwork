@@ -12,7 +12,7 @@ namespace SocialNetworkBL.Services.BasicUser
     {
         Task<BasicUserDto> GetUserByNickName(string nickName);
         Task<IEnumerable<BasicUserDto>> GetUsersContainingSubNameAsync(string subname);
-        Task<QueryResultDto<BasicUserDto, UserFilterDto>> GetUsersQueryContainingSubNameAsync(string subName);
+        Task<QueryResultDto<BasicUserDto, UserFilterDto>> GetUsersQueryContainingSubNameAsync(UserFilterDto filter);
 
     }
 }

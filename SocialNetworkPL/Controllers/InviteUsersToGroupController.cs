@@ -19,7 +19,7 @@ namespace SocialNetworkPL.Controllers
         public GroupGenericFacade GroupGenericFacade { get; set; }
 
         // GET: InviteUsersToGroup
-        public async Task<ActionResult> Index([FromUri] string subname, int? groupId)
+        public async Task<ActionResult> Index([FromUri] string subname = "", int? groupId = null)
         {
             var filter = new UserFilterDto { SubName = subname };
 
@@ -44,17 +44,17 @@ namespace SocialNetworkPL.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        public async Task<ActionResult> Invite(int userId, int? groupId)
+        public async Task<ActionResult> Invite(int userId, int? groupid)
         {            
             var addUserToGroupDto = new AddUserToGroupDto
             {
                 UserId = userId,
-                GroupId = (int) groupId,
+                GroupId = (int) groupid,
                 IsAccepted = false
             };
 
             await GroupGenericFacade.AddUserAsync(addUserToGroupDto);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { groupId = groupid });
         }
     }
 }

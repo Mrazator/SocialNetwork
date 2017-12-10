@@ -12,7 +12,7 @@
                 {
                     @class = "form-control",
                     id = "search-subname",
-                    placeholder = "Enter nickname"
+                    placeholder = "Search for a user with given nickname..."
                 })
                 @Html.HiddenFor(x => x.GroupId)
 
@@ -23,43 +23,44 @@
 
         <table class="table">
             <tbody>
-                @foreach (var user in Model.Users)
+            @foreach (var user in Model.Users)
+            {
+                if (user.NickName != Model.User.NickName)
                 {
-                    if (user.NickName != Model.User.NickName)
-                    {
-                        <tr>
-                            <th scope="row">
-                                @{ var pathToImg = "../../Assets/img/girl-" + user.Id + "-400.jpg";}
-                                <div class="profile-picture" style="background-image: url(@pathToImg)"></div>
-                                @Html.ActionLink(user.NickName, "Index", "UserProfile", new { nickName = user.NickName }, null)
-                            </th>
+                    <tr>
+                        <th scope="row">
+                            @{ var pathToImg = "../../Assets/img/girl-" + user.Id + "-400.jpg";}
+                            <div class="profile-picture" style="background-image: url(@pathToImg)"></div>
+                            @Html.ActionLink(user.NickName, "Index", "UserProfile", new { nickName = user.NickName }, null)
+                        </th>
 
-                            <td>
-                                @if (!user.Groups.Where(x => !x.IsAccepted && x.GroupId == Model.GroupId).IsNullOrEmpty())
+                        <td>
+                            @if (!user.Groups.Where(x => !x.IsAccepted && x.GroupId == Model.GroupId).IsNullOrEmpty())
+                            {
+                                <input type="submit" value="Invited" class="btn btn-default" />
+                            }
+                            else if (!user.Groups.Where(x => x.IsAccepted && x.GroupId == Model.GroupId).IsNullOrEmpty())
+                            {
+                                <input type="submit" value="Already Member" class="btn btn-success" />
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("Invite", "InviteUsersToGroup", new { userId = user.Id, groupid = Model.GroupId }, FormMethod.Post, null))
                                 {
-                                    <input type="submit" value="Invited" class="btn btn-default" />
+                                    <input type="submit" value="Invite user" class="btn btn-primary" />
                                 }
-                                else if (!user.Groups.Where(x => x.IsAccepted && x.GroupId == Model.GroupId).IsNullOrEmpty())
-                                {
-                                    <input type="submit" value="Already Member" class="btn btn-success" />
-                                }
-                                else
-                                {
-                                    using (Html.BeginForm("Invite", "InviteUsersToGroup", new { userId = user.Id, groupId = Model.GroupId }, FormMethod.Post, null))
-                                    {
-                                        <input type="submit" value="Invite user" class="btn btn-primary" />
-                                    }
-                                }
+                            }
 
-                            </td>
-                        </tr>
-                    }
+                        </td>
+                    </tr>
                 }
+            }
             </tbody>
         </table>
     </div>
+
     <div class="col-md-4 pull-right sidebar">
-        <div class="city"></div>
+        <div class="axe"></div>
         <blockquote>
             <footer>Existuje mnoho variant s pasážemi Lorem Ipsum, nicméně valná většina trpí neduhy v podobě snahy o vtipný text či použití naprosto náhodných slov, což nevypadá zrovna uvěřitelně.</footer>
         </blockquote>

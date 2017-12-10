@@ -1,10 +1,10 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using SocialNetwork.Config;
-using SocialNetwork.Entities;
-using SocialNetwork.Initializers;
+using SocialNetworkDAL.Config;
+using SocialNetworkDAL.Entities;
+using SocialNetworkDAL.Initializers;
 
-namespace SocialNetwork
+namespace SocialNetworkDAL
 {
     public class EntityFrameworkDbContext : DbContext
     {

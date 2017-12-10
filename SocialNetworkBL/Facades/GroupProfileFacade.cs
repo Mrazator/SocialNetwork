@@ -12,6 +12,7 @@ using SocialNetworkBL.Services.Posts;
 using SocialNetworkBL.Services.Comments;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.GroupProfileDtos;
+using SocialNetworkBL.Services.BasicUser;
 
 namespace SocialNetworkBL.Facades
 {
@@ -23,6 +24,8 @@ namespace SocialNetworkBL.Facades
         private readonly IGroupProfilePostsService _postService;
         private readonly IGroupProfileUserService _groupProfileUserService;
         private readonly ICommentService _commentService;
+        private readonly IBasicUsersService _basicUsersService;
+
 
         public GroupProfileFacade(IUnitOfWorkProvider unitOfWorkProvider,
                                   IGroupProfileService groupProfileService,
@@ -30,6 +33,7 @@ namespace SocialNetworkBL.Facades
                                   IGetGroupUsersService getGroupUsersService,
                                   IGroupProfilePostsService postService,
                                   IGroupProfileUserService groupProfileUserService,
+                                  IBasicUsersService basicUsersService,
                                   ICommentService commentService) 
             : base(unitOfWorkProvider)
         {
@@ -39,6 +43,7 @@ namespace SocialNetworkBL.Facades
             _postService = postService;
             _groupProfileUserService = groupProfileUserService;
             _commentService = commentService;
+            _basicUsersService = basicUsersService;
         }
 
         public async Task<GroupProfileDto> GetGroupProfileAsync(int id)
@@ -54,7 +59,14 @@ namespace SocialNetworkBL.Facades
                     if (!post.StayAnonymous)
                     {
                         post.User = await _groupProfileUserService.GetAsync((int)post.UserId);
-                        post.Comments = await _commentService.GetCommentsByPostIdAsync(post.Id);
+                        var comments = await _commentService.GetCommentsByPostIdAsync(post.Id);
+
+                        foreach (var comment in comments)
+                        {
+                            comment.NickName = (await _basicUsersService.GetAsync(comment.UserId)).NickName;
+                        }
+
+                        post.Comments = comments;
                     }
                 }
 

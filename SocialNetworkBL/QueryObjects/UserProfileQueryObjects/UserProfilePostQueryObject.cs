@@ -7,10 +7,10 @@ using AutoMapper;
 using Infrastructure.Query;
 using Infrastructure.Query.Predicates;
 using Infrastructure.Query.Predicates.Operators;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.DataTransferObjects.UserProfileDtos;
 using SocialNetworkBL.QueryObjects.Common;
+using SocialNetworkDAL.Entities;
 
 namespace SocialNetworkBL.QueryObjects.UserProfileQueryObjects
 {

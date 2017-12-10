@@ -9,7 +9,7 @@ using Infrastructure;
 using Infrastructure.Query;
 using Infrastructure.UnitOfWork;
 
-namespace SocialNetwork.Config
+namespace SocialNetworkDAL.Config
 {
     public class EntityFrameworkInstaller : IWindsorInstaller
     {

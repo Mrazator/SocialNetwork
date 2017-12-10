@@ -3,10 +3,10 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using SocialNetwork.Config;
 using SocialNetworkBL.Facades.Common;
 using SocialNetworkBL.QueryObjects.Common;
 using SocialNetworkBL.Services.Common;
+using SocialNetworkDAL.Config;
 
 namespace SocialNetworkBL.Config
 {

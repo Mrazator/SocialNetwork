@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.UnitOfWork;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.Facades.Common;
@@ -9,6 +8,7 @@ using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.GroupsUsers;
 using SocialNetworkBL.Services.Groups;
 using SocialNetworkBL.DataTransferObjects.GroupProfileDtos;
+using SocialNetworkDAL.Entities;
 
 namespace SocialNetworkBL.Facades
 {

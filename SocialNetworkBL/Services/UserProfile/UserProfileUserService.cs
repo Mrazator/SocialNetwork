@@ -11,19 +11,18 @@ using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.DataTransferObjects.UserProfileDtos;
 using SocialNetworkBL.QueryObjects.Common;
 using SocialNetworkBL.Services.Common;
-using SocialNetwork.Entities;
 
 namespace SocialNetworkBL.Services.UserProfile
 {
     public class UserProfileUserService : ServiceBase, IUserProfileUserService
     {
-        private readonly QueryObjectBase<UserProfileUserDto, SocialNetwork.Entities.User, UserFilterDto, IQuery<SocialNetwork.Entities.User>> _userProfileUserQueryObject;
-        private readonly IRepository<SocialNetwork.Entities.User> _repository;
+        private readonly QueryObjectBase<UserProfileUserDto, SocialNetworkDAL.Entities.User, UserFilterDto, IQuery<SocialNetworkDAL.Entities.User>> _userProfileUserQueryObject;
+        private readonly IRepository<SocialNetworkDAL.Entities.User> _repository;
 
         public UserProfileUserService(
             IMapper mapper,
-            QueryObjectBase<UserProfileUserDto, SocialNetwork.Entities.User, UserFilterDto, IQuery<SocialNetwork.Entities.User>> userProfileUserQueryObject,
-            IRepository<SocialNetwork.Entities.User> repository)
+            QueryObjectBase<UserProfileUserDto, SocialNetworkDAL.Entities.User, UserFilterDto, IQuery<SocialNetworkDAL.Entities.User>> userProfileUserQueryObject,
+            IRepository<SocialNetworkDAL.Entities.User> repository)
             : base(mapper)
         {
             this._userProfileUserQueryObject = userProfileUserQueryObject;

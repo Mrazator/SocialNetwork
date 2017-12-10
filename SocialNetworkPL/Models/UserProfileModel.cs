@@ -14,7 +14,7 @@ namespace SocialNetworkPL.Models
         public CommentFilterDto CommentFilter { get; set; }
 
         public string NewPostText { get; set; }
-        public bool PostStayAnonymous { get; set; }
+        public bool PostIsVisibleOnlyToFriends { get; set; }
         public string NewCommentText { get; set; }
         public int PostId { get; set; }
     }

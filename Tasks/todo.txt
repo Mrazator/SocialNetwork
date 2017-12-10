@@ -18,12 +18,11 @@ Az bude vse vyresene:
 	5. Zkusit si implementovat realtime chat
 
 Dodelat:	
-	Admin v Groupach - Groupy - tlacitko users, vyhazovat lidi ze skupiny
+	Admin v Groupach - Groupy - vyhazovat lidi ze skupiny
 	Managementy - Ukazat rovnou vsechny usery - pojmenovany header
 
 	Pagination na posty
 	Vsude mit hyperlinky na usery
-	doladit styly
 
 	udelam - zasiela súkromné správy inım uívate¾om (nemusí to by formou real-time chatu)
 

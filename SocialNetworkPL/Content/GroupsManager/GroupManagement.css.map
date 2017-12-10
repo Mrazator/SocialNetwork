@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "GroupManagement.css",
+	"sources": [
+		"GroupManagement.scss"
+	],
+	"mappings": "AAAA,AAEQ,gBAFQ,CAEZ,IAAI,AAAA,YAAY,AAAC,CACb,aAAa,CAAE,CAAE,CACpB,AAJL,AAKI,gBALY,CAKZ,aAAa,AAAC,CACV,MAAM,CAAE,WAAY,CACvB",
+	"names": []
+}

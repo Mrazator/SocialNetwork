@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
-using SocialNetwork.Entities;
-using SocialNetwork.Enums;
+using SocialNetworkDAL.Entities;
 
-namespace SocialNetwork.Initializers
+namespace SocialNetworkDAL.Initializers
 {
     public class MyInitializer : DropCreateDatabaseAlways<EntityFrameworkDbContext>
     {

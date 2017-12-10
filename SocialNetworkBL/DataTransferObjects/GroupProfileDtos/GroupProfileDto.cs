@@ -1,5 +1,4 @@
-﻿using SocialNetwork.Entities;
-using SocialNetworkBL.DataTransferObjects.Common;
+﻿using SocialNetworkBL.DataTransferObjects.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -2,7 +2,6 @@
 using Infrastructure.Query;
 using Infrastructure.Query.Predicates;
 using Infrastructure.Query.Predicates.Operators;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.DataTransferObjects.GroupProfileDtos;
 using SocialNetworkBL.QueryObjects.Common;
@@ -11,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SocialNetworkDAL.Entities;
 
 namespace SocialNetworkBL.QueryObjects.GroupProfileQueryObjects
 {

@@ -3,10 +3,10 @@ using BL.Tests.QueryObjectsTests.Common;
 using Infrastructure.Query.Predicates;
 using Infrastructure.Query.Predicates.Operators;
 using NUnit.Framework;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects;
+using SocialNetworkDAL.Entities;
 
 namespace BL.Tests.QueryObjectsTests
 {

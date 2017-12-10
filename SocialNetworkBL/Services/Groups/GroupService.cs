@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Infrastructure;
 using Infrastructure.Query;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects.Common;
 using SocialNetworkBL.Services.Common;
 using System;
+using SocialNetworkDAL.Entities;
 
 namespace SocialNetworkBL.Services.Groups
 {

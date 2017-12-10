@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SocialNetwork.Entities;
 using AutoMapper;
 using Infrastructure;
 using Infrastructure.Query;
@@ -15,11 +14,11 @@ using SocialNetworkBL.DataTransferObjects.Common;
 
 namespace SocialNetworkBL.Services.GroupProfile
 {
-    public class GroupProfileUserService : CrudQueryServiceBase<SocialNetwork.Entities.User, GroupProfileUserDto, UserFilterDto>, IGroupProfileUserService
+    public class GroupProfileUserService : CrudQueryServiceBase<SocialNetworkDAL.Entities.User, GroupProfileUserDto, UserFilterDto>, IGroupProfileUserService
     {
         public GroupProfileUserService(IMapper mapper, 
-                                       IRepository<SocialNetwork.Entities.User> repository,
-                                       QueryObjectBase<GroupProfileUserDto, SocialNetwork.Entities.User, UserFilterDto, IQuery<SocialNetwork.Entities.User>> query)
+                                       IRepository<SocialNetworkDAL.Entities.User> repository,
+                                       QueryObjectBase<GroupProfileUserDto, SocialNetworkDAL.Entities.User, UserFilterDto, IQuery<SocialNetworkDAL.Entities.User>> query)
                                        : base(mapper, repository, query) { }
 
     }

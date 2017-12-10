@@ -27,6 +27,11 @@
 input, button {
     border-radius: 0 !important;
 }
+
+a.btn {
+    border-radius: 0;
+}
+
 //sidebar
 .sidebar {
     padding: 0 !important;
@@ -36,32 +41,161 @@ input, button {
         padding: 15px 10px 5px;
     }
 
-    @mixin sponsor-img() {
+    @mixin sponsor-img($name) {
         height: 250px;
         margin-bottom: 15px;
         background-size: cover;
+        background: url("../../Assets/img/#{$name}-400.jpg") no-repeat center;
+    }
+
+    .tie {
+        @include sponsor-img(tie);
+    }
+
+    .clouds {
+        @include sponsor-img(clouds);
+    }
+
+    .axe {
+        @include sponsor-img(axe);
     }
 
     .sea {
-        @include sponsor-img();
-        background: url("../../Assets/img/sea-400.jpg") no-repeat center;
+        @include sponsor-img(sea);
         height: 200px;
     }
 
     .city {
-        @include sponsor-img();
-        background: url("../../Assets/img/city-400.jpg") no-repeat center;
+        @include sponsor-img(city);
     }
 
     .road {
-        @include sponsor-img();
-        background: url("../../Assets/img/road-400.jpg") no-repeat center;
+        @include sponsor-img(road);
+    }
+}
+
+//Profiles
+.UserProfile, .GroupProfile {
+
+    .detail {
+        position: relative;
+        padding: 0 !important;
+        border: 1px lightgray solid;
+
+        .profile {
+            padding: 75px 0px 15px;
+            text-align: center;
+
+            .profile-picture {
+                top: 80px;
+                left: 50%;
+                transform: translate(-50%, 0);
+                height: 125px;
+                width: 125px;
+            }
+        }
+
+        .img {
+            height: 150px;
+            background-size: cover;
+        }
+    }
+
+    .posts-column {
+        @media screen and (max-width: 991px) {
+            margin-top: 25px;
+        }
+
+        .add-post {
+            margin-bottom: 20px;
+
+            .checkbox-under-search-btn {
+                display: flex;
+                align-items: center;
+                margin: 5px 0 0;
+
+                input[type="checkbox"] {
+                    margin: 0;
+                    margin-right: 5px;
+                }
+
+                .label-checkbox {
+                    margin: 0;
+                    font-weight: 300;
+                    color: grey;
+                }
+            }
+
+            .form-inline {
+                margin-bottom: 15px;
+
+                .btn, .form-control {
+                    border-radius: 0;
+                    border-color: lightgray;
+                }
+            }
+        }
+    }
+}
+
+
+//Managements
+.FriendManagement, .GroupManagement, .InviteUsersToGroup {
+
+    .form-search {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 20px;
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 0;
+        }
+    }
+
+    table {
+        tr {
+            border: 1px solid #d3d3d3;
+            padding: 10px;
+            display: table-caption;
+            margin-bottom: 15px;
+            margin-right: 15px;
+        }
+
+        th, td {
+            vertical-align: middle !important;
+            border: none !important;
+        }
+
+        tbody {
+            display: flex;
+            flex-wrap: wrap;
+
+            th {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
+//Managements-profiles
+.FriendManagement, .GroupManagement {
+
+    table {
+        .profile-picture {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            margin-right: 15px;
+        }
     }
 }
 
 //posts
 .post-container {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     border: 1px lightgray solid;
 
     .posts {
@@ -73,7 +207,7 @@ input, button {
 
             &:not(:last-child) {
                 border-bottom: 1px lightgray solid;
-                margin-bottom: 25px;
+                margin-bottom: 15px;
                 padding-bottom: 40px;
             }
 
@@ -95,6 +229,7 @@ input, button {
                 }
 
                 .message {
+                    word-break: break-word;
                 }
 
                 .images {
@@ -105,7 +240,6 @@ input, button {
 }
 
 //send comment
-
 .send-comment {
 
     form {
@@ -115,7 +249,6 @@ input, button {
 
 
 //comments
-
 .comments {
     padding-left: 0 !important;
     padding-top: 15px !important;
@@ -129,7 +262,6 @@ input, button {
 
 
 //search button
-
 .search-btn {
     display: flex;
     justify-content: space-between;
@@ -141,7 +273,6 @@ input, button {
 
 
 //profile picture
-
 .profile-picture {
     position: absolute;
     background-position: center;

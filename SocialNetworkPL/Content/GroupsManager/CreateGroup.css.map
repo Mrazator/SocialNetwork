@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "CreateGroup.css",
+	"sources": [
+		"CreateGroup.scss"
+	],
+	"mappings": "AAAA,AACI,YADQ,CACR,WAAW,AAAC,CACR,aAAa,CAAE,GAAI,CACtB,AAHL,AAKI,YALQ,CAKR,UAAU,AAAC,CACP,UAAU,CAAE,IAAK,CACjB,OAAO,CAAE,KAAM,CAClB",
+	"names": []
+}

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Infrastructure.Query;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.DataTransferObjects.GroupProfileDtos;
 using SocialNetworkBL.DataTransferObjects.UserProfileDtos;
+using SocialNetworkDAL.Entities;
 
 namespace SocialNetworkBL.Config
 {
@@ -30,8 +30,8 @@ namespace SocialNetworkBL.Config
 
             config.CreateMap<User, BasicUserDto>()
                 .ForMember(x => x.Friends, opt => opt.Ignore())
-                .ForMember(x => x.Groups, opt => opt.Ignore())
-                .ReverseMap();
+                .ForMember(x => x.Groups, opt => opt.Ignore());
+            config.CreateMap<BasicUserDto, User>();
             config.CreateMap<QueryResult<User>, QueryResultDto<BasicUserDto, UserFilterDto>>();
 
 
@@ -63,6 +63,7 @@ namespace SocialNetworkBL.Config
             config.CreateMap<GroupUser, GroupUserDto>().ReverseMap();
             config.CreateMap<QueryResult<GroupUser>, QueryResultDto<GroupUserDto, GroupUserFilterDto>>();
 
+            config.CreateMap<GroupUser, GetGroupUsersDto>().ReverseMap();
             config.CreateMap<GroupUser, GetGroupUsersDto>().ReverseMap();
             config.CreateMap<QueryResult<GroupUser>, QueryResultDto<GetGroupUsersDto, GetGroupUsersFilterDto>>();
 

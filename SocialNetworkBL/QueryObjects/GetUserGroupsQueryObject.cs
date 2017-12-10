@@ -2,11 +2,11 @@
 using Infrastructure.Query;
 using Infrastructure.Query.Predicates;
 using Infrastructure.Query.Predicates.Operators;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects.Common;
 using System.Collections.Generic;
+using SocialNetworkDAL.Entities;
 
 namespace SocialNetworkBL.QueryObjects
 {

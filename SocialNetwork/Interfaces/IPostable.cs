@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SocialNetwork.Interfaces
+namespace SocialNetworkDAL.Interfaces
 {
     internal interface IPostable
     {

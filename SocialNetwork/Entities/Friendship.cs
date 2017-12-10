@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Infrastructure;
 
-namespace SocialNetwork.Entities
+namespace SocialNetworkDAL.Entities
 {
     public class Friendship : IEntity
     {

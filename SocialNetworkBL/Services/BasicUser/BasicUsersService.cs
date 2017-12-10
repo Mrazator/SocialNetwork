@@ -12,11 +12,11 @@ using SocialNetworkBL.Services.Common;
 
 namespace SocialNetworkBL.Services.BasicUser
 {
-    public class BasicUsersService : CrudQueryServiceBase<SocialNetwork.Entities.User, BasicUserDto, UserFilterDto>, IBasicUsersService
+    public class BasicUsersService : CrudQueryServiceBase<SocialNetworkDAL.Entities.User, BasicUserDto, UserFilterDto>, IBasicUsersService
     {
         public BasicUsersService(IMapper mapper,
-            IRepository<SocialNetwork.Entities.User> repository,
-            QueryObjectBase<BasicUserDto, SocialNetwork.Entities.User, UserFilterDto, IQuery<SocialNetwork.Entities.User>> query)
+            IRepository<SocialNetworkDAL.Entities.User> repository,
+            QueryObjectBase<BasicUserDto, SocialNetworkDAL.Entities.User, UserFilterDto, IQuery<SocialNetworkDAL.Entities.User>> query)
             : base(mapper, repository, query)
         {
         }
@@ -28,7 +28,7 @@ namespace SocialNetworkBL.Services.BasicUser
                 NickName = nickName
             });
 
-            return query?.Items?.SingleOrDefault();
+            return query?.Items?.FirstOrDefault();
         }
 
         public async Task<IEnumerable<BasicUserDto>> GetUsersContainingSubNameAsync(string subname)
@@ -37,9 +37,9 @@ namespace SocialNetworkBL.Services.BasicUser
             return queryResult?.Items;
         }
 
-        public async Task<QueryResultDto<BasicUserDto, UserFilterDto>> GetUsersQueryContainingSubNameAsync(string subName)
+        public async Task<QueryResultDto<BasicUserDto, UserFilterDto>> GetUsersQueryContainingSubNameAsync(UserFilterDto filter)
         {
-            return await Query.ExecuteQuery(new UserFilterDto() { SubName = subName });
+            return await Query.ExecuteQuery(filter);
         }
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{24F55BEF-33ED-4EFC-838B-666B21B0F53B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SocialNetwork</RootNamespace>
-    <AssemblyName>SocialNetwork</AssemblyName>
+    <RootNamespace>SocialNetworkDAL</RootNamespace>
+    <AssemblyName>SocialNetworkDAL</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

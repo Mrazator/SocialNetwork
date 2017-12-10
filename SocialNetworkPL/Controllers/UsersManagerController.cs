@@ -20,18 +20,16 @@ namespace SocialNetworkPL.Controllers
         //kdybych to vsak delal znova, tak uz radsi pro konzistenci specialni fasadu vytvorim
         public FriendshipGenericFacade FriendshipGenericFacade { get; set; }
         public BasicUserFacade BasicUserFacade { get; set; }
-        public UserGenericFacade UserGenericFacade { get; set; }
 
         //Vypise se pouze prvnich 100 hledani
         private const int UsersCount = 100;
 
-        public async Task<ActionResult> Index([FromUri] string subname)
+        public async Task<ActionResult> Index([FromUri] string subname = "")
         {
             var filter = new UserFilterDto { SubName = subname };
 
             var user = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
-            var users2 = await UserGenericFacade.GetUsersContainingSubNameAsync(subname);
-            var users = await BasicUserFacade.GetUsersBySubnameAsync(subname);
+            var users = (await BasicUserFacade.GetQueryResultUsersByFilter(filter)).Items;
             var basicUserWithFriends = await BasicUserFacade.GetBasicUserWithFriends(user.Id);
 
             return View("FriendManagementView", new FindUsersModel

@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Web.UI;
 using Infrastructure.UnitOfWork;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
@@ -14,6 +13,7 @@ using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.Friendships;
 using SocialNetworkBL.Services.Posts;
 using SocialNetworkBL.Services.UserProfile;
+using SocialNetworkDAL.Entities;
 
 namespace SocialNetworkBL.Facades
 {
@@ -66,7 +66,7 @@ namespace SocialNetworkBL.Facades
                         if (postFilter.UserId == null && post.UserId != null)
                         {
                             //Add Nicknames
-                            post.NickName = (await _basicUsersService.GetAsync((int) post.UserId)).NickName;
+                            post.NickName = (await _basicUsersService.GetAsync((int)post.UserId)).NickName;
                         }
 
                         commentFilter.PostId = post.Id;

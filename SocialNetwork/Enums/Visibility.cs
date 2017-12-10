@@ -1,4 +1,4 @@
-﻿namespace SocialNetwork.Enums
+﻿namespace SocialNetworkDAL.Enums
 {
     public enum Visibility
     {

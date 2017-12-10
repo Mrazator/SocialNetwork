@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Infrastructure;
 using Infrastructure.Query;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects.Common;
@@ -14,14 +13,14 @@ using SocialNetworkBL.Services.Common;
 
 namespace SocialNetworkBL.Services.User
 {
-    public class UserService : CrudQueryServiceBase<SocialNetwork.Entities.User, UserDto, UserFilterDto>, IUserService
+    public class UserService : CrudQueryServiceBase<SocialNetworkDAL.Entities.User, UserDto, UserFilterDto>, IUserService
     {
         private const int PBKDF2IterCount = 100000;
         private const int PBKDF2SubkeyLength = 160 / 8;
         private const int saltSize = 128 / 8;
 
-        public UserService(IMapper mapper, IRepository<SocialNetwork.Entities.User> repository,
-            QueryObjectBase<UserDto, SocialNetwork.Entities.User, UserFilterDto, IQuery<SocialNetwork.Entities.User>> query)
+        public UserService(IMapper mapper, IRepository<SocialNetworkDAL.Entities.User> repository,
+            QueryObjectBase<UserDto, SocialNetworkDAL.Entities.User, UserFilterDto, IQuery<SocialNetworkDAL.Entities.User>> query)
             : base(mapper, repository, query)
         {
         }
@@ -40,7 +39,7 @@ namespace SocialNetworkBL.Services.User
 
         public async Task<int> RegisterUserAsync(UserCreateDto userDto)
         {
-            var user = Mapper.Map<SocialNetwork.Entities.User>(userDto);
+            var user = Mapper.Map<SocialNetworkDAL.Entities.User>(userDto);
 
             if (await GetIfUserExistsAsync(user.NickName))
                 throw new ArgumentException();

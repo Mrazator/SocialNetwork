@@ -1,5 +1,4 @@
 ﻿using Infrastructure.Query;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Filters;
 using SocialNetworkBL.QueryObjects.Common;
@@ -11,6 +10,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Infrastructure.Query.Predicates;
 using Infrastructure.Query.Predicates.Operators;
+using SocialNetworkDAL.Entities;
 
 namespace SocialNetworkBL.QueryObjects
 {

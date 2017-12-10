@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using SocialNetwork.Enums;
 using SocialNetworkBL.DataTransferObjects.Common;
+using SocialNetworkDAL.Enums;
 
 namespace SocialNetworkBL.DataTransferObjects
 {

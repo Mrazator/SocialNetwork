@@ -255,20 +255,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\img\axe-400.jpg" />
     <Content Include="Assets\img\background.jpeg" />
+    <Content Include="Assets\img\clouds-400.jpg" />
     <Content Include="Assets\img\girl-1.jpg" />
     <Content Include="Assets\img\girl-2.jpg" />
     <Content Include="Assets\img\girl-3.jpg" />
     <Content Include="Assets\img\girl-4.jpg" />
+    <Content Include="Assets\img\group-1-400.jpg" />
+    <Content Include="Assets\img\group-2-400.jpg" />
+    <Content Include="Assets\img\group-3-400.jpg" />
     <Content Include="Assets\img\sea.jpg" />
+    <Content Include="Assets\img\stadium-400.jpg" />
+    <Content Include="Assets\img\tie-400.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\main.css">
-      <DependentUpon>main.scss</DependentUpon>
-    </Content>
-    <Content Include="Content\main.min.css">
-      <DependentUpon>main.css</DependentUpon>
-    </Content>
+    <Content Include="Content\main.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -289,6 +291,10 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Content\main.css.map" />
+    <Content Include="Content\GroupsManager\GroupManagement.scss" />
+    <Content Include="Content\GroupsManager\GroupProfile.scss" />
+    <Content Include="Content\GroupsManager\CreateGroup.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

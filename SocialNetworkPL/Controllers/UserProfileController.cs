@@ -60,7 +60,7 @@ namespace SocialNetworkPL.Controllers
                 await UserProfileFacade.AddPost(new UserProfilePostDto()
                 {
                     PostedAt = DateTime.Now.ToUniversalTime(),
-                    StayAnonymous = model.PostStayAnonymous,
+                    StayAnonymous = model.PostIsVisibleOnlyToFriends,
                     UserId = model.UserProfileUser.Id,
                     Text = model.NewPostText
                 });
@@ -82,7 +82,7 @@ namespace SocialNetworkPL.Controllers
                 {
                     Text = model.NewCommentText,
                     PostedAt = DateTime.Now.ToUniversalTime(),
-                    StayAnonymous = model.PostStayAnonymous,
+                    StayAnonymous = model.PostIsVisibleOnlyToFriends,
                     UserId = model.AuthenticatedUser.Id,
                     PostId = model.PostId
                 });

@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using BL.Tests.FacadeTests.Common;
 using Moq;
 using NUnit.Framework;
-using SocialNetwork.Entities;
 using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.Common;
 using SocialNetworkBL.DataTransferObjects.Filters;
@@ -11,6 +10,7 @@ using SocialNetworkBL.Facades;
 using SocialNetworkBL.QueryObjects;
 using SocialNetworkBL.Services.Common;
 using SocialNetworkBL.Services.User;
+using SocialNetworkDAL.Entities;
 
 namespace BL.Tests.FacadeTests
 {

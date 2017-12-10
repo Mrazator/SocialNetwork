@@ -4,10 +4,6 @@
 @if (User.Identity.IsAuthenticated)
 {
     <div class="GroupManagement col-md-7">
-        @Html.ActionLink("Create Group", "CreateGroup", "GroupsManager", FormMethod.Get, null)
-    </div>
-    
-    <div class="GroupManagement col-md-7">
         @using (Html.BeginForm("Index", "GroupsManager", FormMethod.Get, new { @class = "form-search" }))
         {
             <div class="form-group">
@@ -16,7 +12,7 @@
            {
                @class = "form-control",
                id = "search-subname",
-               placeholder = "Enter groupname"
+               placeholder = "Search for a group with given name..."
            })
 
             </div>
@@ -24,13 +20,17 @@
             <button class="btn btn-primary" type="submit">Find</button>
         }
 
+        <div class="create-group">
+            @Html.ActionLink("Create Group", "CreateGroup", "GroupsManager", FormMethod.Get, new { @class = "btn btn-primary" })
+        </div>
+
         <table class="table">
             <tbody>
                 @foreach (var group in Model.Groups)
                 {
                     <tr>
                         <th scope="row">
-                            @{ var pathToImg = "";}
+                            @{ var pathToImg = "../../Assets/img/group-" + group.Id + "-400.jpg"; }
                             <div class="profile-picture" style="background-image: url(@pathToImg)"></div>
                             @Html.ActionLink(group.Name, "Index", "GroupProfile", new { groupId = group.Id }, null)
                         </th>
@@ -38,7 +38,7 @@
                         <td>
                             @if (!Model.User.Groups.Where(groupUser => !groupUser.IsAccepted && groupUser.Group.Id == group.Id).IsNullOrEmpty())
                             {
-                                @Html.ActionLink("Accept invitation", "AcceptInvitation", new { groupId = group.Id, userId = Model.User.Id }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Accept invitation", "AcceptInvitation", new { groupId = group.Id, userId = Model.User.Id }, new { @class = "btn btn-success" })
                             }
                             else if (!Model.User.Groups.Where(groupUser => groupUser.IsAccepted && groupUser.IsAdmin == true && groupUser.Group.Id == group.Id).IsNullOrEmpty())
                             {
@@ -46,7 +46,7 @@
                             }
                             else if (!Model.User.Groups.Where(groupUser => groupUser.IsAccepted && groupUser.IsAdmin == false && groupUser.Group.Id == group.Id).IsNullOrEmpty())
                             {
-                                <input type="submit" value="Member" class="btn btn-default" />
+                                <input type="submit" value="Already a member" class="btn btn-default" />
                             }
                             else
                             {
@@ -54,23 +54,24 @@
                                 {
                                     using (Html.BeginForm("BecomeMember", "GroupsManager", new { groupId = group.Id }, FormMethod.Post, null))
                                     {
-                                        <input type="submit" value="Become Member" class="btn btn-primary" />
+                                        <input type="submit" value="Become a member" class="btn btn-primary" />
                                     }
                                 }
                             }
 
                         </td>
                     </tr>
-                                }
+                }
             </tbody>
         </table>
+
     </div>
     <div class="col-md-4 pull-right sidebar">
-        <div class="city"></div>
+        <div class="axe"></div>
         <blockquote>
             <footer>Existuje mnoho variant s pasážemi Lorem Ipsum, nicméně valná většina trpí neduhy v podobě snahy o vtipný text či použití naprosto náhodných slov, což nevypadá zrovna uvěřitelně.</footer>
         </blockquote>
     </div>
-    <div class="clearfix"></div>
-                                }
 
+    <div class="clearfix"></div>
+}
