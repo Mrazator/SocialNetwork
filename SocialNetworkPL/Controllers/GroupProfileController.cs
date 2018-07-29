@@ -1,4 +1,5 @@
-﻿using SocialNetworkBL.DataTransferObjects;
+﻿using Castle.Core.Internal;
+using SocialNetworkBL.DataTransferObjects;
 using SocialNetworkBL.DataTransferObjects.GroupProfileDtos;
 using SocialNetworkBL.Facades;
 using SocialNetworkPL.Models;
@@ -22,12 +23,21 @@ namespace SocialNetworkPL.Controllers
         {
             var groupProfile = await GroupProfileFacade.GetGroupProfileAsync(groupId);
             var authUser = await BasicUserFacade.GetUserByNickNameAsync(User.Identity.Name);
+            var userGroups = await BasicUserFacade.GetBasicUserWithGroups(authUser.Id);
+            var group = await GroupGenericFacade.GetAsync(groupId);
 
-            return View("GroupProfile", new GroupProfileModel
+            if (userGroups.Groups.Where(groupUser => groupUser.Group.Id == groupId || !group.IsPrivate).IsNullOrEmpty())
             {
-                GroupProfile = groupProfile,
-                AuthenticatedUser = authUser
-            });
+                throw new HttpException(404, "Some description");
+            }
+            else
+            {
+                return View("GroupProfile", new GroupProfileModel
+                {
+                    GroupProfile = groupProfile,
+                    AuthenticatedUser = authUser
+                });
+            }
         }
 
         [HttpPost]

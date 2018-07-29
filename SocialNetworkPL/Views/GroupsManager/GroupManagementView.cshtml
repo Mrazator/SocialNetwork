@@ -28,6 +28,7 @@
             <tbody>
                 @foreach (var group in Model.Groups)
                 {
+                    if (!Model.User.Groups.Where(groupUser => groupUser.Group.Id == group.Id || !group.IsPrivate).IsNullOrEmpty()){
                     <tr>
                         <th scope="row">
                             @{ var pathToImg = "../../Assets/img/group-" + group.Id + "-400.jpg"; }
@@ -61,6 +62,8 @@
 
                         </td>
                     </tr>
+                }
+
                 }
             </tbody>
         </table>

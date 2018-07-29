@@ -60,7 +60,7 @@
         <div class="post-container">
             <ul class="posts">
                 @if (!Model.GroupProfile.IsPrivate
-                 || Model.GroupProfile.GroupUsers.Select(user => user.NickName).Contains(User.Identity.Name))
+                 || !Model.GroupProfile.GroupUsers.Where(groupUser => groupUser.NickName.Equals(User.Identity.Name) && groupUser.IsAccepted).IsNullOrEmpty())
                 {
                     foreach (var post in Model.GroupProfile.Posts)
                     {
